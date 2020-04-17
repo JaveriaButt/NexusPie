@@ -1,0 +1,37 @@
+﻿<AppDesign>
+  <HeaderImage>\Settings\App\1\Images\Header.jpg</HeaderImage>
+  <HeaderText>Govt. Post Graduate College Haripur KPK</HeaderText>
+  <FooterImage></FooterImage>
+  <FooterText></FooterText>
+  <OrgLogo></OrgLogo>
+  
+  
+  
+  <!-- Home Screen Settings-->
+  
+ 
+  
+  
+  
+  
+  
+  <OKButton></OKButton>
+  <OKButtonPressed></OKButtonPressed>
+  <SaveButton ></SaveButton>
+  <SaveButtonPressed ></SaveButtonPressed>
+  <CancelButton ></CancelButton>
+  <CancelButtonPressed></CancelButtonPressed>
+  <CloseButton ></CloseButton>
+  <CloseButtonPressed ></CloseButtonPressed>
+  <ClearButton ></ClearButton>
+  <ClearButtonPressed></ClearButtonPressed>
+  <DeleteButton ></DeleteButton>
+  <DeleteButtonPressed ></DeleteButtonPressed>
+  <UpdateButton ></UpdateButton>
+  <UpdateButtonPressed ></UpdateButtonPressed>
+  <PrintButton></PrintButton>
+  <PrintButtonPressed></PrintButtonPressed>
+  <InformationIcon>\Settings\App\1\Images\information_icon.png</InformationIcon>
+  <ErrorIcon>\Settings\App\1\Images\error.png</ErrorIcon>
+  <WarningIcon>\Settings\App\1\Images\Warning.png</WarningIcon>
+</AppDesign>

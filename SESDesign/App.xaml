@@ -1,0 +1,15 @@
+﻿<Application x:Class="SESDesign.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SESDesign"
+             xmlns:Controller="clr-namespace:SESDesign.Controller"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+            </ResourceDictionary.MergedDictionaries>
+            <Controller:HomeController x:Key="AppViewModel"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
