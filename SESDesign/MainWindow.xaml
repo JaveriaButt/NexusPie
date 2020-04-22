@@ -24,7 +24,7 @@
                             </StackPanel> 
                         </MenuItem.Header> 
                         <MenuItem Name="Add" Header="Add New Record" Click="Add_Click"/>
-                        <MenuItem Name="View" Header="View Record"/>
+                        <MenuItem Name="View" Header="View Record" Click="View_Click"/>
                         <MenuItem Name="Update" Header="Update Record"/>
                         <MenuItem Name="Delete" Header="Delete Record"/>
                     </MenuItem>

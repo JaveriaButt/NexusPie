@@ -16,7 +16,7 @@ namespace SESWebService.Controllers
 
         [Route("api/Student/SaveSingleStudent")]
         [System.Web.Http.HttpPost]
-        public FunctionResponse<Student> SaveSingleStudent( Student student)
+        public FunctionResponse<Student> SaveSingleStudent(Student student)
         {
             FunctionResponse<Student> Response = new FunctionResponse<Student>();
             try
@@ -41,6 +41,9 @@ namespace SESWebService.Controllers
                         SqlCommand command = new SqlCommand(Query, Connection);
                         command.CommandType = System.Data.CommandType.Text;
                         command.ExecuteNonQuery();
+                        Response.ResponseMessage = "Record Successfully Saved";
+                        Response.Success = true;
+
 
                     }
                 }
@@ -75,6 +78,45 @@ namespace SESWebService.Controllers
             catch (Exception ex)
             { }
             return Response; 
+        }
+
+
+
+        [Route("api/Student/SearchStudent")]
+        [System.Web.Http.HttpPost]
+        public FunctionResponse<List<Student>> SearchStudent(Student student)
+        {
+            FunctionResponse<List<Student>> Response = new FunctionResponse<List<Student>>();
+            try
+            {
+                 string Query = "select std_name,std_fathername,std_rollno,std_Department,std_CNIC,std_session from student_info";
+                    using (SqlConnection Connection = new SqlConnection(ConnectionString))
+                    {
+                        Connection.Open();
+                        SqlCommand command = new SqlCommand(Query, Connection);
+                        command.CommandType = System.Data.CommandType.Text;
+                        SqlDataReader dr = command.ExecuteReader();
+                        while(dr.Read())
+                        {
+                            Student std = new Student();
+                            std.StudentName = dr[0].ToString();
+                            std.StudentFName = dr[1].ToString();
+                            std.StudentRollNumber = dr[2].ToString();
+                            std.Department = dr[3].ToString();
+                            std.StudentCNIC = dr[4].ToString();
+                            std.Session = dr[5].ToString();
+
+                            Response.Result.Add(std);
+                        }
+
+                        Response.ResponseMessage = "Record Found Successfully";
+                        Response.Success = true;
+                        return Response;
+                    }
+            }
+            catch (Exception ex)
+            { }
+            return Response;
         }
     }
 }
