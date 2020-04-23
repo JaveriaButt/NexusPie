@@ -42,18 +42,14 @@ namespace DAL
                     {
                         var JsonString = Newtonsoft.Json.JsonConvert.SerializeObject(objectValue);
                         wb.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-                        wb.Headers[HttpRequestHeader.Accept] = "application/json";
-<<<<<<< HEAD
+                        wb.Headers[HttpRequestHeader.Accept] = "application/json"; 
                         wb.Encoding = Encoding.UTF8;
                         string a = ServiceURL + ActionName;
                         //wb.UploadString(ServiceURL + ActionName, JsonString);
-                        var response = wb.UploadString("http://localhost:51455/api/"+ActionName, JsonString);
-=======
-                        wb.Encoding = Encoding.UTF8;  
-                        var response = wb.UploadString(ServiceURL + ActionName, JsonString);
->>>>>>> 5888cea79977e0b8809b4a11d2acb47df3183629
-                        Response = response;
-                        IsServerConnected = true;
+                          wb.Encoding = Encoding.UTF8;  
+                         var response = wb.UploadString(ServiceURL + ActionName, JsonString); 
+                         Response = response;
+                         IsServerConnected = true;
                     } 
                 }
                 catch (Exception ex)
@@ -69,71 +65,83 @@ namespace DAL
             return Response;
         }
 
-
-        public static FunctionResponse<string> InsertStudnetRecord(Student studentrec)
+        private static string ServerGetRequest(string ActionName)
         {
-            FunctionResponse<string> Response = new FunctionResponse<string>();
-            try
-            {
 
-                string StudentXml = General.OBJECTTOXML(studentrec); 
-                string Request = "<Input><Service><Service><Result>"+ StudentXml + "</Result></Input>";
-                Response.Result = ServerRequest("",Request); 
-                Response.Success = true;
-            }
-            catch (Exception ex)
+            _cancelTasks = new CancellationTokenSource();
+            string Response = null;
+            var task = new Task(() =>
             {
-
+                try
+                { 
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ServiceURL + ActionName);//
+                    request.Method = "Get";
+                    request.KeepAlive = true;
+                    request.ContentType = "appication/json";
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse(); 
+                    using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream()))
+                    {
+                        Response = sr.ReadToEnd();
+                    }
+                    
+                    IsServerConnected = true;
+                }
+                catch (Exception ex)
+                {
+                }
+            }, _cancelTasks.Token);
+            task.Start();
+            if (!task.Wait(SRequestTimeout * 1000))
+            {
+                Response = "TIMEOUT";
+                _cancelTasks.Cancel();
             }
             return Response;
         }
 
-
-
-        public static void InsertProcedure(string storep, List<ProcdPerameter> ProcedureValues)
-{
-    try
-    {
-        using (SqlConnection con = new SqlConnection(ServiceURL))
+        public static FunctionResponse<string> SaveSingleStudent(Student student)
         {
-            using (SqlCommand cmd = new SqlCommand(storep, con))
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            Response.Success = false;
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandTimeout = 0;
-
-                        foreach (ProcdPerameter SqlPerameter in ProcedureValues)
-                        {
-                            if (SqlPerameter.SqlType == SqlDbType.Int)
-                            {
-                                cmd.Parameters.Add(SqlPerameter.SqlColmName, SqlPerameter.SqlType).Value = int.Parse(SqlPerameter.Value);
-                            }
-                            else if (SqlPerameter.SqlType == SqlDbType.Float)
-                            {
-                                cmd.Parameters.Add(SqlPerameter.SqlColmName, SqlPerameter.SqlType).Value = float.Parse(SqlPerameter.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.Add(SqlPerameter.SqlColmName, SqlPerameter.SqlType).Value =  SqlPerameter.Value;
-                            }
-                        }
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                Response.ResponseMessage = ServerRequest("Student/SaveSingleStudent", student);
+                Response.Success = true;
             }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+            }
+            return Response;
         }
-    }
-    catch (Exception ex)
-    { 
-        
-    }
-}
+
+        public static FunctionResponse<List<Student>> GetAllStudent()
+        {
+            FunctionResponse<List<Student>> Response = new FunctionResponse<List<Student>>();
+            Response.Success = false;
+            try
+            {
+
+                var response = ServerGetRequest("Student/GetAllStudent");
+
+                Response = Newtonsoft.Json.JsonConvert.DeserializeObject<FunctionResponse<List<Student>>>(response);
+                
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+            }
+            return Response;
+        }
 
         public static AppDesign GetAppDesignfromDB()
         {
-            AppDesign Response  = new AppDesign();
+            AppDesign Response = new AppDesign();
             try
             {
-                string ResponseString =string.Empty;
+                string ResponseString = string.Empty;
                 string SqlConnectionString = @"Server=.;Database=SES;User Id=sa;Password=Sa123;";
                 SqlConnection con = new SqlConnection(SqlConnectionString);
                 con.Open();
@@ -144,15 +152,15 @@ namespace DAL
                 {
                     while (rdr.Read())
                     {
-                        ResponseString += rdr[0].ToString(); 
-                    } 
+                        ResponseString += rdr[0].ToString();
+                    }
                 }
                 if (!string.IsNullOrWhiteSpace(ResponseString))
                 {
 
                     XmlSerializer serializer = new XmlSerializer(typeof(List<ControlsSetting>), new XmlRootAttribute("AppDesign"));
                     StringReader stringReader = new StringReader(ResponseString);
-                    Response.ControlSetting = (List<ControlsSetting>)serializer.Deserialize(stringReader); 
+                    Response.ControlSetting = (List<ControlsSetting>)serializer.Deserialize(stringReader);
 
                 }
                 con.Dispose();

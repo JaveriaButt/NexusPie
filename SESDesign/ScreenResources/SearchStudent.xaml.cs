@@ -24,9 +24,21 @@ namespace SESDesign.ScreenResources
         public SearchStudent()
         {
             InitializeComponent();
-            Student SearchStudent = new Student();
-            //StdData.ItemsSource = LoadData();
-            StdData.ItemsSource = DAL.DAL1.ServerRequest("Student/SearchStudent",SearchStudent);
+            try
+            {
+                StdData.Columns.Clear();
+                var ServerResponse = DAL.DAL1.GetAllStudent();
+                if (ServerResponse.Success)
+                {
+                    StdData.ItemsSource = ServerResponse.Result;
+                }
+
+            }
+            catch (Exception ex)
+            { 
+            }
+
+             
 
         }
         //public List<Student> LoadData()

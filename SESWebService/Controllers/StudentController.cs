@@ -79,9 +79,9 @@ namespace SESWebService.Controllers
 
 
 
-        [Route("api/Student/SearchStudent")]
-        [System.Web.Http.HttpPost]
-        public FunctionResponse<List<Student>> SearchStudent(Student student)
+        [Route("api/Student/GetAllStudent")]
+        [System.Web.Http.HttpGet]
+        public FunctionResponse<List<Student>> SearchStudent()
         {
             FunctionResponse<List<Student>> Response = new FunctionResponse<List<Student>>();
             try
@@ -93,26 +93,36 @@ namespace SESWebService.Controllers
                         SqlCommand command = new SqlCommand(Query, Connection);
                         command.CommandType = System.Data.CommandType.Text;
                         SqlDataReader dr = command.ExecuteReader();
-                        while(dr.Read())
+                        if (dr.HasRows)
                         {
-                            Student std = new Student();
-                            std.StudentName = dr[0].ToString();
-                            std.StudentFName = dr[1].ToString();
-                            std.StudentRollNumber = dr[2].ToString();
-                            std.Department = dr[3].ToString();
-                            std.StudentCNIC = dr[4].ToString();
-                            std.Session = dr[5].ToString();
+                            Response.Result = new List<Student>();
+                            while (dr.Read())
+                            {
+                                Student std = new Student();
+                                std.StudentName = dr[0].ToString();
+                                std.StudentFName = dr[1].ToString();
+                                std.StudentRollNumber = dr[2].ToString();
+                                std.Department = dr[3].ToString();
+                                std.StudentCNIC = dr[4].ToString();
+                                std.Session = dr[5].ToString(); 
 
-                            Response.Result.Add(std);
+                                Response.Result.Add(std);
+                            }
+                            Response.ResponseMessage = "Record Found Successfully";
+                            Response.Success = true;
+                            return Response;
                         }
-
-                        Response.ResponseMessage = "Record Found Successfully";
-                        Response.Success = true;
-                        return Response;
+                       
                     }
             }
             catch (Exception ex)
-            { }
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+                return Response;
+            
+            
+            }
             return Response;
         }
     }
