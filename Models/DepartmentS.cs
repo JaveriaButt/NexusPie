@@ -36,7 +36,8 @@ namespace Models
         {
             set {
                 if (value != m_DepID)
-                { value = m_DepID;
+                {
+                    m_DepID = value;
                     this.OnPropertyChanged("DepID");
                 }
             }
@@ -45,6 +46,24 @@ namespace Models
             }
         }
 
+
+        private string m_DepHOD = string.Empty;
+
+        public string DepHOD
+        {
+            set
+            {
+                if (value != m_DepHOD)
+                {
+                    m_DepHOD = value;
+                    this.OnPropertyChanged("DepHOD");
+                }
+            }
+            get
+            {
+                return this.m_DepHOD;
+            }
+        }
 
 
         #region Property Changed Event 

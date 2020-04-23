@@ -31,6 +31,8 @@ namespace SESDesign
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             (Application.Current.Resources["AppViewModel"] as HomeController).GetApplicationDesign();
+
+            (Application.Current.Resources["AppViewModel"] as HomeController).GetDepartmentList();
             var control = (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ControlSetting;
 
         }

@@ -21,7 +21,7 @@ namespace SESDesign.Controller
 
         #region Property
 
-        public AppDesign m_ApplicationDesign = new AppDesign();
+        private AppDesign m_ApplicationDesign = new AppDesign();
 
         public AppDesign ApplicationDesign
         {
@@ -40,13 +40,13 @@ namespace SESDesign.Controller
         }
 
 
-        public DepartmentS m_Department = null;
+        private List<DepartmentS> m_Department = null;
 
-        public DepartmentS Department
+        public List<DepartmentS> Department
         {
             set
             {
-                if (m_Department != null)
+                if (m_Department != value)
                 {
                     m_Department = value;
                     this.OnPropertyChanged("Department");
@@ -58,7 +58,7 @@ namespace SESDesign.Controller
             }
         }
 
-        public OrgInfo m_Orginformation = null;
+        private OrgInfo m_Orginformation = null;
         
         public OrgInfo OrgInformation
         {
@@ -134,6 +134,27 @@ namespace SESDesign.Controller
             }
             return Response;
         }
+
+        public bool GetDepartmentList()
+        {
+            bool Response = false;
+            try
+            {
+                var DBResponse = DAL.DAL1.GetDepartment();
+
+                if (DBResponse != null && DBResponse.Count>0)
+                {
+                    Department = DBResponse;
+                    return true;
+                }
+             }
+            catch (Exception ex)
+            {
+
+            }
+            return Response;
+        }
+
 
 
         #endregion

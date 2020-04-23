@@ -44,8 +44,7 @@ namespace DAL
                         wb.Headers.Add(HttpRequestHeader.ContentType, "application/json");
                         wb.Headers[HttpRequestHeader.Accept] = "application/json"; 
                         wb.Encoding = Encoding.UTF8;
-                        string a = ServiceURL + ActionName;
-                        //wb.UploadString(ServiceURL + ActionName, JsonString);
+                        string a = ServiceURL + ActionName; 
                           wb.Encoding = Encoding.UTF8;  
                          var response = wb.UploadString(ServiceURL + ActionName, JsonString); 
                          Response = response;
@@ -82,12 +81,13 @@ namespace DAL
                     using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream()))
                     {
                         Response = sr.ReadToEnd();
-                    }
-                    
+                    } 
                     IsServerConnected = true;
                 }
                 catch (Exception ex)
                 {
+                    Response = ex.Message;
+
                 }
             }, _cancelTasks.Token);
             task.Start();
@@ -121,10 +121,8 @@ namespace DAL
             FunctionResponse<List<Student>> Response = new FunctionResponse<List<Student>>();
             Response.Success = false;
             try
-            {
-
-                var response = ServerGetRequest("Student/GetAllStudent");
-
+            { 
+                var response = ServerGetRequest("Student/GetAllStudent"); 
                 Response = Newtonsoft.Json.JsonConvert.DeserializeObject<FunctionResponse<List<Student>>>(response);
                 
             }
@@ -177,6 +175,11 @@ namespace DAL
             try
             {
                 var ServerResponse = ServerGetRequest("Depart/GetDepart");
+                var ResponseData = Newtonsoft.Json.JsonConvert.DeserializeObject<FunctionResponse<List<DepartmentS>>>(ServerResponse);
+                if (ResponseData.Success)
+                {
+                    Response= ResponseData.Result;
+                }
 
             }
             catch (Exception ex) { }

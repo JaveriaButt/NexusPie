@@ -1,4 +1,5 @@
 ﻿using Models;
+using SESDesign.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,14 @@ namespace SESDesign.ScreenResources
     {
         public AddStudent()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private void EMSButtons_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                 
                 if (string.IsNullOrWhiteSpace(tb_FName.Text) || string.IsNullOrWhiteSpace(tb_RegNumber.Text) || string.IsNullOrWhiteSpace(tb_stdName.Text) || string.IsNullOrWhiteSpace(tb_StdRNo.Text) || Cmb_Batch.SelectedItem != null && Cmb_Department.SelectedItem != null || Cmb_Session.SelectedItem != null)
                 {
                     MessageBox.Show("Please Complete Mandotary Fields ..!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
