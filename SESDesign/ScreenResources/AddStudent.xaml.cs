@@ -30,11 +30,11 @@ namespace SESDesign.ScreenResources
         {
             try
             {
-                //if (string.IsNullOrWhiteSpace(tb_FName.Text) || string.IsNullOrWhiteSpace(tb_RegNumber.Text) || string.IsNullOrWhiteSpace(tb_stdName.Text) || string.IsNullOrWhiteSpace(tb_StdRNo.Text) || Cmb_Batch.SelectedItem!= null && Cmb_Department.SelectedItem!= null || Cmb_Session.SelectedItem != null)
-                //{
-                //    MessageBox.Show("Please Complete Mandotary Fields ..!!","Error",MessageBoxButton.OK,MessageBoxImage.Error);
-                //    return;
-                //}
+                if (string.IsNullOrWhiteSpace(tb_FName.Text) || string.IsNullOrWhiteSpace(tb_RegNumber.Text) || string.IsNullOrWhiteSpace(tb_stdName.Text) || string.IsNullOrWhiteSpace(tb_StdRNo.Text) || Cmb_Batch.SelectedItem != null && Cmb_Department.SelectedItem != null || Cmb_Session.SelectedItem != null)
+                {
+                    MessageBox.Show("Please Complete Mandotary Fields ..!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 Student AddStudent = new Student();
                 AddStudent.StudentName = tb_stdName.Text;
                 AddStudent.StudentFName = tb_FName.Text;
@@ -57,11 +57,17 @@ namespace SESDesign.ScreenResources
                     AddStudent.Gender = "Male";
                 }
                 AddStudent.NoteAddational = tb_AddationalNote.Text;
-                
-
-
-                DAL.DAL1.ServerRequest("Student/SaveSingleStudent", AddStudent);
-
+               var Response =    DAL.DAL1.SaveSingleStudent(AddStudent);
+                if (Response.Success)
+                {
+                    MessageBox.Show(Response.ResponseMessage); 
+                    return;
+                }
+                else if (!Response.Success)
+                {
+                    MessageBox.Show(Response.ResponseMessage);
+                    return;
+                }
 
             }
             catch (Exception ex)

@@ -29,7 +29,7 @@ namespace DAL
         #endregion
 
         private static CancellationTokenSource _cancelTasks;
-        public static string ServerRequest(string ActionName,object objectValue)
+        private static string ServerRequest(string ActionName,object objectValue)
         {
 
             _cancelTasks = new CancellationTokenSource();
@@ -43,10 +43,8 @@ namespace DAL
                         var JsonString = Newtonsoft.Json.JsonConvert.SerializeObject(objectValue);
                         wb.Headers.Add(HttpRequestHeader.ContentType, "application/json");
                         wb.Headers[HttpRequestHeader.Accept] = "application/json";
-                        wb.Encoding = Encoding.UTF8;
-                        string a = ServiceURL + ActionName;
-                        //wb.UploadString(ServiceURL + ActionName, JsonString);
-                        var response = wb.UploadString("http://localhost:51455/api/Student/SaveSingleStudent", JsonString);
+                        wb.Encoding = Encoding.UTF8;  
+                        var response = wb.UploadString(ServiceURL + ActionName, JsonString);
                         Response = response;
                         IsServerConnected = true;
                     } 
@@ -64,7 +62,7 @@ namespace DAL
             return Response;
         }
 
-        public static string ServerGetRequest(string ActionName)
+        private static string ServerGetRequest(string ActionName)
         {
 
             _cancelTasks = new CancellationTokenSource();
@@ -101,63 +99,23 @@ namespace DAL
             return Response;
         }
 
-        public static FunctionResponse<string> InsertStudnetRecord(Student studentrec)
+        public static FunctionResponse<string> SaveSingleStudent(Student student)
         {
             FunctionResponse<string> Response = new FunctionResponse<string>();
+            Response.Success = false;
             try
-            {
-
-                string StudentXml = General.OBJECTTOXML(studentrec); 
-                string Request = "<Input><Service><Service><Result>"+ StudentXml + "</Result></Input>";
-                Response.Result = ServerRequest("",Request); 
+            {  
+                Response.ResponseMessage = ServerRequest("Student/SaveSingleStudent", student); 
                 Response.Success = true;
             }
             catch (Exception ex)
             {
-
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;  
             }
             return Response;
         }
-
-
-
-        public static void InsertProcedure(string storep, List<ProcdPerameter> ProcedureValues)
-{
-    try
-    {
-        using (SqlConnection con = new SqlConnection(ServiceURL))
-        {
-            using (SqlCommand cmd = new SqlCommand(storep, con))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandTimeout = 0;
-
-                        foreach (ProcdPerameter SqlPerameter in ProcedureValues)
-                        {
-                            if (SqlPerameter.SqlType == SqlDbType.Int)
-                            {
-                                cmd.Parameters.Add(SqlPerameter.SqlColmName, SqlPerameter.SqlType).Value = int.Parse(SqlPerameter.Value);
-                            }
-                            else if (SqlPerameter.SqlType == SqlDbType.Float)
-                            {
-                                cmd.Parameters.Add(SqlPerameter.SqlColmName, SqlPerameter.SqlType).Value = float.Parse(SqlPerameter.Value);
-                            }
-                            else
-                            {
-                                cmd.Parameters.Add(SqlPerameter.SqlColmName, SqlPerameter.SqlType).Value =  SqlPerameter.Value;
-                            }
-                        }
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-        }
-    }
-    catch (Exception ex)
-    { 
-        
-    }
-}
+          
 
         public static AppDesign GetAppDesignfromDB()
         {
