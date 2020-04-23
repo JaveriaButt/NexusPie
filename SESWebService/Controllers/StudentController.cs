@@ -70,10 +70,7 @@ namespace SESWebService.Controllers
                     Response.ResponseMessage = "Student Roll Number Cannnot be Empty \n\r Please Enter Student Name";
                     Response.Success = false;
 
-                }
-
-
-
+                } 
             }
             catch (Exception ex)
             { }

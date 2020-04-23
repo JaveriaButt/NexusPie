@@ -43,10 +43,15 @@ namespace DAL
                         var JsonString = Newtonsoft.Json.JsonConvert.SerializeObject(objectValue);
                         wb.Headers.Add(HttpRequestHeader.ContentType, "application/json");
                         wb.Headers[HttpRequestHeader.Accept] = "application/json";
+<<<<<<< HEAD
                         wb.Encoding = Encoding.UTF8;
                         string a = ServiceURL + ActionName;
                         //wb.UploadString(ServiceURL + ActionName, JsonString);
                         var response = wb.UploadString("http://localhost:51455/api/"+ActionName, JsonString);
+=======
+                        wb.Encoding = Encoding.UTF8;  
+                        var response = wb.UploadString(ServiceURL + ActionName, JsonString);
+>>>>>>> 5888cea79977e0b8809b4a11d2acb47df3183629
                         Response = response;
                         IsServerConnected = true;
                     } 
@@ -158,14 +163,17 @@ namespace DAL
             return Response;
         }
 
-     
+        public static List<DepartmentS> GetDepartment()
+        {
+            List<DepartmentS> Response = new List<DepartmentS>();
+            try
+            {
+                var ServerResponse = ServerGetRequest("Depart/GetDepart");
 
-        
-
-
-     
-
-
-
+            }
+            catch (Exception ex) { }
+            return Response;
+        }
+         
     }
 }
