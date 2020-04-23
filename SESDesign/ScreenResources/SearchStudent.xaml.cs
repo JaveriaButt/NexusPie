@@ -25,8 +25,22 @@ namespace SESDesign.ScreenResources
         {
             InitializeComponent();
             Student SearchStudent = new Student();
-            DAL.DAL1.ServerRequest("Student/SearchStudent",SearchStudent);
+            //StdData.ItemsSource = LoadData();
+            StdData.ItemsSource = DAL.DAL1.ServerRequest("Student/SearchStudent",SearchStudent);
 
         }
+        //public List<Student> LoadData()
+        //{
+        //    List<Student> std=new List<Student>();
+        //    Student SearchStudent = new Student();
+        //    SearchStudent.StudentName = "Javeria";
+        //    SearchStudent.StudentFName = "M W Butt";
+        //    SearchStudent.StudentID = "Comp.Sc-17008";
+        //    SearchStudent.StudentCNIC = "12345";
+        //    SearchStudent.Department = "CS";
+        //    SearchStudent.Session = "2017-2021";
+        //    std.Add(SearchStudent);
+        //    return std;
+        //}
     }
 }

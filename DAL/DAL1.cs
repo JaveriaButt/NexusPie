@@ -46,7 +46,7 @@ namespace DAL
                         wb.Encoding = Encoding.UTF8;
                         string a = ServiceURL + ActionName;
                         //wb.UploadString(ServiceURL + ActionName, JsonString);
-                        var response = wb.UploadString("http://localhost:51455/api/Student/SaveSingleStudent", JsonString);
+                        var response = wb.UploadString("http://localhost:51455/api/"+ActionName, JsonString);
                         Response = response;
                         IsServerConnected = true;
                     } 
