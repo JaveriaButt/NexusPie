@@ -64,6 +64,42 @@ namespace DAL
             return Response;
         }
 
+        public static string ServerGetRequest(string ActionName)
+        {
+
+            _cancelTasks = new CancellationTokenSource();
+            string Response = null;
+            var task = new Task(() =>
+            {
+                try
+                {
+
+
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ServiceURL + ActionName);//
+                    request.Method = "Get";
+                    request.KeepAlive = true;
+                    request.ContentType = "appication/json";
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    string myResponse = "";
+                    using (System.IO.StreamReader sr = new System.IO.StreamReader(response.GetResponseStream()))
+                    {
+                        myResponse = sr.ReadToEnd();
+                    }
+
+                    IsServerConnected = true;
+                }
+                catch (Exception ex)
+                {
+                }
+            }, _cancelTasks.Token);
+            task.Start();
+            if (!task.Wait(SRequestTimeout * 1000))
+            {
+                Response = "TIMEOUT";
+                _cancelTasks.Cancel();
+            }
+            return Response;
+        }
 
         public static FunctionResponse<string> InsertStudnetRecord(Student studentrec)
         {
@@ -158,14 +194,17 @@ namespace DAL
             return Response;
         }
 
-     
+        public static List<DepartmentS> GetDepartment()
+        {
+            List<DepartmentS> Response = new List<DepartmentS>();
+            try
+            {
+                var ServerResponse = ServerGetRequest("Depart/GetDepart");
 
-        
-
-
-     
-
-
-
+            }
+            catch (Exception ex) { }
+            return Response;
+        }
+         
     }
 }
