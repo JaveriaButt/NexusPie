@@ -45,10 +45,10 @@ namespace DAL
                         wb.Headers[HttpRequestHeader.Accept] = "application/json"; 
                         wb.Encoding = Encoding.UTF8;
                         string a = ServiceURL + ActionName; 
-                          wb.Encoding = Encoding.UTF8;  
-                         var response = wb.UploadString(ServiceURL + ActionName, JsonString); 
-                         Response = response;
-                         IsServerConnected = true;
+                        wb.Encoding = Encoding.UTF8;  
+                        var response = wb.UploadString(ServiceURL + ActionName, JsonString); 
+                        Response = response;
+                        IsServerConnected = true;
                     } 
                 }
                 catch (Exception ex)
@@ -115,7 +115,57 @@ namespace DAL
             }
             return Response;
         }
-
+        //saving department info
+        public static FunctionResponse<string> SaveDepartmentInfo(DepartmentS dep)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            Response.Success = false;
+            try
+            {
+                Response.ResponseMessage = ServerRequest("Depart/AddDepart", dep);
+                Response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+            }
+            return Response;
+        }
+        //Updating department info
+        public static FunctionResponse<string> UpdateDepartmentInfo(DepartmentS dep)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            Response.Success = false;
+            try
+            {
+                Response.ResponseMessage = ServerRequest("Depart/UpdateDepart", dep);
+                Response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+            }
+            return Response;
+        }
+        //deactivating department
+        public static FunctionResponse<string> DeleteDepartmentInfo(DepartmentS dep)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            Response.Success = false;
+            try
+            {
+                Response.ResponseMessage = ServerRequest("Depart/DeleteDepart", dep);
+                Response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+            }
+            return Response;
+        }
         public static FunctionResponse<List<Student>> GetAllStudent()
         {
             FunctionResponse<List<Student>> Response = new FunctionResponse<List<Student>>();

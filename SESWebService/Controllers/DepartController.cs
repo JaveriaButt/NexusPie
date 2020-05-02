@@ -21,7 +21,7 @@ namespace SESWebService.Controllers
             FunctionResponse<List<DepartmentS>> Response = new FunctionResponse<List<DepartmentS>>();
             try
             {
-                string Query = "select * from Department_info";
+                string Query = "select * from Department_info where isActive='True'";
                 using (SqlConnection Connection = new SqlConnection(ConnectionString))
                 {
                     Connection.Open();
@@ -39,6 +39,130 @@ namespace SESWebService.Controllers
                         Response.Success = true;
                         return Response;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+                return Response;
+            }
+            return Response;
+        }
+        //Insert Department
+        [Route("api/Depart/AddDepart")]
+        [System.Web.Http.HttpPost]
+        public FunctionResponse<string> AddDepart(DepartmentS dep)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            if(dep.DepName==string.Empty || dep.DepHOD==string.Empty)
+            {
+                Response.ResponseMessage = "Empty Perameter";
+                Response.Success = false;
+                return Response;
+            }
+            else
+            {
+                string query="select * from Department_info where dep_name = '" + dep.DepName + "';";
+                using (SqlConnection Connection = new SqlConnection(ConnectionString))
+                {
+                    Connection.Open();
+                    SqlCommand command = new SqlCommand(query, Connection);
+                    command.CommandType = System.Data.CommandType.Text;
+                    SqlDataReader dr = command.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        Response.ResponseMessage = "Department with this Name Already Exists";
+                        Response.Success = false;
+                        return Response;
+                    }
+                }
+               
+            }
+            try
+            {
+                string Query = "insert into Department_info(dep_name,dep_hod,isActive) values ('"+dep.DepName+"','"+dep.DepHOD+"' , 'True');";
+                using (SqlConnection Connection = new SqlConnection(ConnectionString))
+                {
+                    Connection.Open();
+                    SqlCommand command = new SqlCommand(Query, Connection);
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.ExecuteNonQuery();
+                    Response.Result = "";
+
+                    Response.ResponseMessage = "Department Info Added Successfully";
+                    Response.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+                return Response;
+            }
+            return Response;
+        }
+        //Insert Department
+        [Route("api/Depart/UpdateDepart")]
+        [System.Web.Http.HttpPost]
+        public FunctionResponse<string> UpdateDepart(DepartmentS dep)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            if (dep.DepName == string.Empty || dep.DepHOD == string.Empty)
+            {
+                Response.ResponseMessage = "Empty Perameter";
+                Response.Success = false;
+                return Response;
+            }
+            try
+            {
+                string Query = "UPDATE Department_info set dep_name = '" + dep.DepName + "', dep_hod='" + dep.DepHOD + "' where id="+dep.DepID+";";
+                using (SqlConnection Connection = new SqlConnection(ConnectionString))
+                {
+                    Connection.Open();
+                    SqlCommand command = new SqlCommand(Query, Connection);
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.ExecuteNonQuery();
+                    Response.Result = "";
+
+                    Response.ResponseMessage = "Department Info Updated Successfully";
+                    Response.Success = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+                return Response;
+            }
+            return Response;
+        }
+        //delete Department...... not actually deletion but deactivating department by changing property isActive to false
+        //Insert Department
+        [Route("api/Depart/DeleteDepart")]
+        [System.Web.Http.HttpPost]
+        public FunctionResponse<string> DeleteDepart(DepartmentS dep)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            if (dep.DepName == string.Empty || dep.DepHOD == string.Empty)
+            {
+                Response.ResponseMessage = "Empty Perameter";
+                Response.Success = false;
+                return Response;
+            }
+            try
+            {
+                string Query = "UPDATE Department_info set isActive = 'False' where id="+ dep.DepID + ";";
+                using (SqlConnection Connection = new SqlConnection(ConnectionString))
+                {
+                    Connection.Open();
+                    SqlCommand command = new SqlCommand(Query, Connection);
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.ExecuteNonQuery();
+                    Response.Result = "";
+
+                    Response.ResponseMessage = "Department Deleted Successfully";
+                    Response.Success = true;
                 }
             }
             catch (Exception ex)

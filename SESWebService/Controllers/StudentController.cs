@@ -83,7 +83,8 @@ namespace SESWebService.Controllers
         [System.Web.Http.HttpGet]
         public FunctionResponse<List<Student>> SearchStudent()
         {
-            FunctionResponse<List<Student>> Response = new FunctionResponse<List<Student>>();
+           FunctionResponse<List<Student>> Response = new FunctionResponse<List<Student>>();
+            //FunctionResponse<SqlDataReader> Response = new FunctionResponse<SqlDataReader>();
             try
             {
                  string Query = "select std_name,std_fathername,std_rollno,std_Department,std_CNIC,std_session from student_info";
@@ -95,6 +96,7 @@ namespace SESWebService.Controllers
                         SqlDataReader dr = command.ExecuteReader();
                         if (dr.HasRows)
                         {
+                        //    Response.Result = dr;
                             Response.Result = new List<Student>();
                             while (dr.Read())
                             {
@@ -104,7 +106,7 @@ namespace SESWebService.Controllers
                                 std.StudentRollNumber = dr[2].ToString();
                                 std.Department = dr[3].ToString();
                                 std.StudentCNIC = dr[4].ToString();
-                                std.Session = dr[5].ToString(); 
+                                std.Session = dr[5].ToString();
 
                                 Response.Result.Add(std);
                             }

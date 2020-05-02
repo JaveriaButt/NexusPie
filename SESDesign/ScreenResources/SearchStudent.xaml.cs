@@ -32,14 +32,10 @@ namespace SESDesign.ScreenResources
                 {
                     StdData.ItemsSource = ServerResponse.Result;
                 }
-
             }
             catch (Exception ex)
             { 
             }
-
-             
-
         }
         //public List<Student> LoadData()
         //{

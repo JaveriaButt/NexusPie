@@ -9,10 +9,24 @@ namespace Models
 {
     public  class DepartmentS : INotifyPropertyChanged
     {
+        private string m_DepID = string.Empty;
 
-
+        public string DepID
+        {
+            set
+            {
+                if (value != m_DepID)
+                {
+                    m_DepID = value;
+                    this.OnPropertyChanged("DepID");
+                }
+            }
+            get
+            {
+                return this.m_DepID;
+            }
+        }
         private string m_DepName = string.Empty;
-
         public string DepName
         {
             set
@@ -26,23 +40,6 @@ namespace Models
             get
             {
                 return m_DepName;
-            }
-        }
-
-
-        private string m_DepID = string.Empty;
-
-        public string DepID
-        {
-            set {
-                if (value != m_DepID)
-                {
-                    m_DepID = value;
-                    this.OnPropertyChanged("DepID");
-                }
-            }
-            get {
-                return this.m_DepID;
             }
         }
 
@@ -64,7 +61,23 @@ namespace Models
                 return this.m_DepHOD;
             }
         }
+        private bool m_isActive = true;
 
+        public bool IsActive
+        {
+            set
+            {
+                if (value != m_isActive)
+                {
+                    IsActive= value;
+                    this.OnPropertyChanged("IsActive");
+                }
+            }
+            get
+            {
+                return this.m_isActive;
+            }
+        }
 
         #region Property Changed Event 
         public event PropertyChangedEventHandler PropertyChanged;

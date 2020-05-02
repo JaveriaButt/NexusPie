@@ -46,5 +46,15 @@ namespace SESDesign
         {
             this.mainContentControl.Content = new ScreenResources.SearchStudent();
         }
+
+        private void AddDep_Click(object sender, RoutedEventArgs e)
+        {
+          //  this.mainContentControl.Content = new ScreenResources.AddDepartment();
+        }
+
+        private void Department_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainContentControl.Content = new ScreenResources.AddDepartment();
+        }
     }
 }
