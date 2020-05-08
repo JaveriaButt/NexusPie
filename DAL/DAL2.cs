@@ -148,7 +148,7 @@ namespace DAL
 
                     XmlSerializer serializer = new XmlSerializer(typeof(List<ControlsSetting>), new XmlRootAttribute("AppDesign"));
                     StringReader stringReader = new StringReader(ResponseString);
-                    Response.ControlSetting = (List<ControlsSetting>)serializer.Deserialize(stringReader); 
+                    Response.ControlSetting = (ObservableCollection<ControlsSetting>)serializer.Deserialize(stringReader); 
 
                 }
                 con.Dispose();

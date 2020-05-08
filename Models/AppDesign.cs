@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -340,9 +341,7 @@ namespace Models
                 return this.m_AppFontFamily;
             }
         }
-
-
-
+          
         private string m_ButtonFontSize = "15";
         public string ButtonFontSize
         {
@@ -693,10 +692,142 @@ namespace Models
             get { return this.m_WarningIcon; }
         }
 
+        #region DataGridSetting
 
-        private List<ControlsSetting> m_ControlSetting = null;
+        private ObservableCollection<GridColumn> m_DataGridColumon = null;
+ 
+        public ObservableCollection<GridColumn> DataGridColumon
+        {
+            set
+            {
+                if (m_DataGridColumon != value)
+                {
+                    m_DataGridColumon = value;
+                    this.OnPropertyChanged("DataGridColumon");
+                }
 
-        public List<ControlsSetting> ControlSetting
+            }
+            get
+            {
+                return this.m_DataGridColumon;
+            }
+        }
+
+
+        private string m_DataGridRowTextSize = "12";
+        public string DataGridRowTextSize
+        {
+            set
+            {
+                if (this.m_DataGridRowTextSize != value)
+                {
+                    this.m_DataGridRowTextSize = value;
+                    this.OnPropertyChanged("DataGridRowTextSize");
+                }
+            }
+            get
+            {
+                return this.m_DataGridRowTextSize;
+            }
+        }
+
+        private string m_DataGridHeaderTextSize = "20";
+        public string DataGridHeaderTextSize
+        {
+            set
+            {
+                if (this.m_DataGridHeaderTextSize != value)
+                {
+                    this.m_DataGridHeaderTextSize = value;
+                    this.OnPropertyChanged("DataGridHeaderTextSize");
+                }
+            }
+            get
+            {
+                return this.m_DataGridHeaderTextSize;
+            }
+        }
+
+        private string m_DataGridHeaderTextColor = "Blue";
+        public string DataGridHeaderTextColor
+        {
+            set
+            {
+                if (this.m_DataGridHeaderTextColor != value)
+                {
+                    this.m_DataGridHeaderTextColor = value;
+                    this.OnPropertyChanged("DataGridHeaderTextColor");
+                }
+            }
+            get
+            {
+                return this.m_DataGridHeaderTextColor;
+            }
+        }
+        
+        private string m_DataGridSelectedRowBackColor = "Skyblue";
+        public string DataGridSelectedRowBackColor
+        {
+            set
+            {
+                if (this.m_DataGridSelectedRowBackColor != value)
+                {
+                    this.m_DataGridSelectedRowBackColor = value;
+                    this.OnPropertyChanged("DataGridSelectedRowBackColor");
+                }
+            }
+            get
+            {
+                return this.m_DataGridSelectedRowBackColor;
+            }
+        }
+
+        
+        private string m_DataGridRowHeight = "25";
+        public string DataGridRowHeight
+        {
+            set
+            {
+                if (this.m_DataGridRowHeight != value)
+                {
+                    this.m_DataGridRowHeight = value;
+                    this.OnPropertyChanged("DataGridRowHeight");
+                }
+            }
+            get
+            {
+                return this.m_DataGridRowHeight;
+            }
+        }
+
+        private string m_DataGridRowTextColor = "DarkBlue";
+        public string DataGridRowTextColor
+        {
+            set
+            {
+                if (this.m_DataGridRowTextColor != value)
+                {
+                    this.m_DataGridRowTextColor = value;
+                    this.OnPropertyChanged("DataGridRowTextColor");
+                }
+            }
+            get
+            {
+                return this.m_DataGridRowTextColor;
+            }
+        } 
+
+     
+
+
+        #endregion
+
+
+
+
+        private ObservableCollection<ControlsSetting> m_ControlSetting = null;
+
+        public ObservableCollection<ControlsSetting> ControlSetting
         {
             set {
                 if (m_ControlSetting != value)

@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Xml.Serialization;
 using System.IO;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace DAL
 {
@@ -21,7 +22,7 @@ namespace DAL
 
         static string AppId = Config.GetKeyValue("APPID").ToString();
         static int SRequestTimeout = Convert.ToInt16(Config.GetKeyValue("SRequestTimeout"));
-        private static List<Error> ErrorList = null;
+        private static ObservableCollection<Error> ErrorObservableCollection = null;
         static string ServiceURL =  Config.GetKeyValue("URL");
         static bool IsServerConnected = false;
 
@@ -166,14 +167,14 @@ namespace DAL
             }
             return Response;
         }
-        public static FunctionResponse<List<Student>> GetAllStudent()
+        public static FunctionResponse<ObservableCollection<Student>> GetAllStudent()
         {
-            FunctionResponse<List<Student>> Response = new FunctionResponse<List<Student>>();
+            FunctionResponse<ObservableCollection<Student>> Response = new FunctionResponse<ObservableCollection<Student>>();
             Response.Success = false;
             try
             { 
                 var response = ServerGetRequest("Student/GetAllStudent"); 
-                Response = Newtonsoft.Json.JsonConvert.DeserializeObject<FunctionResponse<List<Student>>>(response);
+                Response = Newtonsoft.Json.JsonConvert.DeserializeObject<FunctionResponse<ObservableCollection<Student>>>(response);
                 
             }
             catch (Exception ex)
@@ -206,9 +207,9 @@ namespace DAL
                 if (!string.IsNullOrWhiteSpace(ResponseString))
                 {
 
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<ControlsSetting>), new XmlRootAttribute("AppDesign"));
+                    XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<ControlsSetting>), new XmlRootAttribute("AppDesign"));
                     StringReader stringReader = new StringReader(ResponseString);
-                    Response.ControlSetting = (List<ControlsSetting>)serializer.Deserialize(stringReader);
+                    Response.ControlSetting = (ObservableCollection< ControlsSetting>)serializer.Deserialize(stringReader);
 
                 }
                 con.Dispose();
@@ -219,13 +220,13 @@ namespace DAL
             return Response;
         }
 
-        public static List<DepartmentS> GetDepartment()
+        public static ObservableCollection<DepartmentS> GetDepartment()
         {
-            List<DepartmentS> Response = new List<DepartmentS>();
+            ObservableCollection<DepartmentS> Response = new ObservableCollection<DepartmentS>();
             try
             {
                 var ServerResponse = ServerGetRequest("Depart/GetDepart");
-                var ResponseData = Newtonsoft.Json.JsonConvert.DeserializeObject<FunctionResponse<List<DepartmentS>>>(ServerResponse);
+                var ResponseData = Newtonsoft.Json.JsonConvert.DeserializeObject<FunctionResponse<ObservableCollection<DepartmentS>>>(ServerResponse);
                 if (ResponseData.Success)
                 {
                     Response= ResponseData.Result;

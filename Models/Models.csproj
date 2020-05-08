@@ -69,6 +69,7 @@
     <Compile Include="DepartmentS.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="FunctionResponse.cs" />
+    <Compile Include="GridColumn.cs" />
     <Compile Include="OrgInfo.cs" />
     <Compile Include="ProcdPerameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

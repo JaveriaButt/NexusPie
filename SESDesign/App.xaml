@@ -4,12 +4,18 @@
              xmlns:local="clr-namespace:SESDesign"
              xmlns:Controller="clr-namespace:SESDesign.Controller"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
+    <Application.Resources >
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                
-            </ResourceDictionary.MergedDictionaries>
             <Controller:HomeController x:Key="AppViewModel"/>
+    
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary >
+                 
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+           
+           
         </ResourceDictionary>
+    
     </Application.Resources>
 </Application>

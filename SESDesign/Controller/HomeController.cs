@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
@@ -11,7 +13,7 @@ using Resources;
 
 namespace SESDesign.Controller
 {
-   public class HomeController : INotifyPropertyChanged
+    public class HomeController : INotifyPropertyChanged
     {
 
         public HomeController()
@@ -21,12 +23,14 @@ namespace SESDesign.Controller
 
         #region Property
 
+
         private AppDesign m_ApplicationDesign = new AppDesign();
 
         public AppDesign ApplicationDesign
         {
-           
-            set {
+
+            set
+            {
                 if (m_ApplicationDesign != value)
                 {
                     m_ApplicationDesign = value;
@@ -38,11 +42,30 @@ namespace SESDesign.Controller
                 return m_ApplicationDesign;
             }
         }
+ 
 
+        private object m_DataList = null;
 
-        private List<DepartmentS> m_Department = null;
+        public object DataList
+        {
+            set
+            {
 
-        public List<DepartmentS> Department
+                if (m_DataList != value)
+                {
+                    m_DataList = value;
+                    this.OnPropertyChanged("DataList");
+                }
+            }
+            get
+            {
+                return m_DataList;
+            }
+        }
+
+        private ObservableCollection<DepartmentS> m_Department = null;
+
+        public ObservableCollection<DepartmentS> Department
         {
             set
             {
@@ -52,14 +75,15 @@ namespace SESDesign.Controller
                     this.OnPropertyChanged("Department");
                 }
             }
-            get {
+            get
+            {
 
                 return this.m_Department;
             }
         }
 
         private OrgInfo m_Orginformation = null;
-        
+
         public OrgInfo OrgInformation
         {
             set
@@ -84,7 +108,7 @@ namespace SESDesign.Controller
         {
             bool Response = false;
             try
-            { 
+            {
                 var DBResponse = DAL.DAL1.GetAppDesignfromDB();
 
                 if (DBResponse != null)
@@ -95,7 +119,7 @@ namespace SESDesign.Controller
                 string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
                 if (!string.IsNullOrWhiteSpace(DebugFolder) && System.IO.Directory.Exists(DebugFolder))
                 {
-                    string OrganizationFolder = DebugFolder + "\\Settings\\App\\" + ConfigurationManager.AppSettings["APPID"].ToString()+"\\" ;
+                    string OrganizationFolder = DebugFolder + "\\Settings\\App\\" + ConfigurationManager.AppSettings["APPID"].ToString() + "\\";
                     if (!string.IsNullOrWhiteSpace(OrganizationFolder) && System.IO.Directory.Exists(OrganizationFolder))
                     {
                         string FilePath = OrganizationFolder + "ApplicationDesign.xml";
@@ -110,16 +134,16 @@ namespace SESDesign.Controller
                                 {
                                     Application.Current.Dispatcher.BeginInvoke((Action)(() =>
                                     {
-                                         
-                                            Application.Current.MainWindow.Width = this.ApplicationDesign.AppWidth;
-                                            Application.Current.MainWindow.Height = this.ApplicationDesign.AppHeight;
-                                            if (this.ApplicationDesign.AppCenterScreen)
-                                                Application.Current.MainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                                            else
-                                            {
-                                                Application.Current.MainWindow.Left = 0;
-                                                Application.Current.MainWindow.Top = 0;
-                                            }  
+
+                                        Application.Current.MainWindow.Width = this.ApplicationDesign.AppWidth;
+                                        Application.Current.MainWindow.Height = this.ApplicationDesign.AppHeight;
+                                        if (this.ApplicationDesign.AppCenterScreen)
+                                            Application.Current.MainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                                        else
+                                        {
+                                            Application.Current.MainWindow.Left = 0;
+                                            Application.Current.MainWindow.Top = 0;
+                                        }
                                     }));
                                     Response = true;
                                 }
@@ -142,12 +166,12 @@ namespace SESDesign.Controller
             {
                 var DBResponse = DAL.DAL1.GetDepartment();
 
-                if (DBResponse != null && DBResponse.Count>0)
+                if (DBResponse != null && DBResponse.Count > 0)
                 {
                     Department = DBResponse;
                     return true;
                 }
-             }
+            }
             catch (Exception ex)
             {
 
@@ -172,4 +196,7 @@ namespace SESDesign.Controller
         }
         #endregion
     }
+
+    
+
 }
