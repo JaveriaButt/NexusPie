@@ -4,30 +4,15 @@
   <FooterImage></FooterImage>
   <FooterText></FooterText>
   <OrgLogo></OrgLogo>
-  
-  
-  
-  <!-- Home Screen Settings-->
-  
+  <AppWidth>1150</AppWidth>
+  <AppHeight>750</AppHeight>
+  <!-- Home Screen Settings--> 
  
-  
-  
-  
-  
-  
-  <OKButton></OKButton>
-  <OKButtonPressed></OKButtonPressed>
-  <SaveButton ></SaveButton>
-  <SaveButtonPressed ></SaveButtonPressed>
-  <CancelButton ></CancelButton>
-  <CancelButtonPressed></CancelButtonPressed>
-  <CloseButton ></CloseButton>
-  <CloseButtonPressed ></CloseButtonPressed>
-  <ClearButton ></ClearButton>
-  <ClearButtonPressed></ClearButtonPressed>
   <DeleteButton ></DeleteButton>
+  <DeleteButtonImage>\Settings\App\1\Images\DeleteButton.png</DeleteButtonImage>
   <DeleteButtonPressed ></DeleteButtonPressed>
   <UpdateButton ></UpdateButton>
+  <UpdateButtonImage>\Settings\App\1\Images\UpdateButton.png</UpdateButtonImage>
   <UpdateButtonPressed ></UpdateButtonPressed>
   <PrintButton></PrintButton>
   <PrintButtonPressed></PrintButtonPressed>

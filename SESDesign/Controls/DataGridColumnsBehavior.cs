@@ -95,6 +95,7 @@ namespace SESDesign.Controls
             DataGridTextColumn dataGridColumn = null;
             try
             {
+                var converter = new System.Windows.Media.BrushConverter();
                 Style ColStyle = (new Style(typeof(DataGridCell)));
                 dataGridColumn = new DataGridTextColumn();
                 dataGridColumn.IsReadOnly = true;
@@ -105,34 +106,38 @@ namespace SESDesign.Controls
                 //Style 
 
                 dataGridColumn.ElementStyle = new System.Windows.Style(typeof(TextBlock));
+
+              
                 dataGridColumn.ElementStyle.Setters.Add(new Setter() { Property = DataGridCell.BackgroundProperty, Value = Brushes.Transparent });
                 dataGridColumn.ElementStyle.Setters.Add(new Setter() { Property = DataGridCell.BorderBrushProperty, Value = Brushes.Transparent });
                 dataGridColumn.ElementStyle.Setters.Add(new Setter() { Property = DataGridCell.BorderThicknessProperty, Value = new Thickness(0) });
                 dataGridColumn.ElementStyle.Setters.Add(new Setter() { Property = DataGridCell.FontSizeProperty, Value = Convert.ToDouble((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridRowTextSize) });
                 dataGridColumn.ElementStyle.Setters.Add(new Setter() { Property = DataGridCell.VerticalAlignmentProperty, Value = VerticalAlignment.Center });
                 dataGridColumn.ElementStyle.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
-                Trigger trigger = new Trigger() { Property = DataGridCell.IsSelectedProperty, Value = true };
-                trigger.Setters.Add(new Setter() { Property = DataGridCell.ForegroundProperty, Value = Brushes.Black });
-                trigger.Setters.Add(new Setter() { Property = DataGridCell.BackgroundProperty, Value = Brushes.Transparent });
-                trigger.Setters.Add(new Setter() { Property = DataGridCell.BorderBrushProperty, Value = Brushes.Transparent });
-                trigger.Setters.Add(new Setter() { Property = DataGridCell.BorderThicknessProperty, Value = new Thickness(0) });
 
+                //Trigger trigger = new Trigger(){ Property = DataGridCell.IsSelectedProperty, Value = true };
+                //trigger.Setters.Add(new Setter() { Property = DataGridCell.ForegroundProperty, Value = Brushes.Black });
+                //trigger.Setters.Add(new Setter() { Property = DataGridCell.BackgroundProperty, Value = Brushes.Transparent });
+                //trigger.Setters.Add(new Setter() { Property = DataGridCell.BorderBrushProperty, Value = Brushes.Transparent });
+                //trigger.Setters.Add(new Setter() { Property = DataGridCell.BorderThicknessProperty, Value = new Thickness(0) });
+
+                var backgroundcolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridHeaderBackground));
 
                 dataGridColumn.HeaderStyle = (new Style(typeof(DataGridColumnHeader)));
                 dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.VerticalContentAlignmentProperty, Value = VerticalAlignment.Center });
-                dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.BackgroundProperty, Value = Brushes.Transparent });
+                dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.BackgroundProperty, Value = backgroundcolor });
                 dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.BorderBrushProperty, Value = Brushes.Transparent });
                 dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.BorderThicknessProperty, Value = new Thickness(0) });
 
-                var converter = new System.Windows.Media.BrushConverter();
+                
                 var foregroud = (Brush)converter.ConvertFromString((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridHeaderTextColor); 
                 var FontFamily = new FontFamily((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.AppFontFamily);
-                 
 
 
+                dataGridColumn.HeaderStyle.Setters.Add(new Setter() {Property= DataGridColumnHeader.ForegroundProperty, Value= foregroud });
                 dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.FontSizeProperty, Value = Convert.ToDouble((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridHeaderTextSize) });
 
-                dataGridColumn.ElementStyle.Triggers.Add(trigger);
+             //   dataGridColumn.ElementStyle.Triggers.Add(trigger);
                 if (col.HorizontalAllignment == 1)
                 {
                     dataGridColumn.ElementStyle.Setters.Add(new Setter() { Property = DataGridCell.HorizontalAlignmentProperty, Value = HorizontalAlignment.Left });
@@ -167,32 +172,61 @@ namespace SESDesign.Controls
                 dataGridColumn.IsReadOnly = true;
                 if (!string.IsNullOrWhiteSpace(col.Property))
                     (dataGridColumn as DataGridTextColumn).Binding = new Binding(col.Property) { Mode = BindingMode.OneWay }; 
+
                 dataGridColumn = new DataGridTemplateColumn();
                 dataGridColumn.IsReadOnly = false;
+
+                 
                 //Template
                 DataTemplate ButtonColumnTemplate = new DataTemplate();
                 FrameworkElementFactory btn = new FrameworkElementFactory(typeof(Button));
-                btn.SetValue(Button.ContentProperty, col.Heading);
+                btn.SetValue(Button.ContentProperty, col.Property);
                 btn.SetValue(Button.BackgroundProperty, Brushes.Transparent);
                 btn.SetValue(Button.BorderBrushProperty, Brushes.Transparent);
                 btn.SetValue(Button.BorderThicknessProperty, new Thickness(0));
                 btn.SetValue(Button.MarginProperty, new Thickness(0, 10, 0, 10));
-              //  btn.SetValue(Button.StyleProperty, Application.Current.Resources["ImageButton"]);
+                btn.SetValue(Button.StyleProperty, Application.Current.Resources["ImageButton"]);
 
 
-               
 
-                 btn.AddHandler(Button.ClickEvent, null);
-                //FrameworkElementFactory Img = new FrameworkElementFactory(typeof(QSImageView));
-                //Img.SetValue(QSImageView.EngContentProperty, (Application.Current.Resources["AppViewModel"] as HomeController).AppDesign.DetailButtonImg_En);
-                //Img.SetValue(QSImageView.ArbContentProperty, (Application.Current.Resources["AppViewModel"] as HomeController).AppDesign.DetailButtonImg_Ar);
 
-                //Img.SetBinding(QSImageView.SelectedLanguageProperty, new Binding() { Source = Application.Current.Resources["AppViewModel"], Path = new PropertyPath("SelectedLanguage"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+
+                btn.AddHandler(Button.ClickEvent, new RoutedEventHandler((SENDER1, exx) =>
+                {
+                    try
+                    {
+                        if (SENDER1 != null && SENDER1 is Button)
+                        {
+                            if ((SENDER1 as Button).DataContext != null)
+                            {
+                                   ClickResponse response = new ClickResponse() {SENDER = col.Property, DataObject = (SENDER1 as Button).DataContext };
+                                  (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.SendClick(response);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }));
+
+
+
+                //FrameworkElementFactory Img = new FrameworkElementFactory(typeof(EMSImage));
+                //if (col.Property.ToUpper() == "UPDATE")
+                //    Img.SetValue(EMSImage.ImageContentProperty, (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButtonImage);
+                //else if (col.Property.ToUpper() == "DELETE")
+                //    Img.SetValue(EMSImage.ImageContentProperty, (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonImage);
+
+                //if (col.Property.ToUpper() == "UPDATE")
+                //    Img.SetBinding(EMSImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButton), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                //else if (col.Property.ToUpper() == "DELETE")
+                //    Img.SetBinding(EMSImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+
                 //btn.AppendChild(Img);
                 ButtonColumnTemplate.VisualTree = btn;
 
                 (dataGridColumn as DataGridTemplateColumn).CellTemplate = ButtonColumnTemplate;
-
+                 
                 //Style 
                 ColStyle.Setters.Add(new Setter() { Property = DataGridCell.BackgroundProperty, Value = Brushes.Transparent });
                 ColStyle.Setters.Add(new Setter() { Property = DataGridCell.BorderBrushProperty, Value = Brushes.Transparent });
@@ -201,11 +235,14 @@ namespace SESDesign.Controls
                 Trigger trigger = new Trigger() { Property = DataGridCell.IsSelectedProperty, Value = true };
                 trigger.Setters.Add(new Setter() { Property = DataGridCell.ForegroundProperty, Value = Brushes.Black });
 
+                var backgroundcolor = new SolidColorBrush((Color)ColorConverter.ConvertFromString((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridHeaderBackground));
+
                 dataGridColumn.HeaderStyle = (new Style(typeof(DataGridColumnHeader)));
                 dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.VerticalContentAlignmentProperty, Value = VerticalAlignment.Center });
-                dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.BackgroundProperty, Value = Brushes.Transparent });
+                dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.BackgroundProperty, Value = backgroundcolor });
                 dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.BorderBrushProperty, Value = Brushes.Transparent });
                 dataGridColumn.HeaderStyle.Setters.Add(new Setter() { Property = DataGridColumnHeader.BorderThicknessProperty, Value = new Thickness(0) });
+
                 var converter = new System.Windows.Media.BrushConverter();
                 var foregroud = (Brush)converter.ConvertFromString((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridHeaderTextColor);
 

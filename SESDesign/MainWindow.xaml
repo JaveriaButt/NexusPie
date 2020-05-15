@@ -9,6 +9,12 @@
         Title="SES" Height="750" Width="1080">
     
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush >
+                <GradientStop Color="AliceBlue" Offset="0" />
+                <GradientStop Color="CornflowerBlue" Offset="1.7" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -118,7 +124,7 @@
             </DockPanel>
         </Grid>
         <Grid Grid.Row="1" >
-            <ContentControl x:Name="mainContentControl"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertToScreen}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
         </Grid>
 
     </Grid>
