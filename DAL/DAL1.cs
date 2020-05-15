@@ -236,6 +236,22 @@ namespace DAL
             catch (Exception ex) { }
             return Response;
         }
-         
+        //saving Subject info
+        public static FunctionResponse<string> SaveSubjectInfo(Subject sub)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            Response.Success = false;
+            try
+            {
+                Response.ResponseMessage = ServerRequest("Subject/AddSubjectInfo", sub);
+                Response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+            }
+            return Response;
+        }
     }
 }

@@ -56,5 +56,15 @@ namespace SESDesign
         {
             this.mainContentControl.Content = new ScreenResources.AddDepartment();
         }
+
+        private void Subject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddSub_Click(object sender, RoutedEventArgs e)
+        {
+            this.mainContentControl.Content = new Screen.AddSubject();
+        }
     }
 }
