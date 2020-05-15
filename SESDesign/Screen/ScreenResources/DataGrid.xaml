@@ -8,87 +8,43 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style TargetType="{x:Type DataGrid}"> 
-               
-                    <Setter Property="CanUserResizeColumns" Value="false"/>
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="BorderBrush" Value="#d6c79b" />
-                    
-                    <Setter Property="IsReadOnly" Value="True"/>
-                    <Setter Property="CanUserReorderColumns" Value="False"/>
-                    <Setter Property="CanUserResizeColumns" Value="False"/>
-                    <Setter Property="CanUserAddRows" Value="False"/>
-                    <Setter Property="CanUserResizeRows" Value="False"/>
-                    <Setter Property="EnableRowVirtualization" Value="True"/>
-                    <Setter Property="EnableColumnVirtualization" Value="True"/>
-                    <Setter Property="HorizontalGridLinesBrush">
-                    <Setter.Value>
-                            <SolidColorBrush Color="#d6c79b"/>
-                        </Setter.Value>
-                    </Setter>
+            
+             <Style TargetType="{x:Type DataGrid}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="RowHeaderWidth" Value="0"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="CanUserReorderColumns" Value="False"/>
+                <Setter Property="CanUserResizeColumns" Value="False"/>
+                <Setter Property="AutoGenerateColumns" Value="False"/>
+                <Setter Property="CanUserAddRows" Value="False"/>
+                <Setter Property="CanUserResizeRows" Value="False"/>
+                <Setter Property="EnableRowVirtualization" Value="True"/>
+                <Setter Property="EnableColumnVirtualization" Value="True"/>
+                <Setter Property="SelectionMode" Value="Single"/>
                 <Setter Property="VerticalGridLinesBrush">
                     <Setter.Value>
-                        <SolidColorBrush Color="#d6c79b"/>
+                        <SolidColorBrush Color="Red"/>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="FontFamily" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.AppFontFamily,UpdateSourceTrigger=PropertyChanged}"/>
-                <Setter Property="SelectionMode" Value="Single"/>
-                <Setter Property="AutoGenerateColumns" Value="False"/>
-                <Setter Property="GridLinesVisibility" Value="None"/>
-                <Setter Property="RowDetailsVisibilityMode" Value="Collapsed" />
+                <Setter Property="RowDetailsVisibilityMode" Value="Collapsed"/>
+                <Setter Property="ScrollViewer.CanContentScroll"  Value="true" />
                 <Setter Property="ScrollViewer.CanContentScroll"  Value="true" />
                 <Setter Property="ScrollViewer.PanningMode"  Value="None" />
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
                 <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
                 <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-                <Setter Property="Stylus.IsFlicksEnabled" Value="False" /> 
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
                 <Setter Property="ScrollViewer.CanContentScroll"  Value="true" />
                 <Setter Property="ScrollViewer.PanningMode"  Value="Both" />
-
-                <Setter Property="AutoGenerateColumns" Value="False"/>
-                <Setter Property="GridLinesVisibility" Value="None"/>
-                <Setter Property="RowDetailsVisibilityMode" Value="Collapsed" />
+                <Setter Property="FontFamily" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.AppFontFamily,UpdateSourceTrigger=PropertyChanged}"/>
             </Style>
-
-            <Style TargetType="{x:Type DataGridColumnHeader}" >
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-                            <Grid>
-                                <TextBlock FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.AppFontFamily,UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.DataGridHeaderTextColor,UpdateSourceTrigger=PropertyChanged}" Text="{TemplateBinding Content}" HorizontalAlignment="Center"  FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.DataGridHeaderTextSize,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" SnapsToDevicePixels="True" VerticalAlignment="Center" />
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-
-            <!--Style and template for the DataGridCell.-->
-                <Style TargetType="{x:Type DataGridCell}">
-                    <Setter Property="Background" Value="Transparent"/>
-                   <Setter Property="BorderBrush" Value="Transparent"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                    <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
-
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="{Binding Color,UpdateSourceTrigger=PropertyChanged}"/>
-                            <Setter Property="Background" Value="LightGoldenrodYellow"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-
-                <!--Style and template for the DataGridRow.-->
-                <Style  TargetType="DataGridRow">
+ 
+            <!--Style and template for the DataGridRow.-->
+               <Style  TargetType="DataGridRow">
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="Height" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.DataGridRowHeight, UpdateSourceTrigger=PropertyChanged}"/>
-                <Setter Property="Foreground" Value="Black" />
                 <Style.Triggers>
-                    <!--隔行换色-->
+                 
                     <Trigger Property="AlternationIndex" Value="0" >
                         <Setter Property="Background" Value="#F9F9F9" />
                     </Trigger>
@@ -99,17 +55,25 @@
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#61C2EA"/>
                         <Setter Property="Foreground" Value="White"/>
-                    </Trigger>
-
+                    </Trigger> 
                     <Trigger Property="IsSelected" Value="True">
                         <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Background" Value="LightGray"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>
 
+            <Style TargetType="{x:Type DataGridCell}">
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="Green"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <DataGrid Name="dg_DataGrid" AlternationCount="2"  RowHeaderStyle="{Binding DataGridColumnHeader}"   Contorls:DataGridColumnsBehavior.BindableColumns="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.DataGridColumon,UpdateSourceTrigger=PropertyChanged}"  />
+    <Grid >
+        <DataGrid Name="dg_DataGrid"   AlternationCount="2"    Contorls:DataGridColumnsBehavior.BindableColumns="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.DataGridColumon,UpdateSourceTrigger=PropertyChanged}"  />
     </Grid>
 </UserControl>

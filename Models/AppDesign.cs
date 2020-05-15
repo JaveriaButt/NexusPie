@@ -86,7 +86,7 @@ namespace Models
         }
          
 
-        private double m_AppWidth = 450;
+        private double m_AppWidth = 850;
         public double AppWidth
         {
             set
@@ -731,6 +731,40 @@ namespace Models
             }
         }
 
+        private string m_UpdateButtonImage = string.Empty;
+        public string UpdateButtonImage
+        {
+            set
+            {
+                if (this.m_UpdateButtonImage != value)
+                {
+                    this.m_UpdateButtonImage = value;
+                    this.OnPropertyChanged("UpdateButton");
+                }
+            }
+            get
+            {
+                return this.m_UpdateButtonImage;
+            }
+        }
+
+        private string m_DeleteButtonImage = string.Empty;
+        public string DeleteButtonImage
+        {
+            set
+            {
+                if (this.m_DeleteButtonImage != value)
+                {
+                    this.m_DeleteButtonImage = value;
+                    this.OnPropertyChanged("DeleteButtonImage");
+                }
+            }
+            get
+            {
+                return this.m_DeleteButtonImage;
+            }
+        }
+
         private string m_DataGridHeaderTextSize = "20";
         public string DataGridHeaderTextSize
         {
@@ -748,7 +782,24 @@ namespace Models
             }
         }
 
-        private string m_DataGridHeaderTextColor = "Blue";
+        private string m_DataGridHeaderBackground = "#008B8B";
+        public string DataGridHeaderBackground
+        {
+            set
+            {
+                if (this.m_DataGridHeaderBackground != value)
+                {
+                    this.m_DataGridHeaderBackground = value;
+                    this.OnPropertyChanged("DataGridHeaderBackground");
+                }
+            }
+            get
+            {
+                return this.m_DataGridHeaderBackground;
+            }
+        }
+
+        private string m_DataGridHeaderTextColor = "White";
         public string DataGridHeaderTextColor
         {
             set
@@ -765,7 +816,7 @@ namespace Models
             }
         }
         
-        private string m_DataGridSelectedRowBackColor = "Skyblue";
+        private string m_DataGridSelectedRowBackColor = "#53C3D5";
         public string DataGridSelectedRowBackColor
         {
             set

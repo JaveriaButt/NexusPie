@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,26 @@ namespace SESDesign.Controller
         }
 
         #region Property
+
+
+        private BaseScreen m_CurrentScreen = new BaseScreen(ScreenType.None);
+
+        public BaseScreen CurrentScreen
+        {
+            set
+            {
+                if (m_CurrentScreen != value)
+                {
+                    m_CurrentScreen = value;
+                    this.OnPropertyChanged("CurrentScreen");
+                }
+
+            }
+            get
+            {
+                return this.m_CurrentScreen;
+            }
+        }
 
 
         private AppDesign m_ApplicationDesign = new AppDesign();
@@ -114,7 +135,7 @@ namespace SESDesign.Controller
                 if (DBResponse != null)
                 {
                     this.ApplicationDesign = DBResponse;
-                    return true;
+                     
                 }
                 string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
                 if (!string.IsNullOrWhiteSpace(DebugFolder) && System.IO.Directory.Exists(DebugFolder))
@@ -128,8 +149,24 @@ namespace SESDesign.Controller
                             string XML = System.IO.File.ReadAllText(FilePath);
                             if (!string.IsNullOrWhiteSpace(XML))
                             {
-                                XML = XML.Replace("/KIOSK_TYPE", DebugFolder + "\\KIOSK_TYPE");
-                                this.ApplicationDesign = (AppDesign)General.XMLToOBJECT(XML, typeof(AppDesign));
+                                XML = XML.Replace("\\Settings\\App\\", DebugFolder + "\\Settings\\App\\");
+                                var appDesign = (AppDesign)General.XMLToOBJECT(XML, typeof(AppDesign));
+
+                                foreach (PropertyInfo property in typeof(AppDesign).GetProperties().Where(p => p.CanRead))
+                                {
+                                    if (property.GetValue(ApplicationDesign, null) == null || property.GetValue(ApplicationDesign, null).ToString() == string.Empty && (property.GetValue(appDesign, null) != null && property.GetValue(appDesign, null).ToString() != string.Empty))
+                                    {
+
+                                        property.SetValue(ApplicationDesign, property.GetValue(appDesign, null), null);
+
+                                    }
+                                }
+
+                                if (appDesign.AppWidth.ToString() != string.Empty) 
+                                    this.ApplicationDesign.AppWidth = appDesign.AppWidth;  
+                                if(appDesign.AppHeight.ToString() != string.Empty) 
+                                    this.ApplicationDesign.AppHeight = appDesign.AppHeight;
+
                                 if (this.ApplicationDesign != null)
                                 {
                                     Application.Current.Dispatcher.BeginInvoke((Action)(() =>
@@ -178,12 +215,9 @@ namespace SESDesign.Controller
             }
             return Response;
         }
-
-
-
+  
         #endregion
-
-
+         
         #region Property Changed Event 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
