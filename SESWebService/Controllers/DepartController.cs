@@ -102,7 +102,7 @@ namespace SESWebService.Controllers
             }
             return Response;
         }
-        //Insert Department
+        //Update Department
         [Route("api/Depart/UpdateDepart")]
         [System.Web.Http.HttpPost]
         public FunctionResponse<string> UpdateDepart(DepartmentS dep)

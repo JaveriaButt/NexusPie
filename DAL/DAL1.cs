@@ -236,6 +236,22 @@ namespace DAL
             catch (Exception ex) { }
             return Response;
         }
+        public static ObservableCollection<Subject> GetSubject()
+        {
+            ObservableCollection<Subject> Response = new ObservableCollection<Subject>();
+            try
+            {
+                var ServerResponse = ServerGetRequest("Subject/GetSubject");
+                var ResponseData = Newtonsoft.Json.JsonConvert.DeserializeObject<FunctionResponse<ObservableCollection<Subject>>>(ServerResponse);
+                if (ResponseData.Success)
+                {
+                    Response = ResponseData.Result;
+                }
+
+            }
+            catch (Exception ex) { }
+            return Response;
+        }
         //saving Subject info
         public static FunctionResponse<string> SaveSubjectInfo(Subject sub)
         {
@@ -244,6 +260,40 @@ namespace DAL
             try
             {
                 Response.ResponseMessage = ServerRequest("Subject/AddSubjectInfo", sub);
+                Response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+            }
+            return Response;
+        }
+        //Updating subject info
+        public static FunctionResponse<string> UpdateSubjectInfo(Subject dep)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            Response.Success = false;
+            try
+            {
+                Response.ResponseMessage = ServerRequest("Subject/UpdateSubject", dep);
+                Response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                Response.ResponseMessage = ex.Message;
+                Response.Success = false;
+            }
+            return Response;
+        }
+        //deleting subject info
+        public static FunctionResponse<string> DeleteSubjectInfo(Subject dep)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            Response.Success = false;
+            try
+            {
+                Response.ResponseMessage = ServerRequest("Subject/DeleteSubject", dep);
                 Response.Success = true;
             }
             catch (Exception ex)

@@ -31,6 +31,9 @@ namespace SESDesign.Convertors
                         case ScreenType.SEARCH_STUDENT:
                             Response = new Screen.SearchStudent();
                             break; 
+                        case ScreenType.ADD_SUBJECT:
+                            Response = new Screen.AddSubject();
+                            break;
                     }
 
 

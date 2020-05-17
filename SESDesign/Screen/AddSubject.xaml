@@ -24,9 +24,9 @@
                 <Controls:EMSTextBox Grid.Row="1" x:Name="tb_credits"     HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="59,0,0,234"/>
                 <Controls:EMSLabel x:Name="lbl_marks" Content="Total Marks :"   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="59,378,0,0" Grid.Row="1"/>
                 <Controls:EMSTextBox Grid.Row="1" x:Name="tb_marks"     HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="59,0,0,146"/>
-
-                <ScreenResources:DataGrid HorizontalAlignment="Left" Margin="376,61,0,0" Grid.Row="1" VerticalAlignment="Top" Width="520" Height="377"/>
                 <Controls:EMSLabel   Grid.Row="1"   x:Name="lbl_Pinfo" Content="Subject Information :-"  FontSize="20" FontWeight="Bold"  Foreground="CornflowerBlue"   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="59,61,0,489"/>
+                <ContentControl Grid.Row="1" Name="DataGRid"  HorizontalAlignment="Stretch" Margin="318,97,50,146" VerticalAlignment="Stretch"/>
+
 
             </Grid>
         </Border>

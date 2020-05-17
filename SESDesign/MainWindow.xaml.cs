@@ -59,12 +59,6 @@ namespace SESDesign
             BaseScreen Department = new BaseScreen(ScreenType.DEPARTMENT);
             this.ShowScreen(Department);
         }
-
-
-
-
-
-
         public void ShowScreen(BaseScreen _Screen)
         {
             try
@@ -87,7 +81,8 @@ namespace SESDesign
 
         private void AddSub_Click(object sender, RoutedEventArgs e)
         {
-            this.mainContentControl.Content = new Screen.AddSubject();
+            BaseScreen AddSubject = new BaseScreen(ScreenType.ADD_SUBJECT);
+            this.ShowScreen(AddSubject);
         }
     }
 }

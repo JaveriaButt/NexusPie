@@ -47,26 +47,33 @@ namespace SESDesign.Screen
         {
             if (sender != null)
             {
-                string EventSender = (sender as ClickResponse).SENDER; 
+                string EventSender = (sender as ClickResponse).SENDER;
                 if (EventSender == "Update")
-                { 
+                {
                     UpdateDepartment((sender as ClickResponse).DataObject as DepartmentS);
                 }
                 else if (EventSender == "Delete")
                 {
+                    MessageBox.Show("Are You Sure You want to Deactivate this Department?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    
+                    dep = (sender as ClickResponse).DataObject as DepartmentS;
 
+                    DAL.DAL1.DeleteDepartmentInfo(dep);
+
+                    (Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
+                    DataGRid.Content = new Screen.ScreenResources.DataGrid();
                 }
             }
         }
-
         DepartmentS dep;
         private void EMSButtons_Click(object sender, RoutedEventArgs e)
         {
             dep = new DepartmentS();
-            //dep.DepName = tb_depName.Text;
-            //dep.DepHOD = tb_hodName.Text;
+            dep.DepName = tb_depName.Text;
+            dep.DepHOD = tb_hodName.Text;
             var res = DAL.DAL1.SaveDepartmentInfo(dep);
-            // DataGridBinding();
+            (Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
+            DataGRid.Content = new Screen.ScreenResources.DataGrid();
         }
 
 
@@ -84,12 +91,6 @@ namespace SESDesign.Screen
             { }
 
         }
-
-
-
-
-      
-
         private void DepGird_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid _DataGrid = sender as DataGrid;
@@ -101,20 +102,22 @@ namespace SESDesign.Screen
             //    //tb_hodName.Text = Data.Rows[index].ItemArray[3].ToString();
             //}
         }
-
+        int id=0;
         private void UpdateButtons_Click(object sender, RoutedEventArgs e)
         {
            
-            //    dep = new DepartmentS();
-            //    dep.DepID = id.ToString();
-            //    //dep.DepName = tb_depName.Text;
-            //    //dep.DepHOD = tb_hodName.Text;
-            //    var res = DAL.DAL1.UpdateDepartmentInfo(dep);
-            //    //DataGridBinding();
-            //}
-            //id = 0;
-            ////tb_depName.Clear();
-            //tb_hodName.Clear();
+                dep = new DepartmentS();
+                dep.DepID = tb_DepID.Text;
+                dep.DepName = tb_depName.Text;
+                dep.DepHOD = tb_hodName.Text;
+                var res = DAL.DAL1.UpdateDepartmentInfo(dep);
+                //DataGridBinding();
+            
+            id = 0;
+            tb_depName.Clear();
+            tb_hodName.Clear();
+            (Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
+            DataGRid.Content = new Screen.ScreenResources.DataGrid();
         }
 
         
