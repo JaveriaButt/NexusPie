@@ -79,21 +79,12 @@ namespace SESDesign.Screen
             subjectInfo.SubjectCode = tb_code.Text;
             subjectInfo.SubjectMarks = tb_marks.Text;
             subjectInfo.CreditHours = tb_credits.Text;
-            var res = DAL.DAL1.SaveSubjectInfo(subjectInfo);
-           
-            Clear();
-
+            var res = DAL.DAL1.SaveSubjectInfo(subjectInfo); 
+            Clear(); 
         }
 
-        private void EMSButtons_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CloseAll_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
+     
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {

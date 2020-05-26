@@ -834,7 +834,7 @@ namespace Models
         }
 
         
-        private string m_DataGridRowHeight = "25";
+        private string m_DataGridRowHeight = "40";
         public string DataGridRowHeight
         {
             set

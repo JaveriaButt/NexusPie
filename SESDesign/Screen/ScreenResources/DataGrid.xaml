@@ -12,7 +12,7 @@
              <Style TargetType="{x:Type DataGrid}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="RowHeaderWidth" Value="0"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Red"/> 
                 <Setter Property="CanUserReorderColumns" Value="False"/>
                 <Setter Property="CanUserResizeColumns" Value="False"/>
                 <Setter Property="AutoGenerateColumns" Value="False"/>
@@ -23,7 +23,7 @@
                 <Setter Property="SelectionMode" Value="Single"/>
                 <Setter Property="VerticalGridLinesBrush">
                     <Setter.Value>
-                        <SolidColorBrush Color="Red"/>
+                        <SolidColorBrush Color="Transparent"/>
                     </Setter.Value>
                 </Setter>
                 <Setter Property="RowDetailsVisibilityMode" Value="Collapsed"/>

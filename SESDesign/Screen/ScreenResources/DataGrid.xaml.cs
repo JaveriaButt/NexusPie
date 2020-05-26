@@ -28,10 +28,8 @@ namespace SESDesign.Screen.ScreenResources
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            var list = (Application.Current.Resources["AppViewModel"] as HomeController).DataList;
-            dg_DataGrid.ItemsSource =(dynamic)list;
+        { 
+            dg_DataGrid.ItemsSource = (dynamic)(Application.Current.Resources["AppViewModel"] as HomeController).DataList;
         }
     }
 }

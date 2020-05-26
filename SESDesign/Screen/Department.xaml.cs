@@ -32,16 +32,17 @@ namespace SESDesign.Screen
         private void Department_Loaded(object sender, RoutedEventArgs e)
         {
             (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon = new ObservableCollection<GridColumn>();
-            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { Width= "*",  ColumnType = ColumnTypes.Text,  Heading="HOD" ,Property= "DepHOD" });
-            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { Width = "*", ColumnType = ColumnTypes.Text ,Heading ="Department Name" ,Property="DepName" });
-            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { Width = "*", ColumnType = ColumnTypes.Button, IconWidth = 250, IconHeight = 100, Heading = "Update Record", Property="Update"  });
-            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { Width = "*", ColumnType = ColumnTypes.Button, IconWidth = 250, IconHeight = 100, Heading = "Delete Record"  ,Property="Delete" });
- 
-            (Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment(); 
-            DataGRid.Content = new Screen.ScreenResources.DataGrid();
+            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { Width = "*", ColumnType = ColumnTypes.Text, Heading = "HOD", Property = "DepHOD" });
+            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { Width = "*", ColumnType = ColumnTypes.Text, Heading = "Department Name", Property = "DepName" });
+            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { Width = "*", ColumnType = ColumnTypes.Button, IconWidth = 250, IconHeight = 100, Heading = "Update Record", Property = "Update" });
+            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { });
+            (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DataGridColumon.Add(new GridColumn { Width = "*", ColumnType = ColumnTypes.Button, IconWidth = 250, IconHeight = 100, Heading = "Delete Record", Property = "Delete" });
 
+            (Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
+            DataGRid.Content = new Screen.ScreenResources.DataGrid();
             (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.SendClickEvent += CurrentScreen_SendClickEvent;
         }
+     
 
         private void CurrentScreen_SendClickEvent(object sender, RoutedEventArgs e)
         {
@@ -54,14 +55,13 @@ namespace SESDesign.Screen
                 }
                 else if (EventSender == "Delete")
                 {
-                    MessageBox.Show("Are You Sure You want to Deactivate this Department?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    
-                    dep = (sender as ClickResponse).DataObject as DepartmentS;
+                   MessageBox.Show("Are You Sure You want to Deactivate this Department?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    //dep = (sender as ClickResponse).DataObject as DepartmentS;
 
-                    DAL.DAL1.DeleteDepartmentInfo(dep);
+                    //DAL.DAL1.DeleteDepartmentInfo(dep);
 
-                    (Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
-                    DataGRid.Content = new Screen.ScreenResources.DataGrid();
+                    //(Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
+                    //DataGRid.Content = new Screen.ScreenResources.DataGrid();
                 }
             }
         }
@@ -91,18 +91,7 @@ namespace SESDesign.Screen
             { }
 
         }
-        private void DepGird_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataGrid _DataGrid = sender as DataGrid;
-            //index = _DataGrid.SelectedIndex;
-            //if (index != -1)
-            //{
-            //    //id = Convert.ToInt32(Data.Rows[index].ItemArray[1]);
-            //    //tb_depName.Text = Data.Rows[index].ItemArray[2].ToString();
-            //    //tb_hodName.Text = Data.Rows[index].ItemArray[3].ToString();
-            //}
-        }
-        int id=0;
+     
         private void UpdateButtons_Click(object sender, RoutedEventArgs e)
         {
            
@@ -112,20 +101,13 @@ namespace SESDesign.Screen
                 dep.DepHOD = tb_hodName.Text;
                 var res = DAL.DAL1.UpdateDepartmentInfo(dep);
                 //DataGridBinding();
-            
-            id = 0;
+              
             tb_depName.Clear();
             tb_hodName.Clear();
             (Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
             DataGRid.Content = new Screen.ScreenResources.DataGrid();
         }
-
-        
-        private void CloseClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+         
 
         #region Property Changed Event
         //Event 

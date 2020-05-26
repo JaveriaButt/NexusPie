@@ -180,16 +180,17 @@ namespace SESDesign.Controls
                 //Template
                 DataTemplate ButtonColumnTemplate = new DataTemplate();
                 FrameworkElementFactory btn = new FrameworkElementFactory(typeof(Button));
-                btn.SetValue(Button.ContentProperty, col.Property);
+                //btn.SetValue(Button.ContentProperty, col.Property);
                 btn.SetValue(Button.BackgroundProperty, Brushes.Transparent);
                 btn.SetValue(Button.BorderBrushProperty, Brushes.Transparent);
                 btn.SetValue(Button.BorderThicknessProperty, new Thickness(0));
-                btn.SetValue(Button.MarginProperty, new Thickness(0, 10, 0, 10));
+                btn.SetValue(Button.MarginProperty, new Thickness(0, 2, 10, 2));
                 btn.SetValue(Button.StyleProperty, Application.Current.Resources["ImageButton"]);
 
 
-
-
+                FrameworkElementFactory _Grid = new FrameworkElementFactory(typeof(Grid));
+                Binding dataBinding = new Binding(col.Property) { Mode = BindingMode.OneWay };
+ 
 
                 btn.AddHandler(Button.ClickEvent, new RoutedEventHandler((SENDER1, exx) =>
                 {
@@ -211,18 +212,14 @@ namespace SESDesign.Controls
 
 
 
-                //FrameworkElementFactory Img = new FrameworkElementFactory(typeof(EMSImage));
-                //if (col.Property.ToUpper() == "UPDATE")
-                //    Img.SetValue(EMSImage.ImageContentProperty, (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButtonImage);
-                //else if (col.Property.ToUpper() == "DELETE")
-                //    Img.SetValue(EMSImage.ImageContentProperty, (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonImage);
+                FrameworkElementFactory Img = new FrameworkElementFactory(typeof(EMSImage));
 
-                //if (col.Property.ToUpper() == "UPDATE")
-                //    Img.SetBinding(EMSImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButton), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
-                //else if (col.Property.ToUpper() == "DELETE")
-                //    Img.SetBinding(EMSImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                if (col.Property.ToUpper() == "UPDATE")
+                    Img.SetBinding(EMSImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                else if (col.Property.ToUpper() == "DELETE")
+                    Img.SetBinding(EMSImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
 
-                //btn.AppendChild(Img);
+                btn.AppendChild(Img);
                 ButtonColumnTemplate.VisualTree = btn;
 
                 (dataGridColumn as DataGridTemplateColumn).CellTemplate = ButtonColumnTemplate;

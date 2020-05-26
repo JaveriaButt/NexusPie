@@ -18,8 +18,8 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border x:Name="border" BorderThickness="2" Padding="0" BorderBrush="Red" CornerRadius="0" Background="Transparent">
-                                        <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="120" Height="120" />
+                                    <Border x:Name="border"  Padding="0" BorderBrush="Red"  > 
+                                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/> 
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
