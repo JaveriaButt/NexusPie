@@ -19,5 +19,6 @@ namespace Models
         DEPARTMENT = 3,
         [XmlEnum("4")]
         ADD_SUBJECT = 4
+        
     }
 }

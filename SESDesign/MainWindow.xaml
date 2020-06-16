@@ -7,28 +7,24 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="SES" Height="750" Width="1080" >
-    
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush >
-                <GradientStop Color="AliceBlue" Offset="0" />
-                <GradientStop Color="CornflowerBlue" Offset="1.7" />
-            </LinearGradientBrush>
-        </Grid.Background>
+
+    <Grid Background="#E2F3F6">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="27.106"></RowDefinition>
+            <RowDefinition Height="32.894"/>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" >
+        <Grid Grid.Row="0" Margin="0,0,-0.4,0" Grid.RowSpan="2" >
             <DockPanel >
-                <Menu Background="#989ACC"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Menu Background="LightSkyBlue"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <MenuItem Name="Student" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Margin,UpdateSourceTrigger=PropertyChanged}">
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
                                 <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].HeaderText, UpdateSourceTrigger=PropertyChanged}" /> 
-                            </StackPanel> 
-                        </MenuItem.Header> 
+                                <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                        </MenuItem.Header>
                         <MenuItem Name="Add" Header="Add New Record" Click="Add_Click"/>
                         <MenuItem Name="View" Header="View Record" Click="View_Click"/>
                         <MenuItem Name="Update" Header="Update Record"/>
@@ -118,14 +114,15 @@
                         <MenuItem Name="UpdateHelp" Header="Update Record"/>
                         <MenuItem Name="DeleteHelp" Header="Delete Record"/>
                     </MenuItem>
-                  
+
 
                 </Menu>
             </DockPanel>
         </Grid>
-        <Grid Grid.Row="1" >
+        <Grid Grid.Row="2" Margin="0,0,-0.4,-0.2" >
             <ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertToScreen}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
         </Grid>
+
 
     </Grid>
 </Window>

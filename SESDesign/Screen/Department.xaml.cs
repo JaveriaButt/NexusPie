@@ -46,24 +46,34 @@ namespace SESDesign.Screen
 
         private void CurrentScreen_SendClickEvent(object sender, RoutedEventArgs e)
         {
-            if (sender != null)
-            {
-                string EventSender = (sender as ClickResponse).SENDER;
-                if (EventSender == "Update")
-                {
-                    UpdateDepartment((sender as ClickResponse).DataObject as DepartmentS);
-                }
-                else if (EventSender == "Delete")
-                {
-                   MessageBox.Show("Are You Sure You want to Deactivate this Department?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    //dep = (sender as ClickResponse).DataObject as DepartmentS;
 
-                    //DAL.DAL1.DeleteDepartmentInfo(dep);
+            ScreenResources.ConfirmationAlert confirmation = new ScreenResources.ConfirmationAlert();
+            confirmation.ShowDialog();
+           
+            //if (sender != null)
+            //{
+            //    string EventSender = (sender as ClickResponse).SENDER;
+            //    if (EventSender == "Update")
+            //    {
+            //        UpdateDepartment((sender as ClickResponse).DataObject as DepartmentS);
+            //    }
+            //    else if (EventSender == "Delete")
+            //    {
 
-                    //(Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
-                    //DataGRid.Content = new Screen.ScreenResources.DataGrid();
-                }
-            }
+
+
+
+
+
+            //       MessageBox.Show("Are You Sure You want to Deactivate this Department?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //        //dep = (sender as ClickResponse).DataObject as DepartmentS;
+
+            //        //DAL.DAL1.DeleteDepartmentInfo(dep);
+
+            //        //(Application.Current.Resources["AppViewModel"] as HomeController).DataList = DAL.DAL1.GetDepartment();
+            //        //DataGRid.Content = new Screen.ScreenResources.DataGrid();
+            //    }
+            //}
         }
         DepartmentS dep;
         private void EMSButtons_Click(object sender, RoutedEventArgs e)

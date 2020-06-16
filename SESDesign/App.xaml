@@ -34,10 +34,26 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-
+                    </ResourceDictionary>
+                <ResourceDictionary>
+                    <Style TargetType="{x:Type Button}" x:Key="RoundedButton"> 
+                            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="3,3,3,3"  BorderThickness="1,1,1,1" >
+                                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter> 
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-           
+
+          
+            
+            
            
         </ResourceDictionary>
     

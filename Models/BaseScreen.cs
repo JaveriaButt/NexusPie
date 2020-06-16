@@ -4,7 +4,8 @@ using System.Windows;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Models
 {
@@ -50,11 +51,7 @@ namespace Models
                 return this.m_ChildControl;
             }
         }
-
-
-
-
-
+         
 
         #region Property Changed Event 
         public event PropertyChangedEventHandler PropertyChanged;
