@@ -1,0 +1,24 @@
+﻿<AppDesign>
+  <HeaderImage>\Settings\App\1\Images\TitleBar.png</HeaderImage>
+	<AppIcon>\Settings\App\1\Images\TitleBar.png</AppIcon>
+	<btnCloseAppImg>\Settings\App\1\Images\Close.png</btnCloseAppImg>
+  <HeaderText>NEXUS PIE</HeaderText>
+  <FooterImage></FooterImage>
+  <FooterText></FooterText>
+  <OrgLogo></OrgLogo>
+  <AppWidth>1150</AppWidth>
+  <AppHeight>750</AppHeight>
+  <!-- Home Screen Settings--> 
+ 
+  <DeleteButton ></DeleteButton>
+  <DeleteButtonImage>\Settings\App\1\Images\DeleteButton.png</DeleteButtonImage>
+  <DeleteButtonPressed ></DeleteButtonPressed>
+  <UpdateButton ></UpdateButton>
+  <UpdateButtonImage>\Settings\App\1\Images\UpdateButton.png</UpdateButtonImage>
+  <UpdateButtonPressed ></UpdateButtonPressed>
+  <PrintButton></PrintButton>
+  <PrintButtonPressed></PrintButtonPressed>
+  <InformationIcon>\Settings\App\1\Images\information_icon.png</InformationIcon>
+  <ErrorIcon>\Settings\App\1\Images\error.png</ErrorIcon>
+  <WarningIcon>\Settings\App\1\Images\Warning.png</WarningIcon>
+</AppDesign>

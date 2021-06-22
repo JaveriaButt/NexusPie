@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Models
 {
-    public class BaseScreen :  INotifyPropertyChanged
+    public class BaNPIEcreen :  INotifyPropertyChanged
     {
-        public BaseScreen(ScreenType screen)
+        public BaNPIEcreen(ScreenType screen)
         {
             ChildControl = screen;
         }

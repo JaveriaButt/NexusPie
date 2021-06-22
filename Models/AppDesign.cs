@@ -29,6 +29,22 @@ namespace Models
                 return m_HeaderImage;
             }
         }
+         private string m_AppIcon = string.Empty;
+        public string AppIcon
+        {
+            set
+            {
+                if (m_AppIcon != value)
+                {
+                    m_AppIcon = value;
+                    this.OnPropertyChanged("AppIcon");
+                }
+            }
+            get
+            {
+                return m_AppIcon;
+            }
+        }
 
 
         private string m_HeaderText = string.Empty;
@@ -117,6 +133,21 @@ namespace Models
             get
             {
                 return this.m_AppHeight;
+            }
+        } private double m_btnCloseAppImg = 720;
+        public double btnCloseAppImg
+        {
+            set
+            {
+                if (this.m_btnCloseAppImg != value)
+                {
+                    this.m_btnCloseAppImg = value;
+                    this.OnPropertyChanged("btnCloseAppImg");
+                }
+            }
+            get
+            {
+                return this.m_btnCloseAppImg;
             }
         }
 
@@ -866,9 +897,25 @@ namespace Models
             {
                 return this.m_DataGridRowTextColor;
             }
-        } 
+        }
 
-     
+
+        private string m_FontFamily = "Cairo";
+        public string FontFamily
+        {
+            set
+            {
+                if (this.m_FontFamily != value)
+                {
+                    this.m_FontFamily = value;
+                    this.OnPropertyChanged("FontFamily");
+                }
+            }
+            get
+            {
+                return this.m_FontFamily;
+            }
+        }
 
 
         #endregion

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 
 namespace Models
-{
+{ 
    public class Settings : INotifyPropertyChanged
     {
         # region property
@@ -117,11 +117,7 @@ namespace Models
             
         }
 
-        public   ObservableCollection<DepartmentS> DepartmentList = null;
-
-        public   ObservableCollection<BatchS> BatchList = null;
-
-        public   ObservableCollection<SemesterS> Semesters = null;
+         
 
         public static  bool IsTextBoxEmpty(Form form)
         {

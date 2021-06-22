@@ -29,54 +29,7 @@ namespace DAL
         static bool IsServerConnected = false;
 
 
-        #endregion
-        public static ObservableCollection<DepartmentS> DepartmentList()
-        {
-            ObservableCollection<DepartmentS> Departmentlist = new ObservableCollection<DepartmentS>();
-            try
-            {
-                using (SqlConnection con = new SqlConnection())
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("Select_dep", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        using (SqlDataReader dr = cmd.ExecuteReader())
-                        {
-                            while (dr.Read())
-                                Departmentlist.Add(new DepartmentS { DepName = dr[0].ToString(), DepID = dr[0].ToString() });
-                        }
-                    }
-                    con.Close();
-                }
-            }
-            catch (Exception ex) { }
-            return Departmentlist;
-        }
-
-        public static ObservableCollection<BatchS> BatchList()
-        {
-            ObservableCollection<BatchS> ResponseList = new ObservableCollection<BatchS>();
-            try
-            {
-                using (SqlConnection con = new SqlConnection())
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("Select_dep", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        using (SqlDataReader dr = cmd.ExecuteReader())
-                        {
-                            while (dr.Read())
-                                ResponseList.Add(new BatchS {  BatchID = dr[0].ToString(), BatchName = dr[0].ToString() });
-                        }
-                    }
-                    con.Close();
-                }
-            }
-            catch (Exception ex) { }
-            return ResponseList;
-        }
+    
 
 
         #region Applicaiton Setting 
@@ -196,5 +149,6 @@ namespace DAL
             return FilePath;
         }
 
+        #endregion
     }
 }

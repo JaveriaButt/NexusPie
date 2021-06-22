@@ -52,7 +52,7 @@ namespace Models
 
         private string m_loginid = string.Empty;
 
-        public string loginid
+        public string Loginid
         {
 
             set
@@ -106,6 +106,24 @@ namespace Models
             }
         }
 
+
+        private string m_mobile = string.Empty;
+
+        public string Mobile
+        {
+            set
+            {
+                if (m_mobile != value)
+                {
+                    m_mobile = value;
+                    OnPropertyChanged("Mobile");
+                }
+            }
+            get
+            {
+                return this.m_mobile;
+            }
+        }
         #endregion
 
         #region Property Changed Event 
