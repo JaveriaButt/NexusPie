@@ -59,6 +59,19 @@ namespace Models
             }
             get { return this.m_HeaderText; }
         }
+        
+        private string m_HeaderTextColor = "White";
+        public string HeaderTextColor
+        {
+            set{
+                if (m_HeaderTextColor != value)
+                {
+                    m_HeaderTextColor = value;
+                    this.OnPropertyChanged("HeaderTextColor");
+                }
+            }
+            get { return this.m_HeaderTextColor; }
+        }
 
 
         private string m_FooterImage = string.Empty;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace NPIEDesign.Convertors
+namespace NPIE.Convertors
 {
    public class ScreenConvertor :IValueConverter
     {
@@ -22,18 +22,8 @@ namespace NPIEDesign.Convertors
                     ScreenType Screen = ((dynamic)Object).ChildControl;
                     switch (Screen)
                     {
-                        case ScreenType.ADD_STUDENT:
-                            Response = new Screen.AddStudent();
-                            break;
-                        case ScreenType.DEPARTMENT:
-                            Response = new Screen.Department();
-                            break;
-                        case ScreenType.SEARCH_STUDENT:
-                            Response = new Screen.SearchStudent();
-                            break; 
-                        case ScreenType.ADD_SUBJECT:
-                            Response = new Screen.AddSubject();
-                            break; 
+                          
+                        
                     }
 
 

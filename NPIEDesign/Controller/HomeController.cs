@@ -12,7 +12,7 @@ using System.Windows;
 using Models;
 using Resources;
 
-namespace NPIEDesign.Controller
+namespace NPIE.Controller
 {
     public class HomeController : INotifyPropertyChanged
     {
@@ -122,7 +122,7 @@ namespace NPIEDesign.Controller
                 string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
                 if (!string.IsNullOrWhiteSpace(DebugFolder) && System.IO.Directory.Exists(DebugFolder))
                 {
-                    string OrganizationFolder = DebugFolder + "\\Settings\\App\\" + ConfigurationManager.AppSettings["APPID"].ToString() + "\\";
+                    string OrganizationFolder = DebugFolder + "\\Settings\\App\\" + ConfigurationManager.AppSettings["ResourceID"].ToString() + "\\";
                     if (!string.IsNullOrWhiteSpace(OrganizationFolder) && System.IO.Directory.Exists(OrganizationFolder))
                     {
                         string FilePath = OrganizationFolder + "ApplicationDesign.xml";

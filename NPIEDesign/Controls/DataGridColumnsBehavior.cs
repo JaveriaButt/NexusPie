@@ -1,5 +1,5 @@
 ﻿using Models;
-using NPIEDesign.Controller;
+using NPIE.Controller;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +13,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace NPIEDesign.Controls
+namespace NPIE.Controls
 {
     public class DataGridColumnsBehavior
     {

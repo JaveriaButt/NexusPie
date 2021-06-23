@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NPIEDesign.Screen.ScreenResources
+namespace NPIE.Screen.ScreenResources
 {
     /// <summary>
     /// Interaction logic for ConfirmationAlert.xaml

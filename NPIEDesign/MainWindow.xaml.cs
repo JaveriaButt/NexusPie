@@ -1,5 +1,5 @@
 ﻿using Models;
-using NPIEDesign.Controller;
+using NPIE.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NPIEDesign
+namespace NPIE
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -43,21 +43,19 @@ namespace NPIEDesign
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            BaNPIEcreen AddStudent = new BaNPIEcreen(ScreenType.ADD_STUDENT);
-            this.ShowScreen(AddStudent);
+           
+          
         }
 
         private void View_Click(object sender, RoutedEventArgs e)
         {
-            BaNPIEcreen SearchStudent = new BaNPIEcreen(ScreenType.SEARCH_STUDENT);
-            this.ShowScreen(SearchStudent);
+           
         }
          
 
         private void Department_Click(object sender, RoutedEventArgs e)
         {
-            BaNPIEcreen Department = new BaNPIEcreen(ScreenType.DEPARTMENT);
-            this.ShowScreen(Department);
+           
         }
         public void ShowScreen(BaNPIEcreen _Screen)
         {
@@ -81,8 +79,7 @@ namespace NPIEDesign
 
         private void AddSub_Click(object sender, RoutedEventArgs e)
         {
-            BaNPIEcreen AddSubject = new BaNPIEcreen(ScreenType.ADD_SUBJECT);
-            this.ShowScreen(AddSubject);
+             
         }
 
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

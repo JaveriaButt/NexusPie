@@ -1,7 +1,7 @@
 ﻿<AppDesign>
-  <HeaderImage>\Settings\App\1\Images\TitleBar.png</HeaderImage>
-	<AppIcon>\Settings\App\1\Images\TitleBar.png</AppIcon>
-	<btnCloseAppImg>\Settings\App\1\Images\Close.png</btnCloseAppImg>
+  <HeaderImage>Resources\App\Images\TitleBar.png</HeaderImage>
+	<AppIcon>Resources\App\Images\TitleBar.png</AppIcon>
+	<btnCloseAppImg>Resources\App\Images\Close.png</btnCloseAppImg>
   <HeaderText>NEXUS PIE</HeaderText>
   <FooterImage></FooterImage>
   <FooterText></FooterText>
