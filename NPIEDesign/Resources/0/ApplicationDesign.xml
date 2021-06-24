@@ -1,0 +1,25 @@
+﻿<AppDesign>
+  <HeaderImage>\Resources\0\Images\TitleBar.png</HeaderImage>
+	<AppIcon>\Resources\0\Images\TitleBar.png</AppIcon>  
+	<BtnCloseAppImg>\Resources\0\Images\Close.png</BtnCloseAppImg>
+	<BtnMinimizeAppImg>\Resources\0\Images\minimize.png</BtnMinimizeAppImg>
+	<BtnMaximizeAppImg>\Resources\0\Images\MiximizeButton.png</BtnMaximizeAppImg>
+  <HeaderText>NEXUS PIE</HeaderText> 
+  <FooterImage></FooterImage>
+  <FooterText></FooterText>
+  <OrgLogo></OrgLogo>
+  <AppWidth>1150</AppWidth>
+  <AppHeight>750</AppHeight> 
+ 
+  <DeleteButton></DeleteButton>
+  <DeleteButtonImage>\Resources\0\Images\DeleteButton.png</DeleteButtonImage>
+  <DeleteButtonPressed></DeleteButtonPressed>
+  <UpdateButton></UpdateButton>
+  <UpdateButtonImage>\Resources\0\Images\UpdateButton.png</UpdateButtonImage>
+  <UpdateButtonPressed></UpdateButtonPressed>
+  <PrintButton></PrintButton>
+  <PrintButtonPressed></PrintButtonPressed>
+  <InformationIcon>\Resources\0\Images\information_icon.png</InformationIcon>
+  <ErrorIcon>\Resources\0\Images\error.png</ErrorIcon>
+  <WarningIcon>\Resources\0\Images\Warning.png</WarningIcon>
+</AppDesign>

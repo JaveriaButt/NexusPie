@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using Models;
 using Resources;
 
@@ -122,7 +123,7 @@ namespace NPIE.Controller
                 string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
                 if (!string.IsNullOrWhiteSpace(DebugFolder) && System.IO.Directory.Exists(DebugFolder))
                 {
-                    string OrganizationFolder = DebugFolder + "\\Settings\\App\\" + ConfigurationManager.AppSettings["ResourceID"].ToString() + "\\";
+                    string OrganizationFolder = DebugFolder + "\\Resources\\" + ConfigurationManager.AppSettings["ResourceID"].ToString() + "\\";
                     if (!string.IsNullOrWhiteSpace(OrganizationFolder) && System.IO.Directory.Exists(OrganizationFolder))
                     {
                         string FilePath = OrganizationFolder + "ApplicationDesign.xml";
@@ -131,7 +132,7 @@ namespace NPIE.Controller
                             string XML = System.IO.File.ReadAllText(FilePath);
                             if (!string.IsNullOrWhiteSpace(XML))
                             {
-                                XML = XML.Replace("\\Settings\\App\\", DebugFolder + "\\Settings\\App\\");
+                                XML = XML.Replace("\\Resources\\", DebugFolder + "\\Resources\\");
                                 var appDesign = (AppDesign)General.XMLToOBJECT(XML, typeof(AppDesign));
 
                                 foreach (PropertyInfo property in typeof(AppDesign).GetProperties().Where(p => p.CanRead))
@@ -197,9 +198,105 @@ namespace NPIE.Controller
             }
             return Response;
         }
-  
+
         #endregion
-         
+
+
+
+        #region Wndows Commands 
+        private DelegateCommand closeApplicationCommand;
+        public ICommand CloseApplicationCommand
+        {
+            get
+            {
+                if (this.closeApplicationCommand == null)
+                {
+                    this.closeApplicationCommand = new DelegateCommand(CloseApplication);
+                }
+                return this.closeApplicationCommand;
+            }
+        }
+        private void CloseApplication()
+        {
+            try
+            {
+                Application.Current.Shutdown();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        private DelegateCommand minimizeApplicationCommand;
+        public ICommand MinimizeApplicationCommand
+        {
+            get
+            {
+                if (this.minimizeApplicationCommand == null)
+                {
+                    this.minimizeApplicationCommand = new DelegateCommand(MinimizeApplication);
+                }
+                return this.minimizeApplicationCommand;
+            }
+        }
+        private void MinimizeApplication()
+        {
+            try
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        private DelegateCommand maximizeApplicationCommand;
+        public ICommand MaximizeApplicationCommand
+        {
+            get
+            {
+                if (this.maximizeApplicationCommand == null)
+                {
+                    this.maximizeApplicationCommand = new DelegateCommand(MaximizeApplication);
+                }
+                return this.maximizeApplicationCommand;
+            }
+        }
+        private void MaximizeApplication()
+        {
+            try
+            {
+                if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
+                {
+                    Application.Current.MainWindow.WindowState = WindowState.Normal;
+                    Application.Current.MainWindow.Left = SystemParameters.PrimaryScreenWidth - Application.Current.MainWindow.Width - 5;
+                    Application.Current.MainWindow.Top = SystemParameters.PrimaryScreenHeight - Application.Current.MainWindow.Height;
+                    string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
+                    (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.BtnMaximizeAppImg = DebugFolder + "/Resources/" + ConfigurationManager.AppSettings["ResourceID"].ToString() + "/Images/MiximizeButton.png";
+
+
+                }
+                else
+                {
+                    string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
+                    Application.Current.MainWindow.WindowState = WindowState.Maximized;
+                    (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.BtnMinimizeAppImg = DebugFolder + "/Resources/" + ConfigurationManager.AppSettings["ResourceID"].ToString() + "/Images/RestoreButton.png";
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+        #endregion
+
         #region Property Changed Event 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
@@ -212,7 +309,23 @@ namespace NPIE.Controller
         }
         #endregion
     }
+    public class DelegateCommand : ICommand
+    {
+        private Action _executeMethod;
+        public DelegateCommand(Action executeMethod)
+        {
+            _executeMethod = executeMethod;
+        }
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public event EventHandler CanExecuteChanged;
+        public void Execute(object parameter)
+        {
+            _executeMethod.Invoke();
+        }
+    }
 
-    
 
 }

@@ -147,20 +147,89 @@ namespace Models
             {
                 return this.m_AppHeight;
             }
-        } private double m_btnCloseAppImg = 720;
-        public double btnCloseAppImg
+        } 
+        
+        private string m_btnCloseAppImg = "";
+        public string BtnCloseAppImg
         {
             set
             {
                 if (this.m_btnCloseAppImg != value)
                 {
                     this.m_btnCloseAppImg = value;
-                    this.OnPropertyChanged("btnCloseAppImg");
+                    this.OnPropertyChanged("BtnCloseAppImg");
                 }
             }
             get
             {
                 return this.m_btnCloseAppImg;
+            }
+        }
+        private string m_btnMinimizeAppImg = "";
+        public string BtnMinimizeAppImg
+        {
+            set
+            {
+                if (this.m_btnMinimizeAppImg != value)
+                {
+                    this.m_btnMinimizeAppImg = value;
+                    this.OnPropertyChanged("BtnMinimizeAppImg");
+                }
+            }
+            get
+            {
+                return this.m_btnMinimizeAppImg;
+            }
+        }
+
+           private string m_btnMaximizeAppImg = "";
+        public string BtnMaximizeAppImg
+        {
+            set
+            {
+                if (this.m_btnMaximizeAppImg != value)
+                {
+                    this.m_btnMaximizeAppImg = value;
+                    this.OnPropertyChanged("BtnMaximizeAppImg");
+                }
+            }
+            get
+            {
+                return this.m_btnMaximizeAppImg;
+            }
+        }
+
+        private bool m_ShowMinimizeButton = true;
+        public bool ShowMinimizeButton
+        {
+            set
+            {
+                if (this.m_ShowMinimizeButton != value)
+                {
+                    this.m_ShowMinimizeButton = value;
+                    this.OnPropertyChanged("ShowMinimizeButton");
+                }
+            }
+            get
+            {
+                return this.m_ShowMinimizeButton;
+            }
+        }
+
+        private bool m_ShowMaximizeButton = true;
+        public bool ShowMaximizeButton
+        {
+            set
+            {
+                if (this.m_ShowMaximizeButton != value)
+                {
+                    this.m_ShowMaximizeButton = value;
+                    this.OnPropertyChanged("ShowMaximizeButton");
+                }
+            }
+            get
+            {
+                return this.m_ShowMaximizeButton;
             }
         }
 
