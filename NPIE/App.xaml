@@ -13,13 +13,7 @@
             
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary  Source="DesignResource.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-          
-            
-            
-           
-        </ResourceDictionary>
-    
+            </ResourceDictionary.MergedDictionaries> 
+        </ResourceDictionary> 
     </Application.Resources>
 </Application>

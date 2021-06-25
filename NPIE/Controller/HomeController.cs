@@ -284,7 +284,7 @@ namespace NPIE.Controller
                 {
                     string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
                     Application.Current.MainWindow.WindowState = WindowState.Maximized;
-                    (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.BtnMinimizeAppImg = DebugFolder + "/Resources/" + ConfigurationManager.AppSettings["ResourceID"].ToString() + "/Images/RestoreButton.png";
+                    (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.BtnMaximizeAppImg = DebugFolder + "/Resources/" + ConfigurationManager.AppSettings["ResourceID"].ToString() + "/Images/RestoreButton.png";
 
                 }
                 

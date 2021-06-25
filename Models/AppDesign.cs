@@ -232,8 +232,7 @@ namespace Models
                 return this.m_ShowMaximizeButton;
             }
         }
-
-
+         
         private string m_TextBoxBackGround = "White";
         public string TextBoxBackGround
         {
@@ -998,11 +997,8 @@ namespace Models
                 return this.m_FontFamily;
             }
         }
-
-
-        #endregion
-
-
+         
+        #endregion 
 
 
         private ObservableCollection<ControlsSetting> m_ControlSetting = null;
