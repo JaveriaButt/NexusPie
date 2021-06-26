@@ -3,15 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NPIE"
-        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:NPIE" xmlns:Control="clr-namespace:NPIE.Controls"
         mc:Ignorable="d" WindowStyle="None" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" AllowsTransparency="True"
         Title="NPIE" Height="750" Width="1080" >
+ 
     <Border Margin="10">
         <Border.Effect>
             <DropShadowEffect BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1"/>
         </Border.Effect>
-        <Grid Margin="0,0,10,10" Background="White">
+        <Grid Margin="0,0,0,0" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
@@ -20,8 +21,12 @@
                 <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.HeaderImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill"  />
                 <StackPanel Orientation="Horizontal">
                     <!--<Image Source="{Binding Source={StaticResource AppViewModel},Path=AppDesign.AppIcon,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Source={StaticResource AppViewModel},Path=AppDesign.ShowOrganizationLogoOnHeader,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource ConvertBoolToVisibility}}"/>-->
-                    <TextBlock FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily,UpdateSourceTrigger=PropertyChanged}" Text="NEXUS PIE" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.HeaderTextColor,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="20,0,0,0" />
+                    <TextBlock FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily,UpdateSourceTrigger=PropertyChanged}" Text="NEXUS PIE" FontWeight="Bold" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.HeaderTextColor,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="20,0,0,0" />
+                    <TextBlock Margin="200,0" FontSize="15" Foreground="DarkMagenta"    VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily,UpdateSourceTrigger=PropertyChanged}">LoginUesr</TextBlock>
                 </StackPanel>
+            
+                <TextBox   MinWidth="300"  MinHeight="30" MaxHeight="35" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"></TextBox>
+             
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  VerticalAlignment="Center">
                     <Button Width="30" Visibility="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ShowMinimizeButton,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource ConvertBoolToVisibility}}" Height="30" ToolTip="Minimize"  Cursor="Hand" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Margin="05" x:Name="btnMinmize" Command="{Binding Source={StaticResource AppViewModel},Path=MinimizeApplicationCommand}" Style="{StaticResource ImageButton}">
                         <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.BtnMinimizeAppImg,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality"/>                                                                                                                                                
@@ -44,10 +49,10 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="27.106"></RowDefinition>
-                    <RowDefinition Height="32.894"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Margin="0,0,-0.4,0" Grid.RowSpan="2" >
+                <Grid x:Name="Grd_MenuBar" Grid.Row="0" Margin="0,0,-0.4,0" Grid.RowSpan="2"  Height="60">
                     <DockPanel >
                         <Menu Background="LightSkyBlue"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                             <MenuItem Name="Student" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Margin,UpdateSourceTrigger=PropertyChanged}">
@@ -68,11 +73,7 @@
                                         <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
                                         <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Name="AddSubject" Header="Add New Record" Click="AddSub_Click"/>
-                                <MenuItem Name="ViewSubject" Header="View Record"/>
-                                <MenuItem Name="UpdateSubject" Header="Update Record"/>
-                                <MenuItem Name="DeleteSubject" Header="Delete Record"/>
+                                </MenuItem.Header> 
                             </MenuItem>
                             <MenuItem Name="Department" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].Margin,UpdateSourceTrigger=PropertyChanged}" Click="Department_Click">
                                 <MenuItem.Header>
@@ -151,8 +152,9 @@
                         </Menu>
                     </DockPanel>
                 </Grid>
-                <Grid Grid.Row="2" Margin="0,0,-0.4,-0.2" >
-                    <ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertToScreen}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <Grid Grid.Row="2" Margin="0,0,-0.4,-0.2">
+                    <Control:NPButtons x:Name="NpBtn_TestButton" Background="SeaGreen" Style="{StaticResource ProductButton}"   />
+                    <!--<ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertToScreen}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />-->
                 </Grid>
             </Grid>
         </Grid>

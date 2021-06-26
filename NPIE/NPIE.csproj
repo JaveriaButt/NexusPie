@@ -69,6 +69,9 @@
     <Compile Include="Controls\NPButtons.cs" />
     <Compile Include="Convertors\ScreenConvertor.cs" />
     <Compile Include="Convertors\VisibilityConvertor.cs" />
+    <Compile Include="Screen\Item.xaml.cs">
+      <DependentUpon>Item.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screen\ScreenResources\ConfirmationAlert.xaml.cs">
       <DependentUpon>ConfirmationAlert.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="DesignResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screen\Item.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,7 +280,7 @@
     </Content>
     <Content Include="Resources\0\ApplicationDesign.xml">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\0\Error.xml">
       <SubType>Designer</SubType>

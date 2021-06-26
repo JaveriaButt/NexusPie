@@ -25,17 +25,23 @@ namespace NPIE
         public MainWindow()
         {
             InitializeComponent();
+
+            (Application.Current.Resources["AppViewModel"] as HomeController).GetApplicationDesign();
             //(Application.Current.Resources["AppViewModel"] as HomeController).GetApplicationDesign();
             this.Loaded += MainWindow_Loaded;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            (Application.Current.Resources["AppViewModel"] as HomeController).GetApplicationDesign();
-
-            (Application.Current.Resources["AppViewModel"] as HomeController).GetDepartmentList();
+           
+            //NpBtn_TestButton.Price = "250 PKR";
+            //NpBtn_TestButton.ItemCode = "265975"; 
+             (Application.Current.Resources["AppViewModel"] as HomeController).GetDepartmentList();
             var control = (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ControlSetting;
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner; 
+
+
+            
 
         } 
 

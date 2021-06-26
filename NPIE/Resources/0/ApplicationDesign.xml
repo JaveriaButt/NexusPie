@@ -4,13 +4,15 @@
 	<BtnCloseAppImg>\Resources\0\Images\Close.png</BtnCloseAppImg>
 	<BtnMinimizeAppImg>\Resources\0\Images\minimize.png</BtnMinimizeAppImg>
 	<BtnMaximizeAppImg>\Resources\0\Images\MiximizeButton.png</BtnMaximizeAppImg>
-  <HeaderText>NEXUS PIE</HeaderText> 
+  <HeaderText>NEXUS PIE</HeaderText>
+	<ProductButtonHeight>250</ProductButtonHeight>
+	<ProductButtonWidth>350</ProductButtonWidth>
   <FooterImage></FooterImage>
   <FooterText></FooterText>
   <OrgLogo></OrgLogo>
   <AppWidth>1150</AppWidth>
-  <AppHeight>750</AppHeight> 
- 
+  <AppHeight>750</AppHeight>
+  <ProductImage>\Resources\0\Images\UpdateButton.png</ProductImage>
   <DeleteButton></DeleteButton>
   <DeleteButtonImage>\Resources\0\Images\DeleteButton.png</DeleteButtonImage>
   <DeleteButtonPressed></DeleteButtonPressed>

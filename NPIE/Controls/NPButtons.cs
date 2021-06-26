@@ -23,6 +23,13 @@ namespace NPIE.Controls
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(NPButtons), new PropertyMetadata("", new PropertyChangedCallback(IconChanged)));
         private static void IconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) { try { (d as NPButtons).Icon = (string)e.NewValue; } catch (Exception ex) { } }
 
+        public static readonly DependencyProperty PriceProperty = DependencyProperty.Register("Price", typeof(string), typeof(NPButtons), new PropertyMetadata("", new PropertyChangedCallback(PriceChanged)));
+        private static void PriceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) { try { (d as NPButtons).Price = (string)e.NewValue; } catch (Exception ex) { } }
+
+        public static readonly DependencyProperty ItemCodeProperty = DependencyProperty.Register("ItemCode", typeof(string), typeof(NPButtons), new PropertyMetadata("", new PropertyChangedCallback(ItemCodeChanged)));
+        private static void ItemCodeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) { try { (d as NPButtons).ItemCode = (string)e.NewValue; } catch (Exception ex) { } }
+
+
         private string m_ContentS = string.Empty;
         private string ContentS
         {
@@ -38,9 +45,7 @@ namespace NPIE.Controls
 
             }
         }
-
-
-
+          
         private string m_Icon = string.Empty;
         public string Icon
         {
@@ -59,7 +64,41 @@ namespace NPIE.Controls
             }
         }
 
+        private string m_Price = string.Empty;
+        public string Price
+        {
+            set
+            {
+                if (this.m_Price != value)
+                {
+                    this.m_Price = value;
+                    this.OnPropertyChanged("Price");
+                    SetContentToUI();
+                }
+            }
+            get
+            {
+                return this.m_Price;
+            }
+        }
 
+        private string m_ItemCode = string.Empty;
+        public string ItemCode
+        {
+            set
+            {
+                if (this.m_ItemCode != value)
+                {
+                    this.m_ItemCode = value;
+                    this.OnPropertyChanged("ItemCode");
+                    SetContentToUI();
+                }
+            }
+            get
+            {
+                return this.m_ItemCode;
+            }
+        }
 
         #endregion
 
@@ -70,7 +109,7 @@ namespace NPIE.Controls
         {
             try
             { 
-                        this.Content = ContentS;
+                        this.Content = ContentS; 
                         this.FontFamily = new  FontFamily(((dynamic)Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.AppFontFamily);
                         this.FontSize = Convert.ToDouble(((dynamic)Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ButtonFontSize);
                         this.Foreground = new  SolidColorBrush((Color)ColorConverter.ConvertFromString(((dynamic)Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ButtonFontColor));

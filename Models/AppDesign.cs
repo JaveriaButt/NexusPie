@@ -182,7 +182,7 @@ namespace Models
             }
         }
 
-           private string m_btnMaximizeAppImg = "";
+        private string m_btnMaximizeAppImg = "";
         public string BtnMaximizeAppImg
         {
             set
@@ -196,6 +196,76 @@ namespace Models
             get
             {
                 return this.m_btnMaximizeAppImg;
+            }
+        }
+
+        private string m_ProductOnPressImage = "";
+        public string ProductOnPressImage
+        {
+            set
+            {
+                if (this.m_ProductOnPressImage != value)
+                {
+                    this.m_ProductOnPressImage = value;
+                    this.OnPropertyChanged("ProductOnPressImage");
+                }
+            }
+            get
+            {
+                return this.m_ProductOnPressImage;
+            }
+        }
+
+
+        private string m_ProductImage = "";
+        public string ProductImage
+        {
+            set
+            {
+                if (this.m_ProductImage != value)
+                {
+                    this.m_ProductImage = value;
+                    this.OnPropertyChanged("ProductImage");
+                }
+            }
+            get
+            {
+                return this.m_ProductImage;
+            }
+        }
+
+        private string m_ProductButtonHeight = "90";
+        public string ProductButtonHeight
+        {
+            set
+            {
+                if (this.m_ProductButtonHeight != value)
+                {
+                    this.m_ProductButtonHeight = value;
+                    this.OnPropertyChanged("ProductButtonHeight");
+                }
+            }
+            get
+            {
+                return this.m_ProductButtonHeight;
+            }
+        }
+
+
+        private string m_ProductButtonWidth = "150";
+        public string ProductButtonWidth
+        {
+            set
+            {
+                if (this.m_ProductButtonWidth != value)
+                {
+                    this.m_ProductButtonWidth = value;
+                    this.OnPropertyChanged("ProductButtonWidth");
+                }
+            }
+            get
+            {
+                return this.m_ProductButtonWidth;
             }
         }
 

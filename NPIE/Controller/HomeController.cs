@@ -133,22 +133,23 @@ namespace NPIE.Controller
                             if (!string.IsNullOrWhiteSpace(XML))
                             {
                                 XML = XML.Replace("\\Resources\\", DebugFolder + "\\Resources\\");
-                                var appDesign = (AppDesign)General.XMLToOBJECT(XML, typeof(AppDesign));
+                                ApplicationDesign = (AppDesign)General.XMLToOBJECT(XML, typeof(AppDesign));
 
-                                foreach (PropertyInfo property in typeof(AppDesign).GetProperties().Where(p => p.CanRead))
-                                {
-                                    if (property.GetValue(ApplicationDesign, null) == null || property.GetValue(ApplicationDesign, null).ToString() == string.Empty && (property.GetValue(appDesign, null) != null && property.GetValue(appDesign, null).ToString() != string.Empty))
-                                    {
+                                //ApplicationDesign = appDesign;
+                                //foreach (PropertyInfo property in typeof(AppDesign).GetProperties().Where(p => p.CanRead))
+                                //{
+                                //    if (property.GetValue(ApplicationDesign, null) == null || property.GetValue(ApplicationDesign, null).ToString() == string.Empty && (property.GetValue(appDesign, null) != null && property.GetValue(appDesign, null).ToString() != string.Empty))
+                                //    {
 
-                                        property.SetValue(ApplicationDesign, property.GetValue(appDesign, null), null);
+                                //        property.SetValue(ApplicationDesign, property.GetValue(appDesign, null), null);
 
-                                    }
-                                }
+                                //    }
+                                //}
 
-                                if (appDesign.AppWidth.ToString() != string.Empty) 
-                                    this.ApplicationDesign.AppWidth = appDesign.AppWidth;  
-                                if(appDesign.AppHeight.ToString() != string.Empty) 
-                                    this.ApplicationDesign.AppHeight = appDesign.AppHeight;
+                                //if (appDesign.AppWidth.ToString() != string.Empty) 
+                                //    this.ApplicationDesign.AppWidth = appDesign.AppWidth;  
+                                //if(appDesign.AppHeight.ToString() != string.Empty) 
+                                //    this.ApplicationDesign.AppHeight = appDesign.AppHeight;
 
                                 if (this.ApplicationDesign != null)
                                 {
