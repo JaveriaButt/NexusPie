@@ -10,93 +10,61 @@ using System.Windows.Media;
 
 namespace NPIE.Controls
 {
-    class NPButtons : System.Windows.Controls.Button, INotifyPropertyChanged
+   public class NPButtons : System.Windows.Controls.Button, INotifyPropertyChanged
     {
 
-        public NPButtons()
-        {
-            SetContentToUI();
-        }
+
+        
+ 
 
         #region Properties
 
-        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(NPButtons), new PropertyMetadata("", new PropertyChangedCallback(IconChanged)));
-        private static void IconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) { try { (d as NPButtons).Icon = (string)e.NewValue; } catch (Exception ex) { } }
-
-        public static readonly DependencyProperty PriceProperty = DependencyProperty.Register("Price", typeof(string), typeof(NPButtons), new PropertyMetadata("", new PropertyChangedCallback(PriceChanged)));
-        private static void PriceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) { try { (d as NPButtons).Price = (string)e.NewValue; } catch (Exception ex) { } }
-
-        public static readonly DependencyProperty ItemCodeProperty = DependencyProperty.Register("ItemCode", typeof(string), typeof(NPButtons), new PropertyMetadata("", new PropertyChangedCallback(ItemCodeChanged)));
-        private static void ItemCodeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) { try { (d as NPButtons).ItemCode = (string)e.NewValue; } catch (Exception ex) { } }
-
-
-        private string m_ContentS = string.Empty;
-        private string ContentS
+        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(NPButtons), new UIPropertyMetadata(null));
+        
+        public static readonly DependencyProperty PriceProperty = DependencyProperty.Register("Price", typeof(string), typeof(NPButtons), new UIPropertyMetadata(null));
+       
+        public static readonly DependencyProperty ItemCodeProperty = DependencyProperty.Register("ItemCode", typeof(string), typeof(NPButtons), new UIPropertyMetadata(null));
+      
+        public static readonly DependencyProperty ContentSProperty = DependencyProperty.Register("ContentS", typeof(string), typeof(NPButtons), new UIPropertyMetadata(null));
+        
+         
+        public string ContentS
         {
-            set {
-                if (m_ContentS != value)
-                {
-                    m_ContentS = value;
-                    this.OnPropertyChanged("ContentS");
-                }
-            }
-            get {
-                return this.m_ContentS;
-
-            }
+            get { return (string)GetValue(ContentSProperty); }
+            set { SetValue(ContentSProperty, value); }
         }
           
-        private string m_Icon = string.Empty;
+         
         public string Icon
         {
-            set
-            {
-                if (this.m_Icon != value)
-                {
-                    this.m_Icon = value;
-                    this.OnPropertyChanged("Icon");
-                    SetContentToUI();
-                }
-            }
-            get
-            {
-                return this.m_Icon;
-            }
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+             
         }
 
-        private string m_Price = string.Empty;
+     
         public string Price
         {
             set
             {
-                if (this.m_Price != value)
-                {
-                    this.m_Price = value;
-                    this.OnPropertyChanged("Price");
-                    SetContentToUI();
-                }
+                SetValue(PriceProperty, value);
             }
             get
             {
-                return this.m_Price;
+                return (string)GetValue(PriceProperty);
             }
         }
 
-        private string m_ItemCode = string.Empty;
+    
         public string ItemCode
         {
             set
             {
-                if (this.m_ItemCode != value)
-                {
-                    this.m_ItemCode = value;
-                    this.OnPropertyChanged("ItemCode");
-                    SetContentToUI();
-                }
+                SetValue(ItemCodeProperty, value);
             }
             get
             {
-                return this.m_ItemCode;
+                return (string)GetValue(ItemCodeProperty);
             }
         }
 
@@ -109,7 +77,7 @@ namespace NPIE.Controls
         {
             try
             { 
-                        this.Content = ContentS; 
+                        //this.Content = ContentS; 
                         this.FontFamily = new  FontFamily(((dynamic)Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.AppFontFamily);
                         this.FontSize = Convert.ToDouble(((dynamic)Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ButtonFontSize);
                         this.Foreground = new  SolidColorBrush((Color)ColorConverter.ConvertFromString(((dynamic)Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ButtonFontColor));

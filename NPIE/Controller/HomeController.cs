@@ -104,6 +104,25 @@ namespace NPIE.Controller
             }
         }
 
+
+        private List<Product> m_ListOfItems = new List<Product>();
+
+        public List<Product> ListOfItems
+        {
+            set
+            {
+                if (value != m_ListOfItems)
+                {
+                    m_ListOfItems = value;
+                    this.OnPropertyChanged("ListOfItems");
+                }
+            }
+            get {
+                return m_ListOfItems;
+            }
+        }
+
+
         #endregion
 
         #region Functions

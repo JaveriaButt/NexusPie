@@ -94,74 +94,52 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <Style TargetType="{x:Type Control:NPButtons}"  x:Key="ItemButton">
-        <Setter Property="FontFamily" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily,UpdateSourceTrigger=PropertyChanged}" />
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="border" BorderThickness="0" Padding="0" BorderBrush="Transparent" CornerRadius="0" Background="Transparent">
-                        <Grid x:Name="newButton" Visibility="{Binding Icon,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource ConvertStringToVisbility}}">
-                            <!--<Image x:Name="btnBackImg1" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill"/>-->
-                            <Image x:Name="btnBackImg1" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill"/>
-                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="{TemplateBinding Content}" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center"/>
-                                <!--<Image Source="{Binding Icon,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality" Margin="0,50,0,0" Width="140" Height="140"/>-->
-                                <!--<TextBlock Text="{Binding ItemCode}" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Height="180"/>
-                                <TextBlock Text="{Binding Price}"    TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center"/>-->
-                            </StackPanel>
-                            </Grid> 
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="Transparent" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="btnBackImg1" Property="Source" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductImage,UpdateSourceTrigger=PropertyChanged}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.25" />
-                            <Setter Property="BorderBrush" Value="Transparent" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    </Style> 
 
 
     <Style TargetType="{x:Type Control:NPButtons}" x:Key="ProductButton">
-          <Setter Property="FontFamily" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}"/>
-        <Setter Property="MinWidth" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductButtonWidth, UpdateSourceTrigger=PropertyChanged}"/>
-        <Setter Property="MinHeight" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductButtonHeight, UpdateSourceTrigger=PropertyChanged}"/>
+        <Setter Property="FontFamily" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}"/>
+        <Setter Property="MaxWidth" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductButtonWidth, UpdateSourceTrigger=PropertyChanged}"/>
+        <Setter Property="MaxHeight" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductButtonHeight, UpdateSourceTrigger=PropertyChanged}"/>
         <Setter Property="Cursor" Value="Hand"/>    
         <Setter Property="FontSize" Value="12"/>    
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control:NPButtons}">
-                    <Border BorderThickness="2" BorderBrush="DarkBlue" CornerRadius="15" >
+                    <Border BorderThickness="2" BorderBrush="DarkBlue" CornerRadius="15"  Width="{TemplateBinding MaxWidth}" Height="{TemplateBinding MaxHeight}">
                         <Grid Margin="05,02" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height=".8*"/>   
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock VerticalAlignment="Top" TextWrapping="Wrap"      FontSize="{TemplateBinding FontSize}" HorizontalAlignment="Left"   Grid.Row="0">Book C# By Rabid</TextBlock>
+                            <TextBlock   Text="{Binding Path=ContentS,   RelativeSource={RelativeSource TemplatedParent}}"   VerticalAlignment="Top" TextWrapping="Wrap"      FontSize="{TemplateBinding FontSize}" HorizontalAlignment="Left"   Grid.Row="0"/>
 
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="{TemplateBinding FontSize}" Grid.Column="0">250 PKR</TextBlock>
-                                <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="{TemplateBinding FontSize}" Grid.Column="0">0012</TextBlock>
-                                <Image Source="..\Resources\0\Images\MiximizeButton.png" MaxHeight="80" MaxWidth="80" Margin="2" Grid.Column="1"></Image>
+                                <TextBlock   Text="{Binding  Path=Price, RelativeSource={RelativeSource TemplatedParent}}"    VerticalAlignment="Top"    HorizontalAlignment="Left"  FontSize="{TemplateBinding FontSize}"  Grid.Column="0"/>
+                                <TextBlock   Text="{Binding  Path=ItemCode, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontSize="12" Grid.Column="0"/>
+                                <Image       Source="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}}"  MaxHeight="80" MaxWidth="80" Margin="2" Grid.Column="1" Name="btnBackImg1" />
                             </Grid>
                             
                         </Grid>
                     </Border> 
-                </ControlTemplate> 
+              
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter TargetName="btnBackImg1" Property="Source" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductImage,UpdateSourceTrigger=PropertyChanged}"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="false">
+                        <Setter Property="Opacity" Value="0.25" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+                </ControlTemplate>
             </Setter.Value> 
         </Setter>
 

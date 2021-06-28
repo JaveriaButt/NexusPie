@@ -18,11 +18,16 @@ namespace NPIE.Screen
     /// <summary>
     /// Interaction logic for Item.xaml
     /// </summary>
-    public partial class Item : UserControl
+    public partial class ListOfItems : UserControl
     {
-        public Item()
+        public ListOfItems()
         {
             InitializeComponent();
+        } 
+
+        private void NP_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

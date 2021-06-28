@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:local="clr-namespace:NPIE" xmlns:Control="clr-namespace:NPIE.Controls"
+        xmlns:local="clr-namespace:NPIE" xmlns:Control="clr-namespace:NPIE.Controls" xmlns:screen="clr-namespace:NPIE.Screen"
         mc:Ignorable="d" WindowStyle="None" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" AllowsTransparency="True"
         Title="NPIE" Height="750" Width="1080" >
  
@@ -153,7 +153,7 @@
                     </DockPanel>
                 </Grid>
                 <Grid Grid.Row="2" Margin="0,0,-0.4,-0.2">
-                    <Control:NPButtons x:Name="NpBtn_TestButton" Background="SeaGreen" Style="{StaticResource ProductButton}"   />
+                    <screen:ListOfItems x:Name="NpBtn_TestButton" Width="800" Height="600" HorizontalAlignment="Right"/>
                     <!--<ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertToScreen}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />-->
                 </Grid>
             </Grid>

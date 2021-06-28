@@ -32,10 +32,10 @@ namespace NPIE
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-           
-            //NpBtn_TestButton.Price = "250 PKR";
-            //NpBtn_TestButton.ItemCode = "265975"; 
+            {
+
+
+            LoadButtons();
              (Application.Current.Resources["AppViewModel"] as HomeController).GetDepartmentList();
             var control = (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ControlSetting;
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner; 
@@ -43,7 +43,41 @@ namespace NPIE
 
             
 
-        } 
+        }
+
+        void LoadButtons()
+        {
+            try {
+
+                (Application.Current.Resources["AppViewModel"] as HomeController).ListOfItems = new List<Product>() {
+                
+               
+                      new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr" }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
+                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                };
+            }
+            catch(Exception ex) {  }
+        }
 
 
 

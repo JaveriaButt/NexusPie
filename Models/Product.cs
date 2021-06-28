@@ -29,6 +29,24 @@ namespace Models
             get { return this.m_ProductId; }
         }
 
+
+
+        private string m_ProductCode = string.Empty;
+
+        public string ProductCode
+        {
+            set
+            {
+                if (m_ProductCode != value)
+                {
+                    m_ProductCode = value;
+                    this.OnPropertyChanged("ProductCode");
+
+                }
+            }
+            get { return this.m_ProductCode; }
+        }
+
         private string m_ProductName = string.Empty;
 
         public string ProductName

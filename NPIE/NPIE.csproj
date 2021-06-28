@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AlignableWrapPanel.cs" />
     <Compile Include="Controls\DataGridColumnsBehavior.cs" />
     <Compile Include="Controls\NPImage.cs" />
     <Compile Include="Controls\NPLabel.cs" />
@@ -69,8 +70,8 @@
     <Compile Include="Controls\NPButtons.cs" />
     <Compile Include="Convertors\ScreenConvertor.cs" />
     <Compile Include="Convertors\VisibilityConvertor.cs" />
-    <Compile Include="Screen\Item.xaml.cs">
-      <DependentUpon>Item.xaml</DependentUpon>
+    <Compile Include="Screen\ListOfItems.xaml.cs">
+      <DependentUpon>ListOfItems.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screen\ScreenResources\ConfirmationAlert.xaml.cs">
       <DependentUpon>ConfirmationAlert.xaml</DependentUpon>
@@ -95,7 +96,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Screen\Item.xaml">
+    <Page Include="Screen\ListOfItems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
