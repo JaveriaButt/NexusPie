@@ -24,4 +24,17 @@
   <InformationIcon>\Resources\0\Images\information_icon.png</InformationIcon>
   <ErrorIcon>\Resources\0\Images\error.png</ErrorIcon>
   <WarningIcon>\Resources\0\Images\Warning.png</WarningIcon>
+	
+	
+	<!--SaleScreen Settings-->
+	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>
+	<OvalButtonOnPress>SkyBlue</OvalButtonOnPress>
+	<OvalButtonHeight>35</OvalButtonHeight>
+	<OvalButtonWidth>100</OvalButtonWidth>
+	<OvalButtonForeground>DarkBlue</OvalButtonForeground>
+	<OvalButtonFontSize>15</OvalButtonFontSize>
+	<BackButtonImage>\Resources\0\Images\back.png</BackButtonImage>
+	<NextButtonImage>\Resources\0\Images\next.png</NextButtonImage>
+	<SearchImage>\Resources\0\Images\search.png</SearchImage>
+	
 </AppDesign>

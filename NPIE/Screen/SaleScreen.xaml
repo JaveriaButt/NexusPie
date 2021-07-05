@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="NPIE.Screen.SaleScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NPIE.Screen"
+              xmlns:Control="clr-namespace:NPIE.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"  Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.53*"/>
+            <ColumnDefinition Width="2.4*"/> 
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Width="50" x:Name="Btn_Next"  Background="Transparent"   HorizontalAlignment="Center" BorderBrush="Transparent"  Grid.Column="0" >
+                <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.BackButtonImage ,UpdateSourceTrigger=PropertyChanged}"></Image>
+                </Button>
+                
+                <ListView Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"   Background="Transparent" Focusable="False" IsTabStop="False" BorderBrush="Transparent" TabIndex="-1" x:Name="ItemsList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"  ItemsSource="{Binding Source={StaticResource AppViewModel},Path=ListOfCategory, UpdateSourceTrigger=PropertyChanged}">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Control:AlignableWrapPanel  HorizontalContentAlignment="Left"   VerticalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                               
+                                <Control:NPButtons Style="{StaticResource OvalButton}"  ContentS="{Binding ProductName}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonForeground, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonHeight, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonBackground, UpdateSourceTrigger=PropertyChanged}" Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonWidth, UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonFontSize, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate> 
+                </ListView>
+               
+                <Button Width="50"  x:Name="Btn_Back" Background="Transparent" HorizontalAlignment="Center"  BorderBrush="Transparent" Grid.Column="2" >
+                    <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.NextButtonImage ,UpdateSourceTrigger=PropertyChanged}"></Image>
+                </Button>
+
+                <TextBox Grid.Column="3" Width="270" Height="35" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center"></TextBox>
+                <Border  Grid.Column="3" BorderThickness="5" VerticalAlignment="Bottom" Margin="0,10" BorderBrush="White" Width="270" Height="4"></Border>
+                <Image   Grid.Column="3" Height="30" HorizontalAlignment="Right" Margin="05,02" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.SearchImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            </Grid>
+             <local:ListOfItems Grid.Row="1" x:Name="NpBtn_TestButton"  HorizontalAlignment="Right"/>
+            <Grid Grid.Row="2" Background="DarkGoldenrod">
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

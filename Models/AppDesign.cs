@@ -998,6 +998,7 @@ namespace Models
             }
         }
         
+
         private string m_DataGridSelectedRowBackColor = "#53C3D5";
         public string DataGridSelectedRowBackColor
         {
@@ -1015,7 +1016,112 @@ namespace Models
             }
         }
 
-        
+
+
+
+        private string m_OvalButtonBackground = "White";
+        public string OvalButtonBackground
+        {
+            set
+            {
+                if (this.m_OvalButtonBackground != value)
+                {
+                    this.m_OvalButtonBackground = value;
+                    this.OnPropertyChanged("OvalButtonBackground");
+                }
+            }
+            get
+            {
+                return this.m_OvalButtonBackground;
+            }
+        }
+
+        private string m_OvalButtonOnPress = "White";
+        public string OvalButtonOnPress
+        {
+            set
+            {
+                if (this.m_OvalButtonOnPress != value)
+                {
+                    this.m_OvalButtonOnPress = value;
+                    this.OnPropertyChanged("OvalButtonOnPress");
+                }
+            }
+            get
+            {
+                return this.m_OvalButtonOnPress;
+            }
+        }
+
+
+        private string m_OvalButtonHeight = "40";
+        public string OvalButtonHeight
+        {
+            set
+            {
+                if (this.m_OvalButtonHeight != value)
+                {
+                    this.m_OvalButtonHeight = value;
+                    this.OnPropertyChanged("OvalButtonHeight");
+                }
+            }
+            get
+            {
+                return this.m_OvalButtonHeight;
+            }
+        }
+      
+        private string m_OvalButtonWidth = "1";
+        public string OvalButtonWidth
+        {
+            set
+            {
+                if (this.m_OvalButtonWidth != value)
+                {
+                    this.m_OvalButtonWidth = value;
+                    this.OnPropertyChanged("OvalButtonWidth");
+                }
+            }
+            get
+            {
+                return this.m_OvalButtonWidth;
+            }
+        }
+
+        private string m_OvalButtonForeground = "White";
+        public string OvalButtonForeground
+        {
+            set
+            {
+                if (this.m_OvalButtonForeground != value)
+                {
+                    this.m_OvalButtonForeground = value;
+                    this.OnPropertyChanged("OvalButtonForeground");
+                }
+            }
+            get
+            {
+                return this.m_OvalButtonForeground;
+            }
+        }
+
+        private string m_OvalButtonFontSize = "12";
+        public string OvalButtonFontSize
+        {
+            set
+            {
+                if (this.m_OvalButtonFontSize != value)
+                {
+                    this.m_OvalButtonFontSize = value;
+                    this.OnPropertyChanged("OvalButtonFontSize");
+                }
+            }
+            get
+            {
+                return this.m_OvalButtonFontSize;
+            }
+        }
+
         private string m_DataGridRowHeight = "40";
         public string DataGridRowHeight
         {
@@ -1047,6 +1153,59 @@ namespace Models
             get
             {
                 return this.m_DataGridRowTextColor;
+            }
+        }
+
+
+        private string m_NextButtonImage = string.Empty;
+
+        public string NextButtonImage
+        {
+            set {
+                if (m_NextButtonImage != value)
+                {
+                    m_NextButtonImage = value;
+                    this.OnPropertyChanged("NextButtonImage");
+                }
+            }
+            get
+            {
+                return m_NextButtonImage;
+            }
+        }
+
+        private string m_BackButtonImage = @"\Resources\0\Images\back.png";
+
+        public string BackButtonImage
+        {
+            set
+            {
+                if (m_BackButtonImage != value)
+                {
+                    m_BackButtonImage = value;
+                    this.OnPropertyChanged("BackButtonImage");
+                }
+            }
+            get
+            {
+                return m_BackButtonImage;
+            }
+        }
+          private string m_SearchImage = @"\Resources\0\Images\back.png";
+
+        public string SearchImage
+        {
+            set
+            {
+                if (m_SearchImage != value)
+                {
+                    m_SearchImage = value;
+                    this.OnPropertyChanged("SearchImage");
+                }
+            }
+            get
+            {
+                return m_SearchImage;
             }
         }
 

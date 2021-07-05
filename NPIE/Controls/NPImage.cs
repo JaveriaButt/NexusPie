@@ -10,19 +10,19 @@ using System.Windows.Media.Imaging;
 
 namespace NPIE.Controls
 {
-    public class EMSImage : System.Windows.Controls.Image, INotifyPropertyChanged
+    public class NPImage : System.Windows.Controls.Image, INotifyPropertyChanged
     {
-        public EMSImage()
+        public NPImage()
         {
             RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.HighQuality);
         }
 
         #region Properties  
-        public static readonly DependencyProperty ImageContentProperty = DependencyProperty.Register("ContentImage", typeof(string), typeof(EMSImage), new PropertyMetadata("", new PropertyChangedCallback(BindableImagePropertyChanged)));
+        public static readonly DependencyProperty ImageContentProperty = DependencyProperty.Register("ContentImage", typeof(string), typeof(NPImage), new PropertyMetadata("", new PropertyChangedCallback(BindableImagePropertyChanged)));
         private static void BindableImagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         { try
             {
-                (d as EMSImage).ContentImage = (string)e.NewValue;
+                (d as NPImage).ContentImage = (string)e.NewValue;
             } catch (Exception ex) { } }  
         private string m_ContentImage = string.Empty;
         public string ContentImage

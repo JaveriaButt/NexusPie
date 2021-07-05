@@ -212,12 +212,12 @@ namespace NPIE.Controls
 
 
 
-                FrameworkElementFactory Img = new FrameworkElementFactory(typeof(EMSImage));
+                FrameworkElementFactory Img = new FrameworkElementFactory(typeof(NPImage));
 
                 if (col.Property.ToUpper() == "UPDATE")
-                    Img.SetBinding(EMSImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                    Img.SetBinding(NPImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
                 else if (col.Property.ToUpper() == "DELETE")
-                    Img.SetBinding(EMSImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                    Img.SetBinding(NPImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
 
                 btn.AppendChild(Img);
                 ButtonColumnTemplate.VisualTree = btn;

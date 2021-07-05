@@ -73,6 +73,9 @@
     <Compile Include="Screen\ListOfItems.xaml.cs">
       <DependentUpon>ListOfItems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screen\SaleScreen.xaml.cs">
+      <DependentUpon>SaleScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screen\ScreenResources\ConfirmationAlert.xaml.cs">
       <DependentUpon>ConfirmationAlert.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screen\ListOfItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screen\SaleScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +160,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\0\Images\back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\0\Images\next.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\0\Images\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\1\ApplicationDesign.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -275,6 +291,8 @@
     <Resource Include="Resources\1\Images\Warning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\1\Images\NextButtonAr.png" />
+    <Resource Include="Resources\1\Images\NextButtonEn.png" />
     <Content Include="Resources\1\Orginfo.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

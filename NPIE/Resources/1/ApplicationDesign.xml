@@ -21,4 +21,12 @@
   <InformationIcon>\Settings\App\1\Images\information_icon.png</InformationIcon>
   <ErrorIcon>\Settings\App\1\Images\error.png</ErrorIcon>
   <WarningIcon>\Settings\App\1\Images\Warning.png</WarningIcon>
+
+	<!--SaleScreen Settings-->
+	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>
+	<OvalButtonOnPress>SkyBlue</OvalButtonOnPress>
+	<OvalButtonHeight>25</OvalButtonHeight>
+	<OvalButtonWidth>150</OvalButtonWidth>
+	<OvalButtonForeground>Black</OvalButtonForeground>
+	<OvalButtonFontSize>08</OvalButtonFontSize>
 </AppDesign>

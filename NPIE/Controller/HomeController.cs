@@ -123,6 +123,23 @@ namespace NPIE.Controller
         }
 
 
+        private List<Product> m_ListOfCategory = new List<Product>();
+
+        public List<Product> ListOfCategory
+        {
+            set
+            {
+                if (value != m_ListOfCategory)
+                {
+                    m_ListOfCategory = value;
+                    this.OnPropertyChanged("ListOfCategory");
+                }
+            }
+            get
+            {
+                return m_ListOfCategory;
+            }
+        }
         #endregion
 
         #region Functions

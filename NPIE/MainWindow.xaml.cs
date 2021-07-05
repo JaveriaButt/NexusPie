@@ -35,7 +35,7 @@ namespace NPIE
             {
 
 
-            LoadButtons();
+           
              (Application.Current.Resources["AppViewModel"] as HomeController).GetDepartmentList();
             var control = (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ControlSetting;
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner; 

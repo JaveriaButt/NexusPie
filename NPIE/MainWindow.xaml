@@ -153,7 +153,7 @@
                     </DockPanel>
                 </Grid>
                 <Grid Grid.Row="2" Margin="0,0,-0.4,-0.2">
-                    <screen:ListOfItems x:Name="NpBtn_TestButton" Width="800" Height="600" HorizontalAlignment="Right"/>
+                    <screen:SaleScreen    HorizontalAlignment="Right"/>
                     <!--<ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertToScreen}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />-->
                 </Grid>
             </Grid>
