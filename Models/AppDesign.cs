@@ -251,6 +251,201 @@ namespace Models
             }
         }
 
+        private string m_Productbackground = "#ffffff";
+
+        public string Productbackground
+        {
+            set
+            {
+                if(m_Productbackground != value)
+                {
+                    m_Productbackground = value;
+                    this.OnPropertyChanged("Productbackground");
+                }
+            }
+            get
+            {
+                return m_Productbackground;
+            }
+        }
+
+        private string m_ProductMouseOverbackground = "Skyblue";
+
+        public string ProductMouseOverbackground
+        {
+            set
+            {
+                if (m_ProductMouseOverbackground != value)
+                {
+                    m_ProductMouseOverbackground = value;
+                    this.OnPropertyChanged("ProductMouseOverbackground");
+                }
+            }
+            get
+            {
+                return m_ProductMouseOverbackground;
+            }
+        }
+
+        private string m_ProductOnPressbackground = "#C5E0B4";
+
+        public string ProductOnPressbackground
+        {
+            set
+            {
+                if (m_ProductOnPressbackground != value)
+                {
+                    m_ProductOnPressbackground = value;
+                    this.OnPropertyChanged("ProductOnPressbackground");
+                }
+            }
+            get
+            {
+                return m_ProductOnPressbackground;
+            }
+        }
+
+        private string m_ProductBorderThickness = "2";
+
+        public string ProductBorderThickness
+        {
+            set
+            {
+                if (m_ProductBorderThickness != value)
+                {
+                    m_ProductBorderThickness = value;
+                    this.OnPropertyChanged("ProductBorderThickness");
+                }
+            }
+            get
+            {
+                return m_ProductBorderThickness;
+            }
+        }
+ 
+        private string m_ProductBorderColor = "Transparent"; 
+        public string ProductBorderColor
+        {
+            set
+            {
+                if (m_ProductBorderColor != value)
+                {
+                    m_ProductBorderColor = value;
+                    this.OnPropertyChanged("ProductBorderColor");
+                }
+            }
+            get
+            {
+                return m_ProductBorderColor;
+            }
+        }
+
+        private string m_ProductNameForeground = "#000000";
+        public string ProductNameForeground
+        {
+            set
+            {
+                if (m_ProductNameForeground != value)
+                {
+                    m_ProductNameForeground = value;
+                    this.OnPropertyChanged("ProductNameForeground");
+                }
+            }
+            get
+            {
+                return m_ProductNameForeground;
+            }
+        }
+
+
+        private string m_ProductNameFontSize = "12";
+        public string ProductNameFontSize
+        {
+            set
+            {
+                if (m_ProductNameFontSize != value)
+                {
+                    m_ProductNameFontSize = value;
+                    this.OnPropertyChanged("ProductNameFontSize");
+                }
+            }
+            get
+            {
+                return m_ProductNameFontSize;
+            }
+        }
+
+        private string m_ProductCodeForeground = "#000000";
+        public string ProductCodeForeground
+        {
+            set
+            {
+                if (m_ProductCodeForeground != value)
+                {
+                    m_ProductCodeForeground = value;
+                    this.OnPropertyChanged("ProductCodeForeground");
+                }
+            }
+            get
+            {
+                return m_ProductCodeForeground;
+            }
+        }
+
+
+        private string m_ProductCodeFontSize = "10";
+        public string ProductCodeFontSize
+        {
+            set
+            {
+                if (m_ProductCodeFontSize != value)
+                {
+                    m_ProductCodeFontSize = value;
+                    this.OnPropertyChanged("ProductCodeFontSize");
+                }
+            }
+            get
+            {
+                return m_ProductCodeFontSize;
+            }
+        }
+
+
+        private string m_ProductPriceForeground = "#C00000";
+        public string ProductPriceForeground
+        {
+            set
+            {
+                if (m_ProductPriceForeground != value)
+                {
+                    m_ProductPriceForeground = value;
+                    this.OnPropertyChanged("ProductPriceForeground");
+                }
+            }
+            get
+            {
+                return m_ProductPriceForeground;
+            }
+        }
+
+
+        private string m_ProductPriceFontSize = "12";
+        public string ProductPriceFontSize
+        {
+            set
+            {
+                if (m_ProductPriceFontSize != value)
+                {
+                    m_ProductPriceFontSize = value;
+                    this.OnPropertyChanged("ProductPriceFontSize");
+                }
+            }
+            get
+            {
+                return m_ProductPriceFontSize;
+            }
+        }
+
 
         private string m_ProductButtonWidth = "150";
         public string ProductButtonWidth
@@ -1017,9 +1212,29 @@ namespace Models
         }
 
 
+        private string m_SaleScreenbackground = string.Empty;
+
+        public string SaleScreenbackground
+        {
+            set {
+
+                if (m_SaleScreenbackground != value)
+                {
+                    m_SaleScreenbackground = value;
+                    this.OnPropertyChanged("SaleScreenbackground");
+                }
+            }
+            get
+            {
+
+                return m_SaleScreenbackground;
+            }
+
+        }
+         
 
 
-        private string m_OvalButtonBackground = "White";
+        private string m_OvalButtonBackground = "#D9D9D9";
         public string OvalButtonBackground
         {
             set
@@ -1033,6 +1248,25 @@ namespace Models
             get
             {
                 return this.m_OvalButtonBackground;
+            }
+        }
+
+
+        private string m_OvalButtonMouseOverbackground = "Skyblue";
+
+        public string OvalButtonMouseOverbackground
+        {
+            set
+            {
+                if (m_OvalButtonMouseOverbackground != value)
+                {
+                    m_OvalButtonMouseOverbackground = value;
+                    this.OnPropertyChanged("OvalButtonMouseOverbackground");
+                }
+            }
+            get
+            {
+                return m_OvalButtonMouseOverbackground;
             }
         }
 
@@ -1054,7 +1288,7 @@ namespace Models
         }
 
 
-        private string m_OvalButtonHeight = "40";
+        private string m_OvalButtonHeight = "35";
         public string OvalButtonHeight
         {
             set
@@ -1071,7 +1305,7 @@ namespace Models
             }
         }
       
-        private string m_OvalButtonWidth = "1";
+        private string m_OvalButtonWidth = "100";
         public string OvalButtonWidth
         {
             set
@@ -1088,7 +1322,7 @@ namespace Models
             }
         }
 
-        private string m_OvalButtonForeground = "White";
+        private string m_OvalButtonForeground = "Black";
         public string OvalButtonForeground
         {
             set

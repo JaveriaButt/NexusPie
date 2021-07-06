@@ -27,6 +27,7 @@
 	
 	
 	<!--SaleScreen Settings-->
+	<SaleScreenbackground>#1F4E79</SaleScreenbackground>
 	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>
 	<OvalButtonOnPress>SkyBlue</OvalButtonOnPress>
 	<OvalButtonHeight>35</OvalButtonHeight>
