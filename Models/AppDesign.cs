@@ -46,6 +46,39 @@ namespace Models
             }
         }
 
+        private string m_MenuBarNavigationImage = string.Empty;
+        public string MenuBarNavigationImage
+        {
+            set
+            {
+                if (this.m_MenuBarNavigationImage != value)
+                {
+                    this.m_MenuBarNavigationImage = value;
+                    this.OnPropertyChanged("MenuBarNavigationImage");
+                }
+            }
+            get
+            {
+                return this.m_MenuBarNavigationImage;
+            }
+        }
+
+        private string m_MenuBarBackground = string.Empty;
+        public string MenuBarBackground
+        {
+            set
+            {
+                if (this.m_MenuBarBackground != value)
+                {
+                    this.m_MenuBarBackground = value;
+                    this.OnPropertyChanged("MenuBarBackground");
+                }
+            }
+            get
+            {
+                return this.m_MenuBarBackground;
+            }
+        }
 
         private string m_HeaderText = string.Empty;
         public string HeaderText

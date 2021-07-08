@@ -27,21 +27,19 @@ namespace NPIE
             InitializeComponent();
 
             (Application.Current.Resources["AppViewModel"] as HomeController).GetApplicationDesign();
-            //(Application.Current.Resources["AppViewModel"] as HomeController).GetApplicationDesign();
+          
             this.Loaded += MainWindow_Loaded;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
             {
-
-
-           
-             (Application.Current.Resources["AppViewModel"] as HomeController).GetDepartmentList();
-            var control = (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.ControlSetting;
-            this.WindowStartupLocation = WindowStartupLocation.CenterOwner; 
-
-
-            
+                WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                LoadMainMenu();
+            }
+            catch (Exception ex)
+            { }
 
         }
 
@@ -79,24 +77,7 @@ namespace NPIE
             catch(Exception ex) {  }
         }
 
-
-
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-           
-          
-        }
-
-        private void View_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
          
-
-        private void Department_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
         public void ShowScreen(BaNPIEcreen _Screen)
         {
             try
@@ -111,17 +92,7 @@ namespace NPIE
 
             }
         }
-
-        private void Subject_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddSub_Click(object sender, RoutedEventArgs e)
-        {
-             
-        }
-
+         
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
@@ -130,6 +101,39 @@ namespace NPIE
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        } 
+
+        private void LoadMainMenu()
+        {
+            try
+            {
+                ControlTemplate TopMenu = (ControlTemplate)this.FindResource("TopMenu"); 
+                ControlTemplate SingleMenu = (ControlTemplate)this.FindResource("SingleMenu"); 
+                ControlTemplate SubMenu = (ControlTemplate)this.FindResource("SubMenu"); 
+               
+                MenuItem newMenuItem1 = new MenuItem();
+                newMenuItem1.Header = "Open Sale Screen";
+                newMenuItem1.Template = TopMenu;
+                this.AppMainMenu.Items.Add(newMenuItem1);
+
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "START SALE SCREEN", Template = SingleMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "INVOICE", Template = SingleMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "CUSTOMER", Template = TopMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "SUPPLIER", Template = TopMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "PRODUCTS", Template = TopMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "PURCHASES", Template = TopMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "EXPENSES", Template = TopMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "ACCOUNTING", Template = TopMenu }); 
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "DASHBOARD", Template = SingleMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "REPORTS", Template = TopMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "USERS", Template = TopMenu });
+                this.AppMainMenu.Items.Add(new MenuItem() { Header = "SETTINGS", Template = SingleMenu }); 
+                (this.AppMainMenu.Items[0] as MenuItem).Items.Add(new MenuItem() { Header = "ADD NEW", Template = SubMenu , Icon = @"..\Resources\0\Images\Add_Rec.png" });
+
+            }
+            catch (Exception ex)
+            { }
+            
         }
     }
 }

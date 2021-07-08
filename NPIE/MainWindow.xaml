@@ -7,7 +7,77 @@
         xmlns:local="clr-namespace:NPIE" xmlns:Control="clr-namespace:NPIE.Controls" xmlns:screen="clr-namespace:NPIE.Screen"
         mc:Ignorable="d" WindowStyle="None" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" AllowsTransparency="True"
         Title="NPIE" Height="750" Width="1080" >
+
+    <Window.Resources>
+
+        <ControlTemplate x:Key="SingleMenu" TargetType="MenuItem">
+            <StackPanel TextBlock.FontSize="15px" Height="40"> 
+                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" /> 
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver"  Value="True">
+                                <Setter Property="Background" Value="#106EBE" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="SubMenu" TargetType="MenuItem">
+            <DockPanel TextBlock.FontSize="15px" x:Name="panel" Background="Brown">  
+                <Image Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Width="30" Margin="5,0" />
+                <Label Content="{TemplateBinding Header}" Foreground="Black" Margin="0,5,5,5" />
+                <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuBarNavigationImage, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding HasItems, Converter={StaticResource ConvertBoolToVisibility}, RelativeSource={RelativeSource TemplatedParent}}" />
  
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
+                    <Border BorderThickness="2" Background="Green" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </DockPanel>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsHighlighted" Value="True">
+                    <Setter Property="Background" TargetName="panel" Value="red" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+ 
+        <ControlTemplate x:Key="VsMenuSep" TargetType="Separator">
+            <Border Height="1" Background="#E0E0E0" />
+        </ControlTemplate>
+
+
+        <ControlTemplate x:Key="TopMenu" TargetType="MenuItem">
+            <StackPanel TextBlock.FontSize="15px" Height="40" Orientation="Horizontal" Background="#005A9E">
+                <Label Content="{TemplateBinding Header}" Margin="5" Foreground="White" />
+                <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuBarNavigationImage, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="0,0,5,0" />
+
+                <!-- sub items -->
+                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
+                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                        <StackPanel IsItemsHost="True" />
+                    </Border>
+                </Popup>
+            </StackPanel>
+        </ControlTemplate>
+        
+        
+        
+        
+        
+        
+    </Window.Resources>
+    
+    
+    
+    
     <Border Margin="10">
         <Border.Effect>
             <DropShadowEffect BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1"/>
@@ -17,6 +87,7 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <!--Top Header bar of the App--> 
             <Grid     Grid.Row="0"   x:Name="Header"   MouseLeftButtonDown="Header_MouseLeftButtonDown">
                 <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.HeaderImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill"  />
                 <StackPanel Orientation="Horizontal">
@@ -52,108 +123,19 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid x:Name="Grd_MenuBar" Grid.Row="0" Margin="0,0,-0.4,0" Grid.RowSpan="2"  Height="60">
+                <!--Menu bar of the App-->
+                <Grid x:Name="Grd_MenuBar"  Grid.Row="0" Margin="0,0,-0.4,0" Grid.RowSpan="2"  Height="40">
                     <DockPanel >
-                        <Menu Background="LightSkyBlue"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <MenuItem Name="Student" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].Margin,UpdateSourceTrigger=PropertyChanged}">
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                        <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[0].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Name="Add" Header="Add New Record" Click="Add_Click"/>
-                                <MenuItem Name="View" Header="View Record" Click="View_Click"/>
-                                <MenuItem Name="Update" Header="Update Record"/>
-                                <MenuItem Name="Delete" Header="Delete Record"/>
-                            </MenuItem>
-                            <MenuItem Name="Subject" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].Margin,UpdateSourceTrigger=PropertyChanged}" Click="Subject_Click">
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                        <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[1].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </MenuItem.Header> 
-                            </MenuItem>
-                            <MenuItem Name="Department" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].Margin,UpdateSourceTrigger=PropertyChanged}" Click="Department_Click">
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                        <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[2].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Name="AddDepartment" Header="Add New Record" Click="Add_Click"/>
-                                <MenuItem Name="ViewDepartment" Header="View Record"/>
-                                <MenuItem Name="UpdateDepartment" Header="Update Record"/>
-                                <MenuItem Name="DeleteDepartment" Header="Delete Record"/>
-                            </MenuItem>
-                            <MenuItem Name="Result" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].Margin,UpdateSourceTrigger=PropertyChanged}">
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                        <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[3].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Name="AddResult" Header="Add New Record" Click="Add_Click"/>
-                                <MenuItem Name="ViewResult" Header="View Record"/>
-                                <MenuItem Name="UpdateResult" Header="Update Record"/>
-                                <MenuItem Name="DeleteResult" Header="Delete Record"/>
-                            </MenuItem>
-                            <MenuItem Name="Print" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].Margin,UpdateSourceTrigger=PropertyChanged}">
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                        <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[4].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Name="AddPrint" Header="Add New Record" Click="Add_Click"/>
-                                <MenuItem Name="ViewPrint" Header="View Record"/>
-                                <MenuItem Name="UpdatePrint" Header="Update Record"/>
-                                <MenuItem Name="DeletePrint" Header="Delete Record"/>
-                            </MenuItem>
-                            <MenuItem Name="Information" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].Margin,UpdateSourceTrigger=PropertyChanged}">
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                        <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[5].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Name="AddInformation" Header="Add New Record" Click="Add_Click"/>
-                                <MenuItem Name="ViewInformation" Header="View Record"/>
-                                <MenuItem Name="UpdateInformation" Header="Update Record"/>
-                                <MenuItem Name="DeleteInformation" Header="Delete Record"/>
-                            </MenuItem>
-                            <MenuItem Name="Setting" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].Margin,UpdateSourceTrigger=PropertyChanged}">
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                        <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[6].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Name="AddSetting" Header="Add New Record" Click="Add_Click"/>
-                                <MenuItem Name="ViewSetting" Header="View Record"/>
-                                <MenuItem Name="UpdateSetting" Header="Update Record"/>
-                                <MenuItem Name="DeleteSetting" Header="Delete Record"/>
-                            </MenuItem>
-                            <MenuItem Name="Help" BorderBrush ="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].BorderColor, UpdateSourceTrigger=PropertyChanged}" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].BorderBrushSize, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].BackgroundColor, UpdateSourceTrigger=PropertyChanged}"  Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].Width, UpdateSourceTrigger=PropertyChanged}" Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].Height,UpdateSourceTrigger=PropertyChanged}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].FontFamily,UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].FontSize,UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].Margin,UpdateSourceTrigger=PropertyChanged}">
-                                <MenuItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image  Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].ImagePath, UpdateSourceTrigger=PropertyChanged}"  Height="40" Width="30"/>
-                                        <AccessText Height="40" Margin="05,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ControlSetting[7].HeaderText, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </MenuItem.Header>
-                                <MenuItem Name="AddHelp" Header="Add New Record" Click="Add_Click"/>
-                                <MenuItem Name="ViewHelp" Header="View Record"/>
-                                <MenuItem Name="UpdateHelp" Header="Update Record"/>
-                                <MenuItem Name="DeleteHelp" Header="Delete Record"/>
-                            </MenuItem>
-
-
+                        <Menu IsMainMenu="True" x:Name="AppMainMenu" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuBarBackground, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                           
                         </Menu>
                     </DockPanel>
                 </Grid>
+               
+                
+                <!--Screens Area to show screens-->
                 <Grid Grid.Row="2" Margin="0,0,-0.4,-0.2">
-                    <screen:SaleScreen    HorizontalAlignment="Right"/>
+                    <!--<screen:SaleScreen    HorizontalAlignment="Right"/>-->
                     <!--<ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertToScreen}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />-->
                 </Grid>
             </Grid>

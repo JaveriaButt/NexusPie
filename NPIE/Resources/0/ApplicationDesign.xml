@@ -24,8 +24,8 @@
   <InformationIcon>\Resources\0\Images\information_icon.png</InformationIcon>
   <ErrorIcon>\Resources\0\Images\error.png</ErrorIcon>
   <WarningIcon>\Resources\0\Images\Warning.png</WarningIcon>
-	
-	
+	<MenuBarNavigationImage>\Resources\0\Images\icon_down.png</MenuBarNavigationImage>
+	<MenuBarBackground>#546f7a</MenuBarBackground>
 	<!--SaleScreen Settings-->
 	<SaleScreenbackground>#1F4E79</SaleScreenbackground>
 	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>
