@@ -46,6 +46,9 @@ namespace Models
             }
         }
 
+
+        #region Menubar Settting
+
         private string m_MenuBarNavigationImage = string.Empty;
         public string MenuBarNavigationImage
         {
@@ -79,6 +82,112 @@ namespace Models
                 return this.m_MenuBarBackground;
             }
         }
+        
+        private string m_MenuItemBackground = string.Empty;
+        public string MenuItemBackground
+        {
+            set
+            {
+                if (this.m_MenuItemBackground != value)
+                {
+                    this.m_MenuItemBackground = value;
+                    this.OnPropertyChanged("MenuItemBackground");
+                }
+            }
+            get
+            {
+                return this.m_MenuItemBackground;
+            }
+        }
+
+        private string m_MenuItemOnPressBackground = string.Empty;
+        public string MenuItemOnPressBackground
+        {
+            set
+            {
+                if (this.m_MenuItemOnPressBackground != value)
+                {
+                    this.m_MenuItemOnPressBackground = value;
+                    this.OnPropertyChanged("MenuItemOnPressBackground");
+                }
+            }
+            get
+            {
+                return this.m_MenuItemOnPressBackground;
+            }
+        }
+
+
+        private string m_MenuItemFontSize = "15";
+        public string MenuItemFontSize
+        {
+            set
+            {
+                if (this.m_MenuItemFontSize != value)
+                {
+                    this.m_MenuItemFontSize = value;
+                    this.OnPropertyChanged("MenuItemFontSize");
+                }
+            }
+            get
+            {
+                return this.m_MenuItemFontSize;
+            }
+        }
+        
+        private string m_SubMenuItemFontSize = "12";
+        public string SubMenuItemFontSize
+        {
+            set
+            {
+                if (this.m_SubMenuItemFontSize != value)
+                {
+                    this.m_SubMenuItemFontSize = value;
+                    this.OnPropertyChanged("SubMenuItemFontSize");
+                }
+            }
+            get
+            {
+                return this.m_SubMenuItemFontSize;
+            }
+        }
+
+        private string m_SubMenuItemBackground = "Green";
+        public string SubMenuItemBackground
+        {
+            set
+            {
+                if (this.m_SubMenuItemBackground != value)
+                {
+                    this.m_SubMenuItemBackground = value;
+                    this.OnPropertyChanged("SubMenuItemBackground");
+                }
+            }
+            get
+            {
+                return this.m_SubMenuItemBackground;
+            }
+        }
+
+        private string m_SubMenuItemOnPressBackground = "Red";
+        public string SubMenuItemOnPressBackground
+        {
+            set
+            {
+                if (this.m_SubMenuItemOnPressBackground != value)
+                {
+                    this.m_SubMenuItemOnPressBackground = value;
+                    this.OnPropertyChanged("SubMenuItemOnPressBackground");
+                }
+            }
+            get
+            {
+                return this.m_SubMenuItemOnPressBackground;
+            }
+        }
+       
+        
+        #endregion
 
         private string m_HeaderText = string.Empty;
         public string HeaderText

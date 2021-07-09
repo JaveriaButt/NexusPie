@@ -1,5 +1,8 @@
-﻿using Models;
+﻿using MaterialDesignThemes.Wpf;
+using Models;
 using NPIE.Controller;
+using NPIE.Controls;
+using NPIE.Screen.ScreenResources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,28 +110,45 @@ namespace NPIE
         {
             try
             {
-                ControlTemplate TopMenu = (ControlTemplate)this.FindResource("TopMenu"); 
-                ControlTemplate SingleMenu = (ControlTemplate)this.FindResource("SingleMenu"); 
-                ControlTemplate SubMenu = (ControlTemplate)this.FindResource("SubMenu"); 
-               
-                MenuItem newMenuItem1 = new MenuItem();
-                newMenuItem1.Header = "Open Sale Screen";
-                newMenuItem1.Template = TopMenu;
-                this.AppMainMenu.Items.Add(newMenuItem1);
 
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "START SALE SCREEN", Template = SingleMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "INVOICE", Template = SingleMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "CUSTOMER", Template = TopMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "SUPPLIER", Template = TopMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "PRODUCTS", Template = TopMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "PURCHASES", Template = TopMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "EXPENSES", Template = TopMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "ACCOUNTING", Template = TopMenu }); 
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "DASHBOARD", Template = SingleMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "REPORTS", Template = TopMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "USERS", Template = TopMenu });
-                this.AppMainMenu.Items.Add(new MenuItem() { Header = "SETTINGS", Template = SingleMenu }); 
-                (this.AppMainMenu.Items[0] as MenuItem).Items.Add(new MenuItem() { Header = "ADD NEW", Template = SubMenu , Icon = @"..\Resources\0\Images\Add_Rec.png" });
+                var menuRegister = new List<SubItem>();
+                menuRegister.Add(new SubItem("Customer"));
+                menuRegister.Add(new SubItem("Providers"));
+                menuRegister.Add(new SubItem("Employees"));
+                menuRegister.Add(new SubItem("Products"));
+                var item6 = new ItemMenu("Register", menuRegister, PackIconKind.Register);
+
+                var menuSchedule = new List<SubItem>();
+                menuSchedule.Add(new SubItem("Products"));
+                menuSchedule.Add(new SubItem("Payment"));
+                var item1 = new ItemMenu("Purchases", menuSchedule, PackIconKind.Schedule);
+
+                var menuReports = new List<SubItem>();
+                menuReports.Add(new SubItem("Customers"));
+                menuReports.Add(new SubItem("Providers"));
+                menuReports.Add(new SubItem("Products"));
+                menuReports.Add(new SubItem("Stock"));
+                menuReports.Add(new SubItem("Sales"));
+                var item2 = new ItemMenu("Reports", menuReports, PackIconKind.FileReport);
+
+                var menuExpenses = new List<SubItem>();
+                menuExpenses.Add(new SubItem("Fixed"));
+                menuExpenses.Add(new SubItem("Variable"));
+                var item3 = new ItemMenu("Expenses", menuExpenses, PackIconKind.ShoppingBasket);
+
+                var menuFinancial = new List<SubItem>();
+                menuFinancial.Add(new SubItem("Cash flow"));
+                var item4 = new ItemMenu("Financial", menuFinancial, PackIconKind.ScaleBalance);
+
+                var item0 = new ItemMenu("Dashboard", new UserControl(), PackIconKind.ViewDashboard);
+
+
+                Menu.Children.Add(new NavigationMenu(item0));
+                Menu.Children.Add(new NavigationMenu(item6));
+                Menu.Children.Add(new NavigationMenu(item1));
+                Menu.Children.Add(new NavigationMenu(item2));
+                Menu.Children.Add(new NavigationMenu(item3));
+                Menu.Children.Add(new NavigationMenu(item4));
 
             }
             catch (Exception ex)

@@ -38,6 +38,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NPIE\Lib\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.1.1345, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -64,6 +72,7 @@
     </ApplicationDefinition>
     <Compile Include="Controls\AlignableWrapPanel.cs" />
     <Compile Include="Controls\DataGridColumnsBehavior.cs" />
+    <Compile Include="Controls\ItemMenu.cs" />
     <Compile Include="Controls\NPImage.cs" />
     <Compile Include="Controls\NPLabel.cs" />
     <Compile Include="Controls\NPTextBox.cs" />
@@ -81,6 +90,9 @@
     </Compile>
     <Compile Include="Screen\ScreenResources\DataGrid.xaml.cs">
       <DependentUpon>DataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screen\ScreenResources\NavigationMenu.xaml.cs">
+      <DependentUpon>NavigationMenu.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screen\ScreenResources\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screen\ScreenResources\NavigationMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +176,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dll\MaterialDesignColors.dll" />
+    <Content Include="dll\MaterialDesignThemes.Wpf.dll" />
     <Content Include="Resources\0\Images\back.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
