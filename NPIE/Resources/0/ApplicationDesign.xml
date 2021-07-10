@@ -23,8 +23,7 @@
   <PrintButtonPressed></PrintButtonPressed>
   <InformationIcon>\Resources\0\Images\information_icon.png</InformationIcon>
   <ErrorIcon>\Resources\0\Images\error.png</ErrorIcon>
-  <WarningIcon>\Resources\0\Images\Warning.png</WarningIcon>
-	<MenuBarNavigationImage>\Resources\0\Images\icon_down.png</MenuBarNavigationImage>
+  <WarningIcon>\Resources\0\Images\Warning.png</WarningIcon> 
 	<MenuBarBackground>#546f7a</MenuBarBackground>
 	<!--SaleScreen Settings-->
 	<SaleScreenbackground>#1F4E79</SaleScreenbackground>
@@ -37,5 +36,6 @@
 	<BackButtonImage>\Resources\0\Images\back.png</BackButtonImage>
 	<NextButtonImage>\Resources\0\Images\next.png</NextButtonImage>
 	<SearchImage>\Resources\0\Images\search.png</SearchImage>
-	
+	<MenuBarNavigationImage>/Resources/0/Images/NavigationMenu.png</MenuBarNavigationImage>
+
 </AppDesign>

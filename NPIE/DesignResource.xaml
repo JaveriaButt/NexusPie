@@ -17,6 +17,8 @@
     <Controllers:HomeController x:Key="AppViewModel"/>
     <Converters:VisibilityConverter x:Key="ConvertBoolToVisibility"/>
     <Converters:StringToVisibilityConverter x:Key="ConvertStringToVisbility"/>
+    <Converters:NullToVisibilityConverter x:Key="ConvertNullToVisbility"/>
+    <Converters:NullToVisibilityReverseConverter x:Key="NullToVisibilityReverseConverter"/>
 
 
     <Style TargetType="{x:Type GroupBox}">

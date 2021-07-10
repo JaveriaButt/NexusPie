@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Models
 {
-    public class BaNPIEcreen :  INotifyPropertyChanged
+    public class BaNPIEScreen :  INotifyPropertyChanged
     {
-        public BaNPIEcreen(ScreenType screen)
+        public BaNPIEScreen(ScreenType screen)
         {
             ChildControl = screen;
         }
@@ -51,7 +51,22 @@ namespace Models
                 return this.m_ChildControl;
             }
         }
-         
+
+        private bool m_IsMenuShown = true;
+        public bool IsMenuShown
+        {
+            set
+            {
+                if (m_IsMenuShown != value)
+                {
+                    m_IsMenuShown = value;
+                    this.OnPropertyChanged("IsMenuShown");
+                }
+            }
+            get {
+                return m_IsMenuShown;
+            }
+        }
 
         #region Property Changed Event 
         public event PropertyChangedEventHandler PropertyChanged;

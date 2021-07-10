@@ -94,6 +94,9 @@
     <Compile Include="Screen\ScreenResources\NavigationMenu.xaml.cs">
       <DependentUpon>NavigationMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screen\Product\SingleProductScreen.xaml.cs">
+      <DependentUpon>SingleProductScreen.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screen\ScreenResources\NavigationMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screen\Product\SingleProductScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +189,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\0\Images\icon_down.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\0\Images\NavigationMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\0\Images\next.png">

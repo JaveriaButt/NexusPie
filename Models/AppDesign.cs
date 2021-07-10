@@ -66,6 +66,8 @@ namespace Models
             }
         }
 
+        
+
         private string m_MenuBarBackground = string.Empty;
         public string MenuBarBackground
         {
@@ -83,7 +85,7 @@ namespace Models
             }
         }
         
-        private string m_MenuItemBackground = string.Empty;
+        private string m_MenuItemBackground = "Transparent";
         public string MenuItemBackground
         {
             set
@@ -100,7 +102,7 @@ namespace Models
             }
         }
 
-        private string m_MenuItemOnPressBackground = string.Empty;
+        private string m_MenuItemOnPressBackground = "#CDE846";
         public string MenuItemOnPressBackground
         {
             set
@@ -117,6 +119,23 @@ namespace Models
             }
         }
 
+
+        private string m_MenuItemMouseOver = "#DAF7A6";
+        public string MenuItemMouseOver
+        {
+            set
+            {
+                if (this.m_MenuItemMouseOver != value)
+                {
+                    this.m_MenuItemMouseOver = value;
+                    this.OnPropertyChanged("MenuItemMouseOver");
+                }
+            }
+            get
+            {
+                return this.m_MenuItemMouseOver;
+            }
+        }
 
         private string m_MenuItemFontSize = "15";
         public string MenuItemFontSize

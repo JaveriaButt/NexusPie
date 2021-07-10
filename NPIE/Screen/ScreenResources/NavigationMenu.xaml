@@ -10,20 +10,48 @@
              d:DataContext="{d:DesignInstance Type=Controls:ItemMenu}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>   
+         
+
+        <Style TargetType="{x:Type Button}" x:Key="MenuStyle">
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuItemBackground, UpdateSourceTrigger=PropertyChanged}">
+                            <Grid x:Name="img" >
+                                <materialDesign:PackIcon  Kind="{Binding Path=Icon}" Width="25" Height="25" Margin="10 10" Foreground="White"/>
+                            </Grid>
+                            <Grid Visibility="{Binding Source={StaticResource AppViewModel},Path=HomeScreen.IsMenuShown, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertBoolToVisibility} }">
+                                <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header }" Visibility="{Binding Path=SubItems,Converter={StaticResource NullToVisibilityReverseConverter}}" Padding="32 14" FontSize="15" Foreground="White" />
+                                <Expander x:Name="ExpanderMenu"   HorizontalContentAlignment="Left"  Header="{Binding Path=Header}"  Visibility="{Binding Path=SubItems,Converter={StaticResource ConvertNullToVisbility}}" IsExpanded="False" Width="180" FontSize="08" HorizontalAlignment="Left" Background="Transparent" Foreground="White">
+                                    <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Name}" x:Name="tb" Padding="20 5"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Expander>
+                            </Grid>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuItemMouseOver, UpdateSourceTrigger=PropertyChanged}" TargetName="img"></Setter>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuItemOnPressBackground, UpdateSourceTrigger=PropertyChanged}" TargetName="img" />
+                            </Trigger> 
+                    
+                    </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <materialDesign:PackIcon Kind="{Binding Path=Icon}" Width="15" Height="15" Margin="10 16" Foreground="White"/>
-            <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" Padding="32 14" FontSize="15" Foreground="White"/>
-            <Expander x:Name="ExpanderMenu"   Header="{Binding Path=Header}" IsExpanded="False" Width="200" HorizontalAlignment="Center" Background="{x:Null}" Foreground="White">
-                <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path=Name}" Padding="20 5"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Expander>
-        </StackPanel>
+        <Button Style="{StaticResource MenuStyle}" Click="Button_Click" ></Button>
     </Grid>
 </UserControl>

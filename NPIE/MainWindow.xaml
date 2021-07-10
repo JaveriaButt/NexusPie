@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:NPIE" xmlns:Control="clr-namespace:NPIE.Controls" xmlns:screen="clr-namespace:NPIE.Screen"
         mc:Ignorable="d" WindowStyle="None" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" AllowsTransparency="True"
         Title="NPIE" Height="750" Width="1080" >
-    
+   
    
     <Border Margin="10">
         <Border.Effect>
@@ -54,10 +54,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!--Menu bar of the App-->
-                <Grid Grid.Column="0" Margin="0,0,-0.4,-0.2" Background="Gray">
+                <Grid Grid.Column="0" Margin="0,0,-0.4,-0.2" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuBarBackground}">
+                    <StackPanel Orientation="Vertical">
+                        <Control:NPImage MouseLeftButtonDown="NPImage_MouseLeftButtonDown" HorizontalAlignment="Right" Margin="20,05" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuBarNavigationImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="Linear" Height="30"></Control:NPImage>
                     <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                        <StackPanel x:Name="Menu" Margin="10"/>
-                    </ScrollViewer> 
+                        <StackPanel x:Name="Menu" Margin="05"/>
+                    </ScrollViewer>
+                    </StackPanel>
                 </Grid>
                 <!--Screens Area to show screens-->
                 <Grid Grid.Column="1" Margin="0,0,-0.4,-0.2">

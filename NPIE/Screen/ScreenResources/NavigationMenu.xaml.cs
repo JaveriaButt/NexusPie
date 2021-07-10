@@ -1,4 +1,5 @@
-﻿using NPIE.Controls;
+﻿using NPIE.Controller;
+using NPIE.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,19 @@ namespace NPIE.Screen.ScreenResources
     {
         public NavigationMenu(ItemMenu itemMenu)
         {
-            InitializeComponent();
-            ExpanderMenu.Visibility = itemMenu.SubItems == null ? Visibility.Collapsed : Visibility.Visible;
-            ListViewItemMenu.Visibility = itemMenu.SubItems == null ? Visibility.Visible : Visibility.Collapsed; 
+            InitializeComponent();  
             this.DataContext = itemMenu;
         }
-       
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClick(sender);
+
+            }
+            catch (Exception ex) { }
+
+        }
     }
 }

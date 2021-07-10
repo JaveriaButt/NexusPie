@@ -81,7 +81,7 @@ namespace NPIE
         }
 
          
-        public void ShowScreen(BaNPIEcreen _Screen)
+        public void ShowScreen(BaNPIEScreen _Screen)
         {
             try
             {
@@ -110,6 +110,7 @@ namespace NPIE
         {
             try
             {
+                var acb = (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign;
 
                 var menuRegister = new List<SubItem>();
                 menuRegister.Add(new SubItem("Customer"));
@@ -154,6 +155,16 @@ namespace NPIE
             catch (Exception ex)
             { }
             
+        }
+
+        private void NPImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.IsMenuShown)
+            {
+                (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.IsMenuShown = false;
+            }
+            else
+                (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.IsMenuShown = true;
         }
     }
 }

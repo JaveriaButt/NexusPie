@@ -20,9 +20,9 @@ namespace NPIE.Controller
         #region Property
 
 
-        private BaNPIEcreen m_CurrentScreen = new BaNPIEcreen(ScreenType.None);
+        private BaNPIEScreen m_CurrentScreen = new BaNPIEScreen(ScreenType.None);
 
-        public BaNPIEcreen CurrentScreen
+        public BaNPIEScreen CurrentScreen
         {
             set
             {
@@ -30,14 +30,32 @@ namespace NPIE.Controller
                 {
                     m_CurrentScreen = value;
                     this.OnPropertyChanged("CurrentScreen");
-                }
-
+                } 
             }
             get
             {
                 return this.m_CurrentScreen;
             }
         }
+
+        private BaNPIEScreen m_HomeScreen = new BaNPIEScreen(ScreenType.None);
+
+        public BaNPIEScreen  HomeScreen
+        {
+            set
+            {
+                if (m_HomeScreen != value)
+                {
+                    m_HomeScreen = value;
+                    this.OnPropertyChanged("HomeScreen");
+                }
+            }
+            get
+            {
+                return this.m_HomeScreen;
+            }
+        }
+
 
 
         private AppDesign m_ApplicationDesign = new AppDesign();
