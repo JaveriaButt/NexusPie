@@ -23,8 +23,8 @@ namespace NPIE.Controls
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(NPLabel), new PropertyMetadata("", new PropertyChangedCallback(IconChanged)));
         private static void IconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) { try { (d as NPLabel).Icon = (string)e.NewValue; } catch (Exception ex) { } }
 
-        private string m_ContentS = string.Empty;
-        private string ContentS
+        public string m_ContentS = string.Empty;
+        public string ContentS
         {
             set {
                 if (m_ContentS != value)

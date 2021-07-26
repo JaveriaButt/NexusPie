@@ -22,8 +22,11 @@ namespace NPIE.Convertors
                     ScreenType Screen = ((dynamic)Object).ChildControl;
                     switch (Screen)
                     {
-                          
-                        
+                        case  ScreenType.VIEWPRODUCTS:
+                            { 
+                                return new Screen.Items.ViewProducts(); 
+                            }
+
                     }
 
 

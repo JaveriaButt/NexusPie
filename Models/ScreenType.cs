@@ -10,9 +10,11 @@ namespace Models
     public enum ScreenType
     {
         [XmlEnum("0")]
-        None = 0
-        
-        
-        
+        None = 0,
+         [XmlEnum("1")]
+        VIEWPRODUCTS = 1
+
+
+
     }
 }

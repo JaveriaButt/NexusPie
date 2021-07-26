@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
 
 namespace Models
 {
@@ -67,6 +68,41 @@ namespace Models
                 return m_IsMenuShown;
             }
         }
+       
+        private ObservableCollection<GridColumn> m_ColumnsList = new ObservableCollection<GridColumn>();
+        public ObservableCollection<GridColumn> ColumnsList
+        {
+            set
+            {
+                if (m_ColumnsList != value)
+                {
+                    m_ColumnsList = value;
+                    OnPropertyChanged("ColumnsList");
+                }
+            }
+            get
+            {
+                return m_ColumnsList;
+            }
+        }
+ 
+        private object m_List = null;
+        public object List
+        {
+            set
+            {
+                if (this.m_List != value)
+                {
+                    this.m_List = value;
+                    this.OnPropertyChanged("List");
+                }
+            }
+            get
+            {
+                return this.m_List;
+            }
+        }
+
 
         #region Property Changed Event 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -77,6 +113,11 @@ namespace Models
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public void SubmitToServer(object dataContext)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

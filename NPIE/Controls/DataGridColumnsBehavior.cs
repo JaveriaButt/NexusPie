@@ -201,7 +201,7 @@ namespace NPIE.Controls
                             if ((SENDER1 as Button).DataContext != null)
                             {
                                    ClickResponse response = new ClickResponse() {SENDER = col.Property, DataObject = (SENDER1 as Button).DataContext };
-                                  (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.SendClick(response);
+                                  //(Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.SendClick(response);
                             }
                         }
                     }

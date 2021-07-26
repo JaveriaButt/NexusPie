@@ -28,7 +28,12 @@
                                     <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Path=Name}" x:Name="tb" Padding="20 5"/>
+                                                <Button Background="Transparent" BorderBrush="Transparent" Height="25"  Click="Button_Click">
+                                                    <Button.Content>
+                                                        <TextBlock Text="{Binding Path=Name}" x:Name="tb" Padding="10 0"/>
+                                                    </Button.Content>
+                                                </Button>
+                                               
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
@@ -52,6 +57,6 @@
     </UserControl.Resources>
 
     <Grid>
-        <Button Style="{StaticResource MenuStyle}" Click="Button_Click" ></Button>
+        <Button Style="{StaticResource MenuStyle}"  Click="Button_Click"></Button>
     </Grid>
 </UserControl>

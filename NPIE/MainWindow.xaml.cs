@@ -4,19 +4,10 @@ using NPIE.Controller;
 using NPIE.Controls;
 using NPIE.Screen.ScreenResources;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;  
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls; 
+using System.Windows.Input; 
 
 namespace NPIE
 {
@@ -38,12 +29,33 @@ namespace NPIE
         {
             try
             {
-                WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                WindowStartupLocation = WindowStartupLocation.CenterOwner; 
                 LoadMainMenu();
+                (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClickEvent += HomeScreen_SendClickEvent;
             }
             catch (Exception ex)
             { }
 
+        }
+
+        private void HomeScreen_SendClickEvent(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var abc = sender as SubItem;
+                switch (abc.Name.ToUpper())
+                {
+                    case "PRODUCTS":
+                        {
+                            (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen = new Screen.Items.ViewProducts();
+                            break;
+                        }
+                }
+
+
+            }
+            catch (Exception ex)
+            { }
         }
 
         void LoadButtons()

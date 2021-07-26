@@ -32,11 +32,33 @@ namespace NPIE.Screen.ScreenResources
         {
             try
             {
-                (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClick(sender);
+                var btn = (sender as Button).DataContext;
+                if (btn.GetType() == typeof(SubItem))
+                {
+                    (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClick(btn);
+                }
+                else if (btn.GetType() == typeof(ItemMenu))
+                {
+                    var Object = ((sender as Button).DataContext as ItemMenu);
+                    
+                    if (Object.SubItems == null || Object.SubItems.Count == 0)
+                    {
+                        SubItem item = new SubItem(Name = Object.Header.ToString());
+                        (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClick(item);
+                    }
+                   
+                }
+
+
+
+                
+                
 
             }
             catch (Exception ex) { }
 
         }
+
+        
     }
 }

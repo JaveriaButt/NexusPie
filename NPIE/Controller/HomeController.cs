@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;  
-using System.Configuration; 
+using System.Collections.Generic;
+using System.Configuration;
 using System.Windows;
 using System.ComponentModel;
 using Models;
 using Resources;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace NPIE.Controller
 {
@@ -20,9 +21,9 @@ namespace NPIE.Controller
         #region Property
 
 
-        private BaNPIEScreen m_CurrentScreen = new BaNPIEScreen(ScreenType.None);
+        private UserControl m_CurrentScreen = null;
 
-        public BaNPIEScreen CurrentScreen
+        public UserControl CurrentScreen
         {
             set
             {

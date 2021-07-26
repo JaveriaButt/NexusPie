@@ -204,8 +204,83 @@ namespace Models
                 return this.m_SubMenuItemOnPressBackground;
             }
         }
-       
+
+        private string m_ScreensHeaderBackgrund = "#1f9cd9";
         
+        public string ScreensHeaderBackgrund
+        {
+            get { return m_ScreensHeaderBackgrund; }
+            set {
+                if (m_ScreensHeaderBackgrund != value)
+                {
+                    m_ScreensHeaderBackgrund = value;
+                    this.OnPropertyChanged("ScreensHeaderBackgrund");
+                }
+            }
+        }
+
+
+        private string m_ScreensHeaderForeground = "Black";
+
+        public string ScreensHeaderForeground
+        {
+            get { return m_ScreensHeaderForeground; }
+            set
+            {
+                if (m_ScreensHeaderForeground != value)
+                {
+                    m_ScreensHeaderForeground = value;
+                    this.OnPropertyChanged("ScreensHeaderForeground");
+                }
+            }
+        }
+
+        private string m_ScreensHeaderFontiSize = "40";
+
+        public string  ScreensHeaderFontiSize
+        {
+            get { return m_ScreensHeaderFontiSize; }
+            set
+            {
+                if (m_ScreensHeaderForeground != value)
+                {
+                    m_ScreensHeaderFontiSize = value;
+                    this.OnPropertyChanged("ScreensHeaderFontiSize");
+                }
+            }
+        }
+
+        private string m_UpdateButtonBackgroundImg = "";
+
+        public string  UpdateButtonBackgroundImg
+        {
+            get { return m_UpdateButtonBackgroundImg; }
+            set
+            {
+                if (m_UpdateButtonBackgroundImg != value)
+                {
+                    m_UpdateButtonBackgroundImg = value;
+                    this.OnPropertyChanged("UpdateButtonBackgroundImg");
+                }
+            }
+        }
+
+          private string m_SelectButtonImg = "";
+
+        public string  SelectButtonImg
+        {
+            get { return m_SelectButtonImg; }
+            set
+            {
+                if (m_SelectButtonImg != value)
+                {
+                    m_SelectButtonImg = value;
+                    this.OnPropertyChanged("SelectButtonImg");
+                }
+            }
+        }
+
+
         #endregion
 
         private string m_HeaderText = string.Empty;

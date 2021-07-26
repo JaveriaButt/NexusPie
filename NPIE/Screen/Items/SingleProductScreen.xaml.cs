@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NPIE.Screen.Product
+namespace NPIE.Screen.Items
 {
     /// <summary>
     /// Interaction logic for SingleProductScreen.xaml

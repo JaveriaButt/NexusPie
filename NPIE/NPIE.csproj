@@ -82,19 +82,22 @@
     <Compile Include="Screen\ListOfItems.xaml.cs">
       <DependentUpon>ListOfItems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screen\Items\ViewProducts.xaml.cs">
+      <DependentUpon>ViewProducts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screen\SaleScreen.xaml.cs">
       <DependentUpon>SaleScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screen\ScreenResources\ConfirmationAlert.xaml.cs">
       <DependentUpon>ConfirmationAlert.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Screen\ScreenResources\DataGrid.xaml.cs">
-      <DependentUpon>DataGrid.xaml</DependentUpon>
+    <Compile Include="Screen\ScreenResources\NP_DataGrid.xaml.cs">
+      <DependentUpon>NP_DataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screen\ScreenResources\NavigationMenu.xaml.cs">
       <DependentUpon>NavigationMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Screen\Product\SingleProductScreen.xaml.cs">
+    <Compile Include="Screen\Items\SingleProductScreen.xaml.cs">
       <DependentUpon>SingleProductScreen.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -118,6 +121,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screen\Items\ViewProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screen\SaleScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,7 +133,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Screen\ScreenResources\DataGrid.xaml">
+    <Page Include="Screen\ScreenResources\NP_DataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,7 +141,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Screen\Product\SingleProductScreen.xaml">
+    <Page Include="Screen\Items\SingleProductScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
