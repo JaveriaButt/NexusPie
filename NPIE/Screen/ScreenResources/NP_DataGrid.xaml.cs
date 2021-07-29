@@ -32,6 +32,7 @@ namespace NPIE.Screen.ScreenResources
         public ObservableCollection<GridColumn> ColumnsList { get; set; } = new ObservableCollection<GridColumn>();
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
+            this.DataContext = ColumnsList;
             //ColumnsList.Add(new GridColumn() { Heading="COLOUMN1"  ,ColumnType = ColumnTypes.Text,Width="200"}); 
             //ColumnsList.Add(new GridColumn() { Heading="COLOUMN1"  ,ColumnType = ColumnTypes.Text,Width="200"}); 
             //ColumnsList.Add(new GridColumn() { Heading="COLOUMN1"  ,ColumnType = ColumnTypes.Text,Width="200"}); 

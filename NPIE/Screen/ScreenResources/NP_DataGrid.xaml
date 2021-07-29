@@ -76,6 +76,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <DataGrid Name="dg_DataGrid" Background="#33b5ef"  Grid.Row="0" AlternationCount="2" FontSize="15"   Contorls:DataGridColumnsBehavior.BindableColumns="{Binding  ColumnsList,RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl},UpdateSourceTrigger=PropertyChanged}"  />
+        <DataGrid Name="dg_DataGrid" Background="#33b5ef"  Grid.Row="0" AlternationCount="2" FontSize="15"   Contorls:DataGridColumnsBehavior.BindableColumns="{Binding  ColumnsList,RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"  />
    </Grid>
 </UserControl>
