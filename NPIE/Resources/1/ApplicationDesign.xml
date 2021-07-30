@@ -11,16 +11,17 @@
   <!-- Home Screen Settings--> 
  
   <DeleteButton ></DeleteButton>
-  <DeleteButtonImage>\Settings\App\1\Images\DeleteButton.png</DeleteButtonImage>
+  <DeleteButtonImage>\Resources\1\Images\DeleteButton.png</DeleteButtonImage>
   <DeleteButtonPressed ></DeleteButtonPressed>
   <UpdateButton ></UpdateButton>
-  <UpdateButtonImage>\Settings\App\1\Images\UpdateButton.png</UpdateButtonImage>
+  <UpdateButtonImage>\Resources\1\Images\UpdateButton.png</UpdateButtonImage>
   <UpdateButtonPressed ></UpdateButtonPressed>
   <PrintButton></PrintButton>
   <PrintButtonPressed></PrintButtonPressed>
-  <InformationIcon>\Settings\App\1\Images\information_icon.png</InformationIcon>
-  <ErrorIcon>\Settings\App\1\Images\error.png</ErrorIcon>
-  <WarningIcon>\Settings\App\1\Images\Warning.png</WarningIcon>
+  <InformationIcon>\Resources\1\Images\information_icon.png</InformationIcon>
+  <ErrorIcon>\Resources\1\Images\error.png</ErrorIcon>
+	<WarningIcon>\Resources\1\Images\Warning.png</WarningIcon>
+	<DataGridHeaderBackground>\Resources\1\Images\Header.jpg</DataGridHeaderBackground>
 
 	<!--SaleScreen Settings-->
 	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>

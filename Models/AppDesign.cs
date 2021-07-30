@@ -1412,6 +1412,23 @@ namespace Models
             }
         }
 
+        private string m_DataGridBackground = "#008B8B";
+        public string DataGridBackground
+        {
+            set
+            {
+                if (this.m_DataGridBackground != value)
+                {
+                    this.m_DataGridBackground = value;
+                    this.OnPropertyChanged("DataGridBackground");
+                }
+            }
+            get
+            {
+                return this.m_DataGridBackground;
+            }
+        }
+
         private string m_DataGridHeaderTextColor = "White";
         public string DataGridHeaderTextColor
         {

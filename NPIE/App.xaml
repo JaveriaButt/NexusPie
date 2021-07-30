@@ -1,9 +1,8 @@
 ﻿<Application x:Class="NPIE.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:NPIE"
-             xmlns:Controller="clr-namespace:NPIE.Controller"
-             xmlns:Converters="clr-namespace:NPIE.Convertors"
+             xmlns:local="clr-namespace:NPIE" 
+             xmlns:Converters="clr-namespace:NPIE.Convertors" xmlns:Controller="clr-namespace:NPIE.Controller;assembly=Controller"
              StartupUri="MainWindow.xaml">
     <Application.Resources >
         <ResourceDictionary>

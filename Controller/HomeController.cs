@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Windows;
 using System.ComponentModel;
 using Models;
 using Resources;
-using System.Windows.Input;
+using System.Windows.Input; 
 using System.Windows.Controls;
+using System.Windows;
+using System.Configuration;
+using System.Data;
 
 namespace NPIE.Controller
 {
@@ -79,13 +80,30 @@ namespace NPIE.Controller
         }
  
 
+        private object m_DataGridColumn = null;
+
+        public object DataGridColumns
+        {
+            set
+            { 
+                if (m_DataGridColumn != value)
+                {
+                    m_DataGridColumn = value;
+                    this.OnPropertyChanged("DataGridColumns");
+                }
+            }
+            get
+            {
+                return m_DataGridColumn;
+            }
+        }
+
         private object m_DataList = null;
 
         public object DataList
         {
             set
             {
-
                 if (m_DataList != value)
                 {
                     m_DataList = value;
@@ -97,7 +115,6 @@ namespace NPIE.Controller
                 return m_DataList;
             }
         }
-         
 
         private OrgInfo m_Orginformation = null;
 
@@ -356,6 +373,11 @@ namespace NPIE.Controller
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        public void DataGridButtonPressed(string name, DataRow row, string v)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

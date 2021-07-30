@@ -17,8 +17,12 @@ namespace Models
         [XmlEnum("1")]
         Selection = 1,
         [XmlEnum("2")]
-        Button = 2,
-       
+        Button = 2,  
+        [XmlEnum("3")]
+        Print = 3, 
+        [XmlEnum("4")]
+        URLColumn = 4,
+
     }
     public class GridColumn : INotifyPropertyChanged
     {
@@ -213,6 +217,7 @@ namespace Models
         }
 
         #endregion
+
 
 
         #region Property Changed Event

@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Converters="clr-namespace:NPIE.Convertors"
-                    xmlns:Control="clr-namespace:NPIE.Controls" 
-                    xmlns:Controllers="clr-namespace:NPIE.Controller">
+                    xmlns:Control="clr-namespace:NPIE.Controls"  
+                    xmlns:Controllers="clr-namespace:NPIE.Controller;assembly=Controller">
 
     
         <ResourceDictionary.MergedDictionaries>
@@ -11,7 +11,7 @@
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.LightBlue.xaml" />
         </ResourceDictionary.MergedDictionaries>
-    
+
 
 
     <Controllers:HomeController x:Key="AppViewModel"/>

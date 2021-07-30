@@ -34,7 +34,7 @@ namespace DAL
 
         #region Applicaiton Setting 
 
-        public static AppDesign LoadApplicaitonDesign()
+        public  virtual AppDesign LoadApplicaitonDesign()
         {
 
             AppDesign Design = new AppDesign();
@@ -55,7 +55,7 @@ namespace DAL
 
         }
 
-        public static OrgInfo LoadOrgInfo()
+        public virtual OrgInfo LoadOrgInfo()
         {
             OrgInfo Design = new OrgInfo();
             try
@@ -78,7 +78,7 @@ namespace DAL
 
         #endregion
 
-        public static Error GetErrorByID(string ID)
+        public virtual Error GetErrorByID(string ID)
         {
             Error Response = new Error();
             try
@@ -103,7 +103,7 @@ namespace DAL
             return Response;
         }
 
-        public static List<Error> XMLTOERRORLIST(string XML)
+        public virtual List<Error> XMLTOERRORLIST(string XML)
         {
 
             List<Error> ErrorList = new List<Error>();
@@ -129,7 +129,7 @@ namespace DAL
             return ErrorList;
         }
 
-        public static string GetDefaultPath(string FileName)
+        public virtual string GetDefaultPath(string FileName)
         {
             string FilePath = "";
             try

@@ -108,7 +108,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controller\HomeController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -176,9 +175,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{4734cac2-d4a0-4c26-9aa7-ba191dc48cb0}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{02242208-db86-4244-8dd7-b4804eb415bf}</Project>
+      <Name>Controller</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{5ff66c20-791b-434a-9b78-d6eabcd0dd7f}</Project>
@@ -193,6 +192,9 @@
     <Content Include="dll\MaterialDesignColors.dll" />
     <Content Include="dll\MaterialDesignThemes.Wpf.dll" />
     <Content Include="Resources\0\Images\back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\0\Images\DataGridBack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\0\Images\icon_down.png">
@@ -462,5 +464,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

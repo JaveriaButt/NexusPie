@@ -1,4 +1,5 @@
 ﻿using Models;
+using NPIE.Controller;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,9 +40,9 @@ namespace NPIE.Screen.Items
                 gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Category", Width="200" ,Property= "Category" }); 
                 gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Button, Heading = "Action",Width="200", }); 
                 gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "ABC5",Width="200" });
-                dg_Products.ColumnsList = gridColumns;
+                (Application.Current.Resources["AppViewModel"] as HomeController).DataGridColumns = gridColumns;
 
-                ObservableCollection<Product> Viewableitems = new ObservableCollection<Product>();
+                ObservableCollection<object> Viewableitems = new ObservableCollection<object>();
 
                 Viewableitems.Add(new Product() { ProductName="Knife" , CastPrice="150",SalePrice="200", Category="ABC" });
                 Viewableitems.Add(new Product() { ProductName="Mouse" , CastPrice="150",SalePrice="200", Category="ABC" });
@@ -49,7 +50,7 @@ namespace NPIE.Screen.Items
                 Viewableitems.Add(new Product() { ProductName="Perfume" , CastPrice="150",SalePrice="200", Category="ABC" });
                 Viewableitems.Add(new Product() { ProductName="Key" , CastPrice="150",SalePrice="200", Category="ABC" });
 
-                dg_Products.dg_DataGrid.ItemsSource = Viewableitems;
+                (Application.Current.Resources["AppViewModel"] as HomeController).DataList = Viewableitems;
 
 
 
