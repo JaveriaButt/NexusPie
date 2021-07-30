@@ -4,6 +4,8 @@
 	<BtnCloseAppImg>\Resources\0\Images\Close.png</BtnCloseAppImg>
 	<BtnMinimizeAppImg>\Resources\0\Images\minimize.png</BtnMinimizeAppImg>
 	<BtnMaximizeAppImg>\Resources\0\Images\MiximizeButton.png</BtnMaximizeAppImg>
+	<SearchButtonImg>\Resources\0\Images\Search.png</SearchButtonImg>
+	<AddProductButtonImg>\Resources\0\Images\Add.png</AddProductButtonImg>
   <HeaderText>NEXUS PIE</HeaderText>
 	<ProductButtonHeight>250</ProductButtonHeight>
 	<ProductButtonWidth>350</ProductButtonWidth>

@@ -279,7 +279,34 @@ namespace Models
                 }
             }
         }
+       private string m_SearchButtonImg = ""; 
+        public string SearchButtonImg
+        {
+            get { return m_SearchButtonImg; }
+            set
+            {
+                if (m_SearchButtonImg != value)
+                {
+                    m_SearchButtonImg = value;
+                    this.OnPropertyChanged("SearchButtonImg");
+                }
+            }
+        }
 
+
+        private string m_AddProductButtonImg = "";
+        public string AddProductButtonImg
+        {
+            get { return m_AddProductButtonImg; }
+            set
+            {
+                if (m_AddProductButtonImg != value)
+                {
+                    m_AddProductButtonImg = value;
+                    this.OnPropertyChanged("AddProductButtonImg");
+                }
+            }
+        }
 
         #endregion
 
