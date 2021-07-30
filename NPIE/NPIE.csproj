@@ -35,8 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NPIE\Lib\MahApps.Metro.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -79,6 +78,9 @@
     <Compile Include="Controls\NPButtons.cs" />
     <Compile Include="Convertors\ScreenConvertor.cs" />
     <Compile Include="Convertors\VisibilityConvertor.cs" />
+    <Compile Include="Screen\Items\AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screen\ListOfItems.xaml.cs">
       <DependentUpon>ListOfItems.xaml</DependentUpon>
     </Compile>
@@ -113,6 +115,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="DesignResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screen\Items\AddProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

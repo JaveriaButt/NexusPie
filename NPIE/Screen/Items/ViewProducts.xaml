@@ -25,7 +25,7 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
-                <Button Width="130" Height="28" Style="{StaticResource ImageButton1}" HorizontalAlignment="Right" Margin="50,0">
+                <Button Click="addProduct_Click"  x:Name="addProduct" Width="130" Height="28" Style="{StaticResource ImageButton1}" HorizontalAlignment="Right" Margin="50,0">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal"> 
                             <Image VerticalAlignment="Center" Width="30" Height="30" HorizontalAlignment="Left" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.AddProductButtonImg, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
