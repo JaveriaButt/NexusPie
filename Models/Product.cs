@@ -193,8 +193,7 @@ namespace Models
                 return this.m_ImagePath;
             }
         }
-
-      
+ 
 
         #endregion
 

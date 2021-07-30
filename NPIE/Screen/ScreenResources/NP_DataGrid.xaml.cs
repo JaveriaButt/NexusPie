@@ -201,7 +201,21 @@ namespace NPIE.Screen.ScreenResources
                                     // btn.AddHandler(Button.ClickEvent, null);
                                     string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
                                     FrameworkElementFactory Img = new FrameworkElementFactory(typeof(Image));
-                                    Img.SetValue(Image.SourceProperty, new BitmapImage(new Uri(DebugFolder + col.Icon)));
+
+                                    switch (col.Property.ToUpper())
+                                    {
+                                        case "UPDATE":
+                                            {
+                                                Img.SetValue(Image.SourceProperty, new BitmapImage(new Uri(DebugFolder + @"\Resources\0\Images\UpdateButton.png")));
+                                                break;
+                                            }
+                                        case "DELETE":
+                                            {
+                                                Img.SetValue(Image.SourceProperty, new BitmapImage(new Uri(DebugFolder + @"\Resources\0\Images\DeleteButton.png")));
+                                                break;
+                                            }  
+                                    } 
+                                  
                                     Img.SetValue(Image.WidthProperty, col.IconWidth);
                                     Img.SetValue(Image.HeightProperty, col.IconHeight);
                                     btn.AppendChild(Img);

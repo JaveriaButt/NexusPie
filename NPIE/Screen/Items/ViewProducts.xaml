@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:control="clr-namespace:NPIE.Controls" 
+             xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:screenresourcen="clr-namespace:NPIE.Screen.ScreenResources"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -14,7 +15,25 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ScreensHeaderBackgrund, UpdateSourceTrigger=PropertyChanged}">
-            <control:NPLabel Content="Products"  FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Left" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ScreensHeaderForeground, UpdateSourceTrigger=PropertyChanged}" FontSize="25"/>
+            <Grid>
+               <control:NPLabel Content="Products"  FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Left" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ScreensHeaderForeground, UpdateSourceTrigger=PropertyChanged}" FontSize="25"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <control:NPTextBox Width="200" Padding="0,0,30,0" Height="30" FontSize="16"/>
+                    <control:NPButtons Width="30" Height="28" Style="{StaticResource ImageButton1}">
+                        <Button.Content>
+                            <Image VerticalAlignment="Center" Width="30" Height="30" HorizontalAlignment="Left" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.SearchButtonImg, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Button.Content>
+                    </control:NPButtons>
+                </StackPanel>
+                <control:NPButtons Width="130" Height="28" Style="{StaticResource ImageButton1}" HorizontalAlignment="Right" Margin="50,0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal"> 
+                            <Image VerticalAlignment="Center" Width="30" Height="30" HorizontalAlignment="Left" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.AddProductButtonImg, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <TextBlock Text="Add Product" VerticalAlignment="Center" Margin="05" FontSize="15" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ScreensHeaderForeground,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </control:NPButtons>
+            </Grid>
         </Border>
        
         <Grid Grid.Row="1">

@@ -22,6 +22,8 @@
   <ErrorIcon>\Resources\1\Images\error.png</ErrorIcon>
 	<WarningIcon>\Resources\1\Images\Warning.png</WarningIcon>
 	<DataGridHeaderBackground>\Resources\1\Images\Header.jpg</DataGridHeaderBackground>
+	<SearchButtonImg>\Resources\1\Images\Header.jpg</SearchButtonImg>
+	
 
 	<!--SaleScreen Settings-->
 	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>

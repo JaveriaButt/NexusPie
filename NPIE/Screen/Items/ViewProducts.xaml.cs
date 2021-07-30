@@ -38,8 +38,8 @@ namespace NPIE.Screen.Items
                 gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Cast Price", Width="150", Property= "CastPrice" }); 
                 gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Sale Price", Width="200" ,Property= "SalePrice" }); 
                 gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Category", Width="200" ,Property= "Category" }); 
-                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Button, Heading = "Action",Width="200", }); 
-                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "ABC5",Width="200" });
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Button, Heading = "Action",Width="200",Property= "Delete" }); 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "ABC5" });
                 (Application.Current.Resources["AppViewModel"] as HomeController).DataGridColumns = gridColumns;
 
                 ObservableCollection<object> Viewableitems = new ObservableCollection<object>();
