@@ -193,7 +193,25 @@ namespace Models
                 return this.m_ImagePath;
             }
         }
- 
+        private int m_quantity = 0;
+
+        public int Quantity
+        {
+
+            set
+            {
+                if (this.m_quantity != value)
+                {
+                    this.m_quantity = value;
+                    this.OnPropertyChanged("Quantity");
+                }
+            }
+
+            get
+            {
+                return this.m_quantity;
+            }
+        }
 
         #endregion
 

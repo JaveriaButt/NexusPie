@@ -73,5 +73,11 @@ namespace NPIE.Screen.Items
             catch (Exception ex)
             { }
         }
+
+        private void addProduct_Click(object sender, RoutedEventArgs e)
+        {
+            AddProduct p = new AddProduct();
+            p.Show();
+        }
     }
 }
