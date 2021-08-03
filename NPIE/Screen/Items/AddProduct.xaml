@@ -3,90 +3,109 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:control="clr-namespace:NPIE.Controls"
-        xmlns:local="clr-namespace:NPIE.Screen.Items"
-        mc:Ignorable="d"
-        Title="AddProduct" Height="550" Width="750" WindowStartupLocation="CenterScreen" BorderBrush="#FF0E94AC" BorderThickness="4">
-    <Window.Resources>
-        <Style TargetType="control:NPTextBox">
-          
-            
-        </Style>
-        
-    </Window.Resources>
-    
-    
-    
-    <Grid Background="#E2F3F6">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" ></ColumnDefinition>
-            <ColumnDefinition Width="*" ></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Margin="05,0" Orientation="Vertical">
+        xmlns:control="clr-namespace:NPIE.Controls" xmlns:local="clr-namespace:NPIE.Screen.Items"  mc:Ignorable="d"
+       Height="550" Width="900" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
 
-            <StackPanel Orientation="Horizontal"  Margin="05,20">
+    <Border BorderBrush="#FF0E94AC" BorderThickness="2" >
+        
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/> 
+            <RowDefinition Height="80"/> 
+        </Grid.RowDefinitions>  
+        <Grid     Grid.Row="0"   x:Name="Header"   MouseLeftButtonDown="Header_MouseLeftButtonDown">
+             <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.HeaderImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill"  />
+             <TextBlock FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily,UpdateSourceTrigger=PropertyChanged}" Text="Add New Product" FontWeight="Bold" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.HeaderTextColor,UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="20,0,0,0" />
+              
+            <Button Width="30" Height="30" ToolTip="Close" HorizontalAlignment="Right"  Cursor="Hand" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Margin="0,0,10,0" x:Name="btnClose"  Click="btnClose_Click"  Style="{StaticResource ImageButton}">
+                    <Button.Content>
+                        <Viewbox Stretch="Uniform">
+                            <Image Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.BtnCloseAppImg,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                        </Viewbox>
+                    </Button.Content>
+                </Button> 
+        </Grid>
+      
+            
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width=".8*" />
+                </Grid.ColumnDefinitions>
+          
+           <StackPanel Grid.Column="0" Orientation="Vertical">
+               <StackPanel Orientation="Horizontal" Margin="05,10">
+                        <control:NPLabel  Content="Product Code"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
+                        <control:NPTextBox  MinWidth="250"  VerticalAlignment="Center" Text="{Binding NProduct.ProductCode, Mode=TwoWay}"></control:NPTextBox>
+              </StackPanel>
+          <StackPanel Orientation="Horizontal"  Margin="05,10">
                 <control:NPLabel   Content="Product Name" VerticalAlignment="Center" MinWidth="140"></control:NPLabel>
-                <control:NPTextBox    Width="200" VerticalAlignment="Center"></control:NPTextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="05,20">
-                <control:NPLabel  Content="Product Code"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox    Width="200"  VerticalAlignment="Center"></control:NPTextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="05,20">
+                <control:NPTextBox    Width="250" VerticalAlignment="Center"></control:NPTextBox>
+            </StackPanel> 
+            <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel   Content="Product Vendor" VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox   Width="200" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                <control:NPTextBox   Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="05,20">
+            <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel Content="Cost Price" VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox Width="200" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                <control:NPTextBox Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="05,20">
+            <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel  Content="Sale Price"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox  Width="200" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                <control:NPTextBox  Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="05,20">
-                <control:NPLabel Content="Unit of Measure"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <ComboBox Width="200" Height="30">
-                    <ComboBoxItem>Kgs</ComboBoxItem>
-                    <ComboBoxItem>Dozens</ComboBoxItem>
-                    <ComboBoxItem>Liter</ComboBoxItem>
-                    <ComboBoxItem>Single Product</ComboBoxItem>
-                </ComboBox>
+                    <StackPanel Orientation="Horizontal" Margin="05,10">
+                        <control:NPLabel  Content="Quantity"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
+                        <control:NPTextBox  Width="250" Height="30"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="05,10">
+                        <control:NPLabel Content="Unit of Measure"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
+                        <ComboBox Width="250" Height="30">
+                            <ComboBoxItem>Kgs</ComboBoxItem>
+                            <ComboBoxItem>Dozens</ComboBoxItem>
+                            <ComboBoxItem>Liter</ComboBoxItem>
+                            <ComboBoxItem>Single Product</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+          <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="05,10">
+                <control:NPLabel  Content="Product Description"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
+                <control:NPTextBox   Width="220" MinLines="4" Height="120"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
-            <control:NPButtons  Margin="05,20" Grid.Column="1" Width="200" Height="30" Content="Add Product"></control:NPButtons>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal" Margin="05,20">
-                <control:NPLabel  Content="Product Description"  VerticalAlignment="Top"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox   Width="200" MinLines="4" Height="100"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="05,20">
-                <control:NPLabel  Content="Quantity"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox  Width="200" Height="30"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="05,20">
+          
+            <StackPanel Orientation="Horizontal" Margin="05,10">
 
                 <control:NPLabel Content="Catagory"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <ComboBox  Width="200" Height="30"  VerticalAlignment="Center"  MinWidth="140">
+                <ComboBox  Width="220" Height="30"  VerticalAlignment="Center"  x:Name="Cmb_Categroy" MinWidth="140">
                     <ComboBoxItem>Sweets</ComboBoxItem>
                     <ComboBoxItem>Cold Drinks</ComboBoxItem>
                     <ComboBoxItem>Dairy Products</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" Margin="05,20">
-                <control:NPLabel Content="Product Picture"  VerticalAlignment="Top"  MinWidth="140"></control:NPLabel>
-                <StackPanel Orientation="Vertical">
-                <control:NPButtons  x:Name="browseimage" Click="browseimage_Click" VerticalAlignment="Top"  MinWidth="140"  Content="Browse Image" />
-                    <Border BorderThickness="2" Margin="0,20" BorderBrush="Gray" Width="150" Height="150" HorizontalAlignment="Center">
-                        <Image x:Name="productimage"    VerticalAlignment="Center" Width="100"  Height="100"  />
-                </Border>
-                </StackPanel>
+           
+         <StackPanel Orientation="Horizontal" Margin="05,10">
+                <control:NPLabel Content="Product Picture"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
+                <Grid >
+                    <Border BorderThickness="2" Margin="0,05" BorderBrush="Gray" Width="220" Height="150" HorizontalAlignment="Center">
+                        <Image x:Name="productimage"    VerticalAlignment="Center" Width="150"  Height="150"  HorizontalAlignment="Center" />
+                   </Border>
+                    <control:NPButtons  x:Name="browseimage" Click="browseimage_Click" VerticalAlignment="Bottom"  MinWidth="140"  Content="Browse Image" Height="25" />
+                   </Grid>
 
+            </StackPanel> 
+        </StackPanel>
+        
+            </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,20">
+                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Save"></control:NPButtons>
+                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Clear"></control:NPButtons>
+                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Close" Click="btnClose_Click"></control:NPButtons>
             </StackPanel>
 
-
-
-        </StackPanel>
-    </Grid>
+        </Grid>
+     </Border>
 </Window>

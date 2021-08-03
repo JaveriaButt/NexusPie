@@ -40,6 +40,25 @@ namespace NPIE.Controller
             }
         }
 
+        private DataTable m_ProductCategories = null;
+
+        public DataTable ProductCategories
+        {
+            set
+            {
+                if (m_ProductCategories != value)
+                {
+                    m_ProductCategories = value;
+                    this.OnPropertyChanged("ProductCategories");
+                }
+            }
+            get
+            {
+                return this.m_ProductCategories;
+            }
+        }
+
+
         private BaNPIEScreen m_HomeScreen = new BaNPIEScreen(ScreenType.None);
 
         public BaNPIEScreen  HomeScreen
@@ -132,8 +151,7 @@ namespace NPIE.Controller
             {
                 return this.m_Orginformation;
             }
-        }
-
+        } 
 
         private List<Product> m_ListOfItems = new List<Product>();
 
@@ -267,10 +285,10 @@ namespace NPIE.Controller
         }
 
         #endregion
-
-
+         
 
         #region Wndows Commands 
+
         private DelegateCommand closeApplicationCommand;
         public ICommand CloseApplicationCommand
         {

@@ -25,13 +25,13 @@
                         </Button.Content>
                     </control:NPButtons>
                 </StackPanel>
-                <control:NPButtons Width="130" Height="28" Style="{StaticResource ImageButton1}" HorizontalAlignment="Right" Margin="50,0">
+                <control:NPButtons Width="130" Height="28" Style="{StaticResource ImageButton1}" HorizontalAlignment="Right" Margin="50,0" Click="addProduct_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal"> 
                             <Image VerticalAlignment="Center" Width="30" Height="30" HorizontalAlignment="Left" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.AddProductButtonImg, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
                             <TextBlock Text="Add Product" VerticalAlignment="Center" Margin="05" FontSize="15" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ScreensHeaderForeground,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                         </StackPanel>
-                    </Button.Content>
+                    </Button.Content>   
                 </control:NPButtons>
             </Grid>
         </Border>
