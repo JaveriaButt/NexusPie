@@ -8,12 +8,30 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Configuration;
 using System.Data;
+using BusinessLogic;
+using System.Reflection;
 
 namespace NPIE.Controller
 {
     public class HomeController : INotifyPropertyChanged
     {
 
+        private BaseBL m_BusinessLogic = (BaseBL)Assembly.GetAssembly(typeof(BaseBL)).CreateInstance(("BusinessLogic.BaseBL"));
+        public BaseBL BusinessLogic
+        {
+            set
+            {
+                if (this.m_BusinessLogic != value)
+                {
+                    this.m_BusinessLogic = value;
+                    this.OnPropertyChanged("BusinessLogic");
+                }
+            }
+            get
+            {
+                return this.m_BusinessLogic;
+            }
+        }
         public HomeController()
         {
 
@@ -40,22 +58,20 @@ namespace NPIE.Controller
             }
         }
 
-        private DataTable m_ProductCategories = null;
-
-        public DataTable ProductCategories
+        private RefernceValues m_RefernceValues =   new RefernceValues();
+        
+        public RefernceValues ReferncValueS 
         {
             set
             {
-                if (m_ProductCategories != value)
+                if(value!= m_RefernceValues)
                 {
-                    m_ProductCategories = value;
-                    this.OnPropertyChanged("ProductCategories");
+                    m_RefernceValues = value;
+                    this.OnPropertyChanged("ReferncValueS");
                 }
             }
-            get
-            {
-                return this.m_ProductCategories;
-            }
+            get { return m_RefernceValues; }
+        
         }
 
 
@@ -79,7 +95,7 @@ namespace NPIE.Controller
 
 
 
-        private AppDesign m_ApplicationDesign = new AppDesign();
+        private AppDesign m_ApplicationDesign =  null;
 
         public AppDesign ApplicationDesign
         {
@@ -95,6 +111,25 @@ namespace NPIE.Controller
             get
             {
                 return m_ApplicationDesign;
+            }
+        }
+ 
+        private AppConfiguration m_AppConfig = null;
+
+        public AppConfiguration AppConfig
+        {
+
+            set
+            {
+                if (m_AppConfig != value)
+                {
+                    m_AppConfig = value;
+                    this.OnPropertyChanged("AppConfig");
+                }
+            }
+            get
+            {
+                return m_AppConfig;
             }
         }
  
@@ -264,6 +299,46 @@ namespace NPIE.Controller
             return Response;
         }
 
+        public bool GetAppConfigurations()
+       {
+            bool Response = false;
+            try
+            {
+                var DBResponse = new AppConfiguration(); //   DAL.DAL1.GetAppDesignfromDB();
+
+                if (DBResponse != null)
+                {
+                    this.AppConfig = DBResponse;
+
+                }
+                string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
+                if (!string.IsNullOrWhiteSpace(DebugFolder) && System.IO.Directory.Exists(DebugFolder))
+                {
+                    string OrganizationFolder = DebugFolder + "\\Resources\\" + ConfigurationManager.AppSettings["ResourceID"].ToString() + "\\";
+                    if (!string.IsNullOrWhiteSpace(OrganizationFolder) && System.IO.Directory.Exists(OrganizationFolder))
+                    {
+                        string FilePath = OrganizationFolder + "AppConfiguration.xml";
+                        if (!string.IsNullOrWhiteSpace(FilePath) && System.IO.File.Exists(FilePath))
+                        {
+                            string XML = System.IO.File.ReadAllText(FilePath);
+                            if (!string.IsNullOrWhiteSpace(XML))
+                            {
+                                XML = XML.Replace("\\Resources\\", DebugFolder + "\\Resources\\");
+                                AppConfig = (AppConfiguration)General.XMLToOBJECT(XML, typeof(AppConfiguration));
+                                AppConfig.CustomImagesPath = DebugFolder + AppConfig.CustomImagesPath;
+                                Response = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Response;
+        }
+
         public bool GetDepartmentList()
         {
             bool Response = false;
@@ -284,8 +359,48 @@ namespace NPIE.Controller
             return Response;
         }
 
+
+        public bool LoadBasicReferneces()
+        {
+
+            try { GetAppConfigurations(); } catch (Exception ex) { }
+            try { GetApplicationDesign(); } catch (Exception ex) { }
+
+
+            bool Response = false;
+            try
+            {
+                if (ReferncValueS.ProductCategories == null)
+                {
+                    var Categories = BusinessLogic.GetProductsCategories();
+                    if (Categories.Success)
+                    {
+                        ReferncValueS.ProductCategories = Categories.Result;
+                    }
+                }
+                if (ReferncValueS.ProductUnits == null)
+                {
+                    var UnitsOfMeasure = BusinessLogic.GetUnitOfMeasure();
+                    if (UnitsOfMeasure.Success)
+                    {
+                        ReferncValueS.ProductUnits = UnitsOfMeasure.Result;
+                    }
+                }
+                //if (DBResponse != null && DBResponse.Count > 0)
+                //{
+                //    Department = DBResponse;
+                //    return true;
+                //}
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Response;
+        }
+
         #endregion
-         
+
 
         #region Wndows Commands 
 

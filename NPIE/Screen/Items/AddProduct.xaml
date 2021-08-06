@@ -37,63 +37,58 @@
                 </Grid.ColumnDefinitions>
           
            <StackPanel Grid.Column="0" Orientation="Vertical">
-               <StackPanel Orientation="Horizontal" Margin="05,10">
+                    <StackPanel Orientation="Horizontal" Margin="05,10">
+
+                        <control:NPLabel Content="Catagory"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
+                        <ComboBox  Width="250" Height="30"  SelectionChanged="Cmb_Categroy_SelectionChanged" VerticalAlignment="Center"  x:Name="Cmb_Categroy" ItemsSource="{Binding Source={StaticResource AppViewModel},Path=ReferncValueS.ProductCategories, UpdateSourceTrigger=PropertyChanged}"  DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="ID" MinWidth="140"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="05,10">
                         <control:NPLabel  Content="Product Code"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                        <control:NPTextBox  MinWidth="250"  VerticalAlignment="Center" Text="{Binding NProduct.ProductCode, Mode=TwoWay}"></control:NPTextBox>
+                        <control:NPTextBox x:Name="tb_ItemCode" MinWidth="250"  VerticalAlignment="Center" Text="{Binding NProduct.ProductCode, Mode=TwoWay}"></control:NPTextBox>
               </StackPanel>
           <StackPanel Orientation="Horizontal"  Margin="05,10">
                 <control:NPLabel   Content="Product Name" VerticalAlignment="Center" MinWidth="140"></control:NPLabel>
-                <control:NPTextBox    Width="250" VerticalAlignment="Center"></control:NPTextBox>
+                <control:NPTextBox x:Name="tb_ItemName"   Width="250" VerticalAlignment="Center"></control:NPTextBox>
             </StackPanel> 
             <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel   Content="Product Vendor" VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox   Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                <control:NPTextBox  x:Name="tb_PVendor"  Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel Content="Cost Price" VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                <control:NPTextBox  x:Name="tb_CostPrice" Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel  Content="Sale Price"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox  Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                        <control:NPTextBox  x:Name="tb_SalePrice"  Width="250" Height="30" VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="05,10">
                         <control:NPLabel  Content="Quantity"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
                         <control:NPTextBox  Width="250" Height="30"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="05,10">
-                        <control:NPLabel Content="Unit of Measure"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                        <ComboBox Width="250" Height="30">
-                            <ComboBoxItem>Kgs</ComboBoxItem>
-                            <ComboBoxItem>Dozens</ComboBoxItem>
-                            <ComboBoxItem>Liter</ComboBoxItem>
-                            <ComboBoxItem>Single Product</ComboBoxItem>
-                        </ComboBox>
-                    </StackPanel>
+               
                 </StackPanel>
           <StackPanel Grid.Column="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel  Content="Product Description"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <control:NPTextBox   Width="220" MinLines="4" Height="120"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                        <control:NPTextBox  x:Name="tb_PDescription"    Width="220" MinLines="4" Height="120"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
-          
-            <StackPanel Orientation="Horizontal" Margin="05,10">
 
-                <control:NPLabel Content="Catagory"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                <ComboBox  Width="220" Height="30"  VerticalAlignment="Center"  x:Name="Cmb_Categroy" MinWidth="140">
-                    <ComboBoxItem>Sweets</ComboBoxItem>
-                    <ComboBoxItem>Cold Drinks</ComboBoxItem>
-                    <ComboBoxItem>Dairy Products</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-           
-         <StackPanel Orientation="Horizontal" Margin="05,10">
+                    <StackPanel Orientation="Horizontal" Margin="05,10">
+                        <control:NPLabel Content="Unit of Measure"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
+                        <ComboBox Name="cmb_UnitOfMeasure" Width="220" Height="30" ItemsSource="{Binding Source={StaticResource AppViewModel},Path=ReferncValueS.ProductUnits, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Value" SelectedValuePath="ID" SelectedIndex="0"/>
+
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel Content="Product Picture"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
                 <Grid >
                     <Border BorderThickness="2" Margin="0,05" BorderBrush="Gray" Width="220" Height="150" HorizontalAlignment="Center">
-                        <Image x:Name="productimage"    VerticalAlignment="Center" Width="150"  Height="150"  HorizontalAlignment="Center" />
+                        <Image x:Name="productimage"    VerticalAlignment="Center" Width="220"  Height="130" Margin="10"  HorizontalAlignment="Center" />
                    </Border>
-                    <control:NPButtons  x:Name="browseimage" Click="browseimage_Click" VerticalAlignment="Bottom"  MinWidth="140"  Content="Browse Image" Height="25" />
+                    <control:NPButtons  x:Name="browseimage" Click="browseimage_Click" VerticalAlignment="Bottom"  MinWidth="140" Margin="0,10,0,0"  Content="Browse Image" Height="25" />
                    </Grid>
 
             </StackPanel> 

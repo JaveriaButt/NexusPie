@@ -2,18 +2,9 @@
 using Models;
 using NPIE.Controller;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Media.Imaging; 
 
 namespace NPIE.Screen.Items
 {
@@ -35,9 +26,11 @@ namespace NPIE.Screen.Items
         private void AddProduct_Loaded(object sender, RoutedEventArgs e)
         {
             try {
-                Cmb_Categroy.ItemsSource = (System.Collections.IEnumerable)(Application.Current.Resources["AppViewModel"] as HomeController).ProductCategories;
-            
-            }catch(Exception)
+             
+
+               
+            }
+            catch(Exception ex)
             { }
 
         }
@@ -45,11 +38,15 @@ namespace NPIE.Screen.Items
         private void browseimage_Click(object sender, RoutedEventArgs e)
         {
             try
-            { 
-                OpenFileDialog f = new OpenFileDialog();
-                if (f.ShowDialog() == DialogResult.HasValue)
+            {
+                OpenFileDialog op = new OpenFileDialog();
+                op.Title = "Select Product  picture";
+                op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+                  "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+                  "Portable Network Graphic (*.png)|*.png";
+                if (op.ShowDialog() == true)
                 {
-                    productimage.Source = new BitmapImage(new Uri(f.FileName));
+                    productimage.Source = new BitmapImage(new Uri(op.FileName));
                 }
             }
             catch (Exception ex)
@@ -62,7 +59,25 @@ namespace NPIE.Screen.Items
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            
             this.Close();
+        }
+
+        private void Cmb_Categroy_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var SelectedItemID = (Cmb_Categroy.SelectedItem as System.Data.DataRowView)[0].ToString();
+
+                if (SelectedItemID != "1")
+                {
+                    string ItemCode = (Application.Current.Resources["AppViewModel"] as HomeController).BusinessLogic.GetProductCodeByCategory(SelectedItemID);
+                    tb_ItemCode.Text = ItemCode;
+                    tb_ItemCode.IsReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            { }
         }
     }
 }

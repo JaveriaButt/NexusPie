@@ -104,6 +104,16 @@
                     <Border CornerRadius="3,3,3,3"  BorderThickness="1,1,1,1" BorderBrush="#FF0E94AC" Background="{TemplateBinding Background}" >
                         <ContentPresenter  x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="Background" Value="Red"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.25" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers> 
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

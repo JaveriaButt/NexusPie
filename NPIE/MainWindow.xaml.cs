@@ -29,6 +29,7 @@ namespace NPIE
         {
             try
             {
+                try { (Application.Current.Resources["AppViewModel"] as HomeController).LoadBasicReferneces(); } catch (Exception ex) { }
                 WindowStartupLocation = WindowStartupLocation.CenterOwner; 
                 LoadMainMenu();
                 (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClickEvent += HomeScreen_SendClickEvent;

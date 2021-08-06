@@ -25,6 +25,11 @@ namespace Resources
                     stream = new StringReader(XMLString);
                     // Load the XmlTextReader from the stream
                     reader = new XmlTextReader(stream);
+                    DataSet dataSet = new DataSet();
+
+                    System.IO.StringReader xmlSR = new System.IO.StringReader(XMLString);
+                    dataSet.ReadXml(xmlSR, XmlReadMode.IgnoreSchema);
+
                     xmlDS.ReadXml(reader);
                     return xmlDS;
                 }

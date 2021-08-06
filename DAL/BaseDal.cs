@@ -2,32 +2,25 @@
 using Resources;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
+using System.Linq;
+using System.Collections.Specialized;
+using System.Windows;
 
 namespace DAL
 {
-    public abstract class BaseDaL
-    { 
-
-        public BaseDaL()
-        {
-            try { } catch (Exception ex) { }
-        }
+    public class BaseDaL : INotifyPropertyChanged
+    {
 
         #region varaibels 
 
-        static string AppId = Config.GetKeyValue("APPID").ToString(); 
+        static string ResourceID = Config.GetKeyValue("ResourceID").ToString();
         private static List<Error> ErrorList = null;
-        static string ServiceURL = Config.GetKeyValue("URL");
-        static bool IsServerConnected = false;
+        static bool IsServerConnected = false; 
         #endregion
 
 
@@ -66,12 +59,48 @@ namespace DAL
                     Design = (OrgInfo)General.XMLToOBJECT(XML, typeof(OrgInfo));
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
 
             }
             return Design;
         }
+
+        public AppConfiguration GetAppConfiguration()
+        {
+            AppConfiguration Response = null;
+            try
+            {
+                Response = ((dynamic)Application.Current.Resources["AppViewModel"]).AppConfig as AppConfiguration;
+            }
+            catch (Exception)
+            {
+
+            }
+            return Response;
+        }
+
+
+
+        #endregion
+
+
+        #region Products
+
+        public virtual string GetProductCodeByCategory(string CategoryID)
+        {
+            string Response = string.Empty;
+            try
+            {
+
+                string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>ITEMS</REQTYPE><REQID>1.5</REQID><USER>Admin</USER></HEADER><DATA><CategoryID>" + CategoryID+ "</CategoryID></DATA></Root>";
+                Response = GetServerResponse(XmlRequest); 
+            }
+            catch(Exception ex)
+            { }
+            return Response;
+        }
+
 
 
         #endregion
@@ -79,6 +108,20 @@ namespace DAL
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region App Resources
 
         public virtual Error GetErrorByID(string ID)
         {
@@ -139,7 +182,7 @@ namespace DAL
                 string DebugFolder = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).ToString().Substring(6);
                 if (!string.IsNullOrWhiteSpace(DebugFolder) && System.IO.Directory.Exists(DebugFolder))
                 {
-                    string OrganizationFolder = DebugFolder + "/Settings/App/" + AppId;
+                    string OrganizationFolder = DebugFolder + "/Settings/App/" + ResourceID;
                     if (!string.IsNullOrWhiteSpace(OrganizationFolder) && System.IO.Directory.Exists(OrganizationFolder))
                     {
                         FilePath = OrganizationFolder + FileName;
@@ -151,33 +194,52 @@ namespace DAL
             return FilePath;
         }
 
-        public FunctionResponse<string> GetProductsCategories()
+        public FunctionResponse<DataSet> GetProductsCategories()
         {
-            FunctionResponse<string> Response = new FunctionResponse<string>();
+            FunctionResponse<DataSet> Response = new FunctionResponse<DataSet>();
             try
             {
 
-                string XmlRequest = "<Root><Header><Service>NEXUS_WPF</Service><Type>1</Type><ID>2</ID></Header><REQ></REQ></Root>";
+                string XmlRequest = "<Root><HEADER><APPTYPE>100001</APPTYPE><VERSION>1</VERSION><REQTYPE>INFO</REQTYPE><REQID>1</REQID><USER>Admin</USER></HEADER><DATA></DATA></Root>";
                 string XmlResponse = GetServerResponse(XmlRequest);
                 if (!string.IsNullOrWhiteSpace(XmlResponse))
                 {
                     DataSet ds = General.XMLToDataSet(XmlResponse);
                     if (ds != null)
                     {
-                        Response.Result = XmlResponse;
+                        Response.Result = ds;
                         Response.Success = true;
-                    }
-                    else
-                    {
-                        Response.Success = false;
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             { }
-           return Response;
+            return Response;
         }
 
+        public FunctionResponse<DataSet> GetUnitOfMeasure()
+        {
+            FunctionResponse<DataSet> Response = new FunctionResponse<DataSet>();
+            try
+            {
+
+                string XmlRequest = "<Root><HEADER><APPTYPE>100001</APPTYPE><VERSION>1</VERSION><REQTYPE>INFO</REQTYPE><REQID>2</REQID><USER>Admin</USER></HEADER><DATA></DATA></Root>";
+                string XmlResponse = GetServerResponse(XmlRequest);
+                if (!string.IsNullOrWhiteSpace(XmlResponse))
+                {
+                    DataSet ds = General.XMLToDataSet(XmlResponse);
+                    if (ds != null)
+                    {
+                        Response.Result = ds;
+                        Response.Success = true;
+                    }
+                }
+            }
+            catch (Exception)
+            { }
+            return Response;
+        }
+        #endregion
 
         #region Server Requests
         /// <summary>
@@ -190,7 +252,7 @@ namespace DAL
         {
             string Response = null;
             try
-            {  
+            {
 
                 using (var wb = new WebCleintEx())
                 {
@@ -199,12 +261,12 @@ namespace DAL
                         ["XMLString"] = XMLRequest
                     };
                     LOG.Save(" SERVICE REQUEST " + XMLRequest);
-                    var response = wb.UploadValues(ServiceURL, "POST", data);
-                    Response = Encoding.UTF8.GetString(response);
+                    byte[] response = wb.UploadValues(GetAppConfiguration().ServiceURL, "POST", data);
+                    Response = Encoding.UTF8.GetString(response).Replace('"', ' ');
                     LOG.Save(" SERVICE RESPONSE " + Response);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return Response;
@@ -213,15 +275,29 @@ namespace DAL
 
 
 
-        #endregion
+        #endregion 
+       
+        #region Property Changed Event 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+   
 
+       
+        #endregion
 
     }
 
     public class WebCleintEx : WebClient
     {
-        public int TimeOut { get; set; } = 3000;
-        public WebCleintEx(int TOut = 3000)
+        public int TimeOut { get; set; } = 100000;
+        public WebCleintEx(int TOut = 100000)
         {
             TimeOut = TOut;
         }
