@@ -91,12 +91,37 @@ namespace DAL
         {
             string Response = string.Empty;
             try
-            {
-
-                string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>ITEMS</REQTYPE><REQID>1.5</REQID><USER>Admin</USER></HEADER><DATA><CategoryID>" + CategoryID+ "</CategoryID></DATA></Root>";
+            {    string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>ITEMS</REQTYPE><REQID>1.5</REQID><USER>Admin</USER></HEADER><DATA><CategoryID>" + CategoryID+ "</CategoryID></DATA></Root>";
                 Response = GetServerResponse(XmlRequest); 
             }
             catch(Exception ex)
+            { }
+            return Response;
+        }
+
+
+        public virtual string AddNewProduct(string ProductXml)
+        {
+            string Response = string.Empty;
+            try
+            { 
+                string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>ITEMS</REQTYPE><REQID>2</REQID><USER>Admin</USER></HEADER><DATA>"+ ProductXml + "</DATA></Root>";
+                Response = GetServerResponse(XmlRequest);
+            }
+            catch (Exception ex)
+            { }
+            return Response;
+        }
+
+        public virtual string GetAllProducts(string ProductXml)
+        {
+            string Response = string.Empty;
+            try
+            {
+                string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>ITEMS</REQTYPE><REQID>2</REQID><USER>Admin</USER></HEADER><DATA>" + ProductXml + "</DATA></Root>";
+                Response = GetServerResponse(XmlRequest);
+            }
+            catch (Exception ex)
             { }
             return Response;
         }

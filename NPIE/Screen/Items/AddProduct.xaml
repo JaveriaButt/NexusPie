@@ -65,14 +65,15 @@
             </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="05,10">
                         <control:NPLabel  Content="Quantity"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                        <control:NPTextBox  Width="250" Height="30"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                        <control:NPTextBox  x:Name="tb_Qunatity" Width="250" Height="30"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
                     </StackPanel>
                
                 </StackPanel>
-          <StackPanel Grid.Column="1" Orientation="Vertical">
+       
+              <StackPanel Grid.Column="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="05,10">
                 <control:NPLabel  Content="Product Description"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                        <control:NPTextBox  x:Name="tb_PDescription"    Width="220" MinLines="4" Height="120"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                        <control:NPTextBox  x:Name="tb_PDescription"  TextWrapping="Wrap"  Width="220" MinLines="4" Height="120"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
             </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="05,10">
@@ -87,7 +88,8 @@
                 <Grid >
                     <Border BorderThickness="2" Margin="0,05" BorderBrush="Gray" Width="220" Height="150" HorizontalAlignment="Center">
                         <Image x:Name="productimage"    VerticalAlignment="Center" Width="220"  Height="130" Margin="10"  HorizontalAlignment="Center" />
-                   </Border>
+                   
+                    </Border>
                     <control:NPButtons  x:Name="browseimage" Click="browseimage_Click" VerticalAlignment="Bottom"  MinWidth="140" Margin="0,10,0,0"  Content="Browse Image" Height="25" />
                    </Grid>
 
@@ -96,9 +98,9 @@
         
             </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,20">
-                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Save"></control:NPButtons>
-                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Clear"></control:NPButtons>
-                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Close" Click="btnClose_Click"></control:NPButtons>
+                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Save"  Click="Save"            x:Name="btn_Save"/>
+                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Clear" Click="btn_Clear_Click" x:Name="btn_Clear" />
+                <control:NPButtons FontSize="25" Margin="05,10"   Width="150"  Style="{StaticResource RoundedButton}"  Content="Close" Click="btnClose_Click"  x:Name="btn_Close" />
             </StackPanel>
 
         </Grid>

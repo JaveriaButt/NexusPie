@@ -102,6 +102,42 @@ namespace BusinessLogic
             return Response;
         }
 
+        public virtual FunctionResponse<string> AddNewProduct(Product product)
+        {
+            FunctionResponse<string> Response = new FunctionResponse<string>();
+            try
+            {
+
+                if(!string.IsNullOrWhiteSpace(product.ProductCode))
+                {
+                    string XmlRequest = General.OBJECTTOXML(product);
+                    var XmlResponse = this.DAL.AddNewProduct(XmlRequest);
+                    if (!string.IsNullOrWhiteSpace(XmlResponse))
+                    {
+                        var ds = General.XMLToDataSet(XmlResponse);
+                        if (ds != null && ds.Tables[0] != null)
+                        {
+                            Response.Result = ds.Tables[0].Rows[0]["Result"].ToString();
+                            Response.Success = true;
+                            return Response;
+                        }
+                    } 
+                }
+                else
+                {
+
+                } 
+            }
+            catch (Exception ex)
+            { }
+            return Response;
+        }
+
+
+
+
+
+
         #endregion
 
         #region Property Changed Event 
