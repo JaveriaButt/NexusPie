@@ -63,7 +63,7 @@ namespace Resources
 
 
         //Clas Object
-        public static object XMLToOBJECT(string XMLString, Type _Type)
+        public static object XMLToOBJECT(string XMLString, Type _Type, bool IsList = false)
         {
             object DataSet = null;
             try
@@ -76,14 +76,27 @@ namespace Resources
                 System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(_Type);
 
                 //Read XML froom string 
-
-                using (XmlReader reader = XmlReader.Create(new StringReader(doc.InnerXml)))
+                if (IsList)
                 {
-                    //Deserialize xml and convert it in to class object
+                    using (XmlReader reader = XmlReader.Create(new StringReader(doc.FirstChild.InnerXml.Replace("\r\n",""))))
+                    {
+                        //Deserialize xml and convert it in to class object
 
-                    DataSet = serializer.Deserialize(reader);
-                    //Close Reader
-                    reader.Close();
+                        DataSet = serializer.Deserialize(reader);
+                        //Close Reader
+                        reader.Close();
+                    }
+                }
+                else
+                {
+                    using (XmlReader reader = XmlReader.Create(new StringReader(doc.InnerXml)))
+                    {
+                        //Deserialize xml and convert it in to class object
+
+                        DataSet = serializer.Deserialize(reader);
+                        //Close Reader
+                        reader.Close();
+                    }
 
                 }
             }

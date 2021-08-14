@@ -6,7 +6,7 @@
                     xmlns:Controllers="clr-namespace:NPIE.Controller;assembly=Controller">
 
     
-        <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.MergedDictionaries>
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
@@ -21,6 +21,54 @@
     <Converters:NullToVisibilityConverter x:Key="ConvertNullToVisbility"/>
     <Converters:NullToVisibilityReverseConverter x:Key="NullToVisibilityReverseConverter"/>
 
+    <Style TargetType="{x:Type Control:NPButtons}" x:Key="ProductButton">
+        <Setter Property="FontFamily" Value="{Binding Source={StaticResource  AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}"/>
+        <Setter Property="MaxWidth" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductButtonWidth, UpdateSourceTrigger=PropertyChanged}"/>
+        <Setter Property="MaxHeight" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductButtonHeight, UpdateSourceTrigger=PropertyChanged}"/>
+        <Setter Property="Background" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.Productbackground, UpdateSourceTrigger=PropertyChanged}"/>
+        <!--<Setter Property="Background" Value="IndianRed"/>-->
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control:NPButtons}">
+                    <Border x:Name="bd" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductBorderThickness,UpdateSourceTrigger=PropertyChanged}" BorderBrush="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductBorderColor,UpdateSourceTrigger=PropertyChanged}" CornerRadius="15"  Width="{TemplateBinding MaxWidth}" Height="{TemplateBinding MaxHeight}" Background="{TemplateBinding Background}">
+                        <Grid Margin="08,02">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock   Text="{Binding Path=ContentS,   RelativeSource={RelativeSource TemplatedParent}}"   VerticalAlignment="Top" TextWrapping="Wrap"      FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductNameFontSize,UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductNameForeground,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" FontWeight="SemiBold"   Grid.Row="0" FontFamily="{TemplateBinding FontFamily}"/>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock   Text="{Binding  Path=ItemCode, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Top" HorizontalAlignment="Left"  FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductCodeFontSize,UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductCodeForeground,UpdateSourceTrigger=PropertyChanged}"  Grid.Column="0" FontFamily="{TemplateBinding FontFamily}"/>
+                                <TextBlock   Text="{Binding  Path=Price, StringFormat={}{0}  SAR, RelativeSource={RelativeSource TemplatedParent}}" FontWeight="SemiBold"   VerticalAlignment="Bottom"    HorizontalAlignment="Left"  FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductPriceFontSize,UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductPriceForeground,UpdateSourceTrigger=PropertyChanged}"  Grid.Column="0" FontFamily="{TemplateBinding FontFamily}"/>
+                                <Image      Source="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}}"  Margin="2" Grid.Column="1" Name="btnBackImg1" VerticalAlignment="Bottom"  HorizontalAlignment="Right" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="White" />
+                            <Setter Property="BorderThickness" Value="2" />
+                            <Setter Property="Background"  Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductMouseOverbackground ,UpdateSourceTrigger=PropertyChanged}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter  TargetName="bd" Property="Background"  Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductOnPressbackground,UpdateSourceTrigger=PropertyChanged}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.25" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
 
     <Style TargetType="{x:Type GroupBox}">
       <Setter Property="Background" Value="Transparent"/>
@@ -61,7 +109,8 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="DarkCyan" />
+                            <Setter Property="BorderThickness" Value="2"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.25" />
@@ -127,11 +176,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control:NPButtons}">
                     <Border  x:Name="brdr" CornerRadius="12"  Height="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonHeight, UpdateSourceTrigger=PropertyChanged}" Width="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonWidth, UpdateSourceTrigger=PropertyChanged}" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonBackground, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBlock   FontWeight="SemiBold" Text="{Binding Path=ContentS,   RelativeSource={RelativeSource TemplatedParent}}"   VerticalAlignment="Center" TextWrapping="Wrap"  HorizontalAlignment="Center" />
+                        <TextBlock   FontWeight="SemiBold" Text="{Binding Path=ContentS,   RelativeSource={RelativeSource TemplatedParent}}" LineStackingStrategy="BlockLineHeight"  LineHeight="15"  VerticalAlignment="Center" TextWrapping="Wrap"  HorizontalAlignment="Center" />
                      </Border> 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="White" />
+                            <Setter Property="BorderBrush" Value="DarkCyan" />
                             <Setter Property="BorderThickness" Value="2" />
                             <Setter TargetName="brdr" Property="Background" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonMouseOverbackground , UpdateSourceTrigger=PropertyChanged}" />
                             
@@ -141,7 +190,7 @@
                             <Setter Property="Background" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.OvalButtonOnPress, UpdateSourceTrigger=PropertyChanged}" />
                         </Trigger> 
                         <Trigger Property="IsEnabled" Value="True">
-                            <!--<Setter Property="Opacity" Value="0.25" />-->
+                            <!--<Setter Property="Opacity" Value="0.99" />-->
                             <Setter Property="BorderBrush" Value="Transparent" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -151,52 +200,6 @@
 
     </Style>
     
-    <Style TargetType="{x:Type Control:NPButtons}" x:Key="ProductButton">
-        <Setter Property="FontFamily" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}"/>
-        <Setter Property="MaxWidth" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductButtonWidth, UpdateSourceTrigger=PropertyChanged}"/>
-        <Setter Property="MaxHeight" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductButtonHeight, UpdateSourceTrigger=PropertyChanged}"/>
-        <Setter Property="Background" Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.Productbackground, UpdateSourceTrigger=PropertyChanged}"/> 
-        <Setter Property="Cursor" Value="Hand"/> 
-        <Setter Property="FontSize" Value="12"/>    
-        <Setter Property="Template" >
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Control:NPButtons}"> 
-                    <Border x:Name="bd" BorderThickness="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductBorderThickness,UpdateSourceTrigger=PropertyChanged}" BorderBrush="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductBorderColor,UpdateSourceTrigger=PropertyChanged}" CornerRadius="15"  Width="{TemplateBinding MaxWidth}" Height="{TemplateBinding MaxHeight}" Background="{TemplateBinding Background}">
-                         <Grid Margin="08,02">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>   
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock   Text="{Binding Path=ContentS,   RelativeSource={RelativeSource TemplatedParent}}"   VerticalAlignment="Top" TextWrapping="Wrap"      FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductNameFontSize,UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductNameForeground,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" FontWeight="SemiBold"   Grid.Row="0" FontFamily="{TemplateBinding FontFamily}"/>
-                             <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock   Text="{Binding  Path=ItemCode, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Top" HorizontalAlignment="Left"  FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductCodeFontSize,UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductCodeForeground,UpdateSourceTrigger=PropertyChanged}"  Grid.Column="0" FontFamily="{TemplateBinding FontFamily}"/>
-                                <TextBlock   Text="{Binding  Path=Price, RelativeSource={RelativeSource TemplatedParent}}" FontWeight="SemiBold"   VerticalAlignment="Bottom"    HorizontalAlignment="Left"  FontSize="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductPriceFontSize,UpdateSourceTrigger=PropertyChanged}" Foreground="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductPriceForeground,UpdateSourceTrigger=PropertyChanged}"  Grid.Column="0" FontFamily="{TemplateBinding FontFamily}"/>
-                                <Image       Source="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}}"  MaxHeight="80" MaxWidth="80" Margin="2" Grid.Column="1" Name="btnBackImg1" />
-                            </Grid> 
-                        </Grid> 
-                    </Border> 
-                    <ControlTemplate.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">  
-                            <Setter Property="BorderBrush" Value="White" />
-                            <Setter Property="BorderThickness" Value="2" />
-                            <Setter Property="Background"  Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductMouseOverbackground ,UpdateSourceTrigger=PropertyChanged}" />
-                        </Trigger>
-                    <Trigger Property="IsPressed" Value="True">
-                            <Setter  TargetName="bd" Property="Background"  Value="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.ProductOnPressbackground,UpdateSourceTrigger=PropertyChanged}"/>
-                     </Trigger> 
-                    <Trigger Property="IsEnabled" Value="false">
-                        <Setter Property="Opacity" Value="0.25" />
-                        <Setter Property="BorderBrush" Value="Transparent" />
-                    </Trigger>
-                </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value> 
-        </Setter>
-
-    </Style> 
+   
 
 </ResourceDictionary>

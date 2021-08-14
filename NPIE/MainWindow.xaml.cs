@@ -4,7 +4,8 @@ using NPIE.Controller;
 using NPIE.Controls;
 using NPIE.Screen.ScreenResources;
 using System;
-using System.Collections.Generic;  
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls; 
 using System.Windows.Input; 
@@ -20,8 +21,8 @@ namespace NPIE
         {
             InitializeComponent();
 
-            (Application.Current.Resources["AppViewModel"] as HomeController).GetApplicationDesign();
-          
+            //(Application.Current.Resources["AppViewModel"] as HomeController).GetApplicationDesign();
+            try { (Application.Current.Resources["AppViewModel"] as HomeController).LoadBasicReferneces(); } catch (Exception ex) { }
             this.Loaded += MainWindow_Loaded;
         }
 
@@ -33,6 +34,7 @@ namespace NPIE
                 WindowStartupLocation = WindowStartupLocation.CenterOwner; 
                 LoadMainMenu();
                 (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClickEvent += HomeScreen_SendClickEvent;
+                (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.ScreenControl = new Screen.SaleScreen();
             }
             catch (Exception ex)
             { }
@@ -48,7 +50,12 @@ namespace NPIE
                 {
                     case "PRODUCTS":
                         {
-                            (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen = new Screen.Items.ViewProducts();
+                            (Application.Current.Resources["AppViewModel"] as HomeController).SetScreen(new Screen.Items.ViewProducts());
+                            break;
+                        }
+                    case "DASHBOARD":
+                             {
+                            (Application.Current.Resources["AppViewModel"] as HomeController).SetScreen(new Screen.SaleScreen());
                             break;
                         }
                 }
@@ -63,7 +70,7 @@ namespace NPIE
         {
             try {
 
-                (Application.Current.Resources["AppViewModel"] as HomeController).ListOfItems = new List<Product>() {
+                (Application.Current.Resources["AppViewModel"] as HomeController).ListOfItems = new ObservableCollection<Product>() {
                 
                
                       new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr" }, 

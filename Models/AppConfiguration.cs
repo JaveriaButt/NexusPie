@@ -115,6 +115,23 @@ namespace Models
             }
         }
 
+        private string m_SelectedCurrency = "SAR";
+        public string SelectedCurrency
+        {
+            set
+            {
+                if (this.m_SelectedCurrency != value)
+                {
+                    this.m_SelectedCurrency = value;
+                    this.OnPropertyChanged("SelectedCurrency");
+                }
+            }
+            get
+            {
+                return this.m_SelectedCurrency;
+            }
+        }
+
 
 
 

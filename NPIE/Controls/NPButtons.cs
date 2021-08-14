@@ -21,6 +21,8 @@ namespace NPIE.Controls
 
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(NPButtons), new UIPropertyMetadata(null));
         
+        public static readonly DependencyProperty OnPressIconProperty = DependencyProperty.Register("OnPressIcon", typeof(string), typeof(NPButtons), new UIPropertyMetadata(null));
+        
         public static readonly DependencyProperty PriceProperty = DependencyProperty.Register("Price", typeof(string), typeof(NPButtons), new UIPropertyMetadata(null));
        
         public static readonly DependencyProperty ItemCodeProperty = DependencyProperty.Register("ItemCode", typeof(string), typeof(NPButtons), new UIPropertyMetadata(null));
@@ -42,7 +44,13 @@ namespace NPIE.Controls
              
         }
 
-     
+
+        public string OnPressIcon
+        {
+            get { return (string)GetValue(OnPressIconProperty); }
+            set { SetValue(OnPressIconProperty, value); }
+
+        }
         public string Price
         {
             set

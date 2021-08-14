@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:control="clr-namespace:NPIE.Controls" xmlns:local="clr-namespace:NPIE.Screen.Items"  mc:Ignorable="d"
-       Height="550" Width="900" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+       Height="550" Width="900" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Unloaded="Window_Unloaded">
 
     <Border BorderBrush="#FF0E94AC" BorderThickness="2" >
         
@@ -40,12 +40,12 @@
                     <StackPanel Orientation="Horizontal" Margin="05,10">
 
                         <control:NPLabel Content="Catagory"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                        <ComboBox  Width="250" Height="30"  SelectionChanged="Cmb_Categroy_SelectionChanged" VerticalAlignment="Center"  x:Name="Cmb_Categroy" ItemsSource="{Binding Source={StaticResource AppViewModel},Path=ReferncValueS.ProductCategories, UpdateSourceTrigger=PropertyChanged}"  DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="ID" MinWidth="140"/>
+                        <ComboBox  Width="250" Height="30"   VerticalAlignment="Center"  x:Name="Cmb_Categroy" ItemsSource="{Binding Source={StaticResource AppViewModel},Path=ReferncValueS.ProductCategories, UpdateSourceTrigger=PropertyChanged}"  DisplayMemberPath="Name" SelectedIndex="0" SelectedValuePath="ID" MinWidth="140"/>
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="05,10">
                         <control:NPLabel  Content="Product Code"  VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
-                        <control:NPTextBox x:Name="tb_ItemCode" MinWidth="250"  VerticalAlignment="Center" Text="{Binding NProduct.ProductCode, Mode=TwoWay}"></control:NPTextBox>
+                        <control:NPTextBox x:Name="tb_ItemCode" MinWidth="250" IsReadOnly="True"  VerticalAlignment="Center" Text="{Binding NProduct.ProductCode, Mode=TwoWay}"></control:NPTextBox>
               </StackPanel>
           <StackPanel Orientation="Horizontal"  Margin="05,10">
                 <control:NPLabel   Content="Product Name" VerticalAlignment="Center" MinWidth="140"></control:NPLabel>

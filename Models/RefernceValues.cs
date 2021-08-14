@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace Models
 {
     public class RefernceValues : INotifyPropertyChanged
     {
-        private DataTable m_ProductCategories = null;
+        private ObservableCollection<Category> m_ProductCategories = null;
 
-        public DataTable ProductCategories
+        public ObservableCollection<Category> ProductCategories
         {
             set
             {
@@ -59,5 +60,11 @@ namespace Models
         }
 
         #endregion
+    } 
+
+    public class Category
+    {
+        public string ID { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 }

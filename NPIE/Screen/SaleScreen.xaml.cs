@@ -2,6 +2,7 @@
 using NPIE.Controller;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,41 +34,25 @@ namespace NPIE.Screen
         {
             LoadButtons();
         }
-
+        public ObservableCollection<GridColumn> gridColumns = new ObservableCollection<GridColumn>();
         void LoadButtons()
         {
             try
-            {
-                var abc = (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign;
+            { 
 
-                (Application.Current.Resources["AppViewModel"] as HomeController).ListOfItems = new List<Product>() {
+                (Application.Current.Resources["AppViewModel"] as HomeController).SaleAbleItems = (Application.Current.Resources["AppViewModel"] as HomeController).BusinessLogic.GetAllProducts();
+                (Application.Current.Resources["AppViewModel"] as HomeController).ListOfItems = (Application.Current.Resources["AppViewModel"] as HomeController).BusinessLogic.GetAllProducts();
+                 
 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Width = "4*",    Property = "ProductName", HorizontalAllignment= 0 });
 
-                      new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr" },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }
-
-
-                }; 
-
-
-                (Application.Current.Resources["AppViewModel"] as HomeController).ListOfCategory = new List<Product>() {
-
-
-                      new Product{ ProductCode="0123", ProductName ="All",SalePrice="250P pkr" },
-                     new Product{ ProductCode="0123", ProductName ="Author",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName ="BOOK",SalePrice="250P pkr"  },
-                     new Product{ ProductCode="0123", ProductName =" BY ",SalePrice="250P pkr"  } 
-                };
-            }
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Button,  Width = "*", Property = "REMOVE" }); 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text,   Width = "*", Property = "Quantity" });
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Button,   Width = "*", Property = "ADD" });
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text,   Width = "*",   Property = "SalePrice" });  
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text,  Width = "*",    Property = "SalePrice" }); 
+                (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.ColumnsList = gridColumns;
+            } 
             catch (Exception ex) { }
         }
 

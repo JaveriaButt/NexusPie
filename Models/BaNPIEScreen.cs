@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows; 
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Collections.Generic; 
+using System.ComponentModel; 
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Models
 {
     public class BaNPIEScreen :  INotifyPropertyChanged
     {
-        public BaNPIEScreen(ScreenType screen)
+        public BaNPIEScreen(UserControl screen)
         {
-            ChildControl = screen;
+            ScreenControl = screen;
+        }
+
+        public BaNPIEScreen()
+        {
         }
 
         public event RoutedEventHandler SendClickEvent;
@@ -33,27 +34,28 @@ namespace Models
             }
         }
 
-        private ScreenType m_ChildControl = ScreenType.None;
+        private UserControl m_ScreenControl = null;
 
-        public ScreenType ChildControl
+        public  UserControl ScreenControl
         {
             set
             {
-                if (m_ChildControl != value)
+                if (m_ScreenControl != value)
                 {
-                    this.m_ChildControl = value;
-                    this.OnPropertyChanged("ChildControl");
+                    this.m_ScreenControl = value;
+                    this.OnPropertyChanged("ScreenControl");
                 }
 
 
             }
             get
             {
-                return this.m_ChildControl;
+                return this.m_ScreenControl;
             }
         }
+        
 
-        private bool m_IsMenuShown = true;
+        private bool m_IsMenuShown = false;
         public bool IsMenuShown
         {
             set

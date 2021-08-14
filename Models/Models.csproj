@@ -50,6 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -61,11 +62,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="AppDesign.cs" />
-    <Compile Include="BaseScreen.cs" />
+    <Compile Include="BaNPIEScreen.cs" />
     <Compile Include="ClickResponse.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ControlsSetting.cs" />

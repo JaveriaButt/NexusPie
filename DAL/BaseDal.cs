@@ -113,12 +113,12 @@ namespace DAL
             return Response;
         }
 
-        public virtual string GetAllProducts(string ProductXml)
+        public virtual string GetAllProducts()
         {
             string Response = string.Empty;
             try
             {
-                string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>ITEMS</REQTYPE><REQID>2</REQID><USER>Admin</USER></HEADER><DATA>" + ProductXml + "</DATA></Root>";
+                string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>ITEMS</REQTYPE><REQID>1</REQID><USER>Admin</USER></HEADER><DATA>GETALL</DATA></Root>";
                 Response = GetServerResponse(XmlRequest);
             }
             catch (Exception ex)

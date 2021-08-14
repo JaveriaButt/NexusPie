@@ -66,7 +66,23 @@ namespace Models
             }
         }
 
-        
+        private string m_RefreshBtnImage = string.Empty;
+        public string RefreshBtnImage
+        {
+            set
+            {
+                if (this.m_RefreshBtnImage != value)
+                {
+                    this.m_RefreshBtnImage = value;
+                    this.OnPropertyChanged("RefreshBtnImage");
+                }
+            }
+            get
+            {
+                return this.m_RefreshBtnImage;
+            }
+        }
+
 
         private string m_MenuBarBackground = string.Empty;
         public string MenuBarBackground
@@ -568,7 +584,7 @@ namespace Models
             }
         }
 
-        private string m_ProductBorderThickness = "2";
+        private string m_ProductBorderThickness = "4";
 
         public string ProductBorderThickness
         {
@@ -586,7 +602,7 @@ namespace Models
             }
         }
  
-        private string m_ProductBorderColor = "Transparent"; 
+        private string m_ProductBorderColor = "red"; 
         public string ProductBorderColor
         {
             set
@@ -1333,26 +1349,7 @@ namespace Models
         }
 
         #region DataGridSetting
-
-        private ObservableCollection<GridColumn> m_DataGridColumon = null;
- 
-        public ObservableCollection<GridColumn> DataGridColumon
-        {
-            set
-            {
-                if (m_DataGridColumon != value)
-                {
-                    m_DataGridColumon = value;
-                    this.OnPropertyChanged("DataGridColumon");
-                }
-
-            }
-            get
-            {
-                return this.m_DataGridColumon;
-            }
-        }
-
+         
 
         private string m_DataGridRowTextSize = "12";
         public string DataGridRowTextSize
@@ -1371,39 +1368,75 @@ namespace Models
             }
         }
 
-        private string m_UpdateButtonImage = string.Empty;
-        public string UpdateButtonImage
+        private string m_UpdateButtonIcon = string.Empty;
+        public string UpdateButtonIcon
         {
             set
             {
-                if (this.m_UpdateButtonImage != value)
+                if (this.m_UpdateButtonIcon != value)
                 {
-                    this.m_UpdateButtonImage = value;
-                    this.OnPropertyChanged("UpdateButton");
+                    this.m_UpdateButtonIcon = value;
+                    this.OnPropertyChanged("UpdateButtonIcon");
                 }
             }
             get
             {
-                return this.m_UpdateButtonImage;
+                return this.m_UpdateButtonIcon;
             }
         }
 
-        private string m_DeleteButtonImage = string.Empty;
-        public string DeleteButtonImage
+        private string m_DeleteButtonIcon = string.Empty;
+        public string DeleteButtonIcon
         {
             set
             {
-                if (this.m_DeleteButtonImage != value)
+                if (this.m_DeleteButtonIcon != value)
                 {
-                    this.m_DeleteButtonImage = value;
-                    this.OnPropertyChanged("DeleteButtonImage");
+                    this.m_DeleteButtonIcon = value;
+                    this.OnPropertyChanged("DeleteButtonIcon");
                 }
             }
             get
             {
-                return this.m_DeleteButtonImage;
+                return this.m_DeleteButtonIcon;
             }
         }
+
+        private string m_AddButtonIcon = string.Empty;
+        public string AddButtonIcon
+        {
+            set
+            {
+                if (this.m_AddButtonIcon != value)
+                {
+                    this.m_AddButtonIcon = value;
+                    this.OnPropertyChanged("AddButtonIcon");
+                }
+            }
+            get
+            {
+                return this.m_AddButtonIcon;
+            }
+        }
+
+
+        private string m_RemoveButtonIcon = string.Empty;
+        public string RemoveButtonIcon
+        {
+            set
+            {
+                if (this.m_RemoveButtonIcon != value)
+                {
+                    this.m_RemoveButtonIcon = value;
+                    this.OnPropertyChanged("RemoveButtonIcon");
+                }
+            }
+            get
+            {
+                return this.m_RemoveButtonIcon;
+            }
+        }
+
 
         private string m_DataGridHeaderTextSize = "20";
         public string DataGridHeaderTextSize
@@ -1740,8 +1773,172 @@ namespace Models
                 return this.m_FontFamily;
             }
         }
-         
-        #endregion 
+
+        #endregion
+
+
+
+        #region SaleGridSetting
+ 
+
+        private string m_SaleGridRowTextSize = "10";
+        public string SaleGridRowTextSize
+        {
+            set
+            {
+                if (this.m_SaleGridRowTextSize != value)
+                {
+                    this.m_SaleGridRowTextSize = value;
+                    this.OnPropertyChanged("SaleGridRowTextSize");
+                }
+            }
+            get
+            {
+                return this.m_SaleGridRowTextSize;
+            }
+        }
+
+       
+        private string m_SaleRemoveButtonImage = string.Empty;
+        public string SaleRemoveButtonImage
+        {
+            set
+            {
+                if (this.m_SaleRemoveButtonImage != value)
+                {
+                    this.m_SaleRemoveButtonImage = value;
+                    this.OnPropertyChanged("SaleRemoveButtonImage");
+                }
+            }
+            get
+            {
+                return this.m_SaleRemoveButtonImage;
+            }
+        }
+
+        private string m_SaleGridHeaderTextSize = "16";
+        public string SaleGridHeaderTextSize
+        {
+            set
+            {
+                if (this.m_SaleGridHeaderTextSize != value)
+                {
+                    this.m_SaleGridHeaderTextSize = value;
+                    this.OnPropertyChanged("SaleGridHeaderTextSize");
+                }
+            }
+            get
+            {
+                return this.m_SaleGridHeaderTextSize;
+            }
+        }
+
+        private string m_SaleGridHeaderBackground = "#008B8B";
+        public string SaleGridHeaderBackground
+        {
+            set
+            {
+                if (this.m_SaleGridHeaderBackground != value)
+                {
+                    this.m_SaleGridHeaderBackground = value;
+                    this.OnPropertyChanged("SaleGridHeaderBackground");
+                }
+            }
+            get
+            {
+                return this.m_SaleGridHeaderBackground;
+            }
+        }
+
+        private string m_SaleGridBackground = "#008B8B";
+        public string SaleGridBackground
+        {
+            set
+            {
+                if (this.m_SaleGridBackground != value)
+                {
+                    this.m_SaleGridBackground = value;
+                    this.OnPropertyChanged("SaleGridBackground");
+                }
+            }
+            get
+            {
+                return this.m_SaleGridBackground;
+            }
+        }
+
+        private string m_SaleGridHeaderTextColor = "White";
+        public string SaleGridHeaderTextColor
+        {
+            set
+            {
+                if (this.m_SaleGridHeaderTextColor != value)
+                {
+                    this.m_SaleGridHeaderTextColor = value;
+                    this.OnPropertyChanged("SaleGridHeaderTextColor");
+                }
+            }
+            get
+            {
+                return this.m_SaleGridHeaderTextColor;
+            }
+        }
+
+
+        private string m_SaleGridSelectedRowBackColor = "#53C3D5";
+        public string SaleGridSelectedRowBackColor
+        {
+            set
+            {
+                if (this.m_SaleGridSelectedRowBackColor != value)
+                {
+                    this.m_SaleGridSelectedRowBackColor = value;
+                    this.OnPropertyChanged("SaleGridSelectedRowBackColor");
+                }
+            }
+            get
+            {
+                return this.m_SaleGridSelectedRowBackColor;
+            }
+        }
+ 
+    
+        private string m_SaleGridRowHeight = "30";
+        public string SaleGridRowHeight
+        {
+            set
+            {
+                if (this.m_SaleGridRowHeight != value)
+                {
+                    this.m_SaleGridRowHeight = value;
+                    this.OnPropertyChanged("SaleGridRowHeight");
+                }
+            }
+            get
+            {
+                return this.m_SaleGridRowHeight;
+            }
+        }
+
+        private string m_SaleGridRowTextColor = "DarkBlue";
+        public string SaleGridRowTextColor
+        {
+            set
+            {
+                if (this.m_SaleGridRowTextColor != value)
+                {
+                    this.m_SaleGridRowTextColor = value;
+                    this.OnPropertyChanged("SaleGridRowTextColor");
+                }
+            }
+            get
+            {
+                return this.m_SaleGridRowTextColor;
+            }
+        } 
+      
+        #endregion
+
 
 
         private ObservableCollection<ControlsSetting> m_ControlSetting = null;

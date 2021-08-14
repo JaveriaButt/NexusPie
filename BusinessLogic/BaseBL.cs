@@ -3,6 +3,7 @@ using Models;
 using Resources;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -81,6 +82,45 @@ namespace BusinessLogic
         #endregion
 
         #region Products
+      
+        public virtual ObservableCollection<Product> GetAllProducts()
+        {
+            ObservableCollection<Product> Response = new ObservableCollection<Product>();
+            try
+            {
+                var DalResponse = DAL.GetAllProducts();
+                if (!string.IsNullOrWhiteSpace(DalResponse))
+                {
+                    var ds = General.XMLToDataSet(DalResponse);
+                    if (ds != null && ds.Tables[0] != null)
+                    {
+                        foreach (DataRow row in ds.Tables[0].Rows)
+                        {
+                            try
+                            {
+                                Response.Add(new Product()
+                                {
+                                    ProductName = row["Name"].ToString(),
+                                    ProductCode = row["itemcode"].ToString(),
+                                    CastPrice = row["PurchasePrice"].ToString(),
+                                    SalePrice = row["SalePrice"].ToString(),
+                                    Category = row["Categorys"].ToString(),
+                                    UnitOfMeasure = row["Units"].ToString(),
+                                    Quantity = int.Parse(row["Quantity"].ToString()),
+                                    Vendor = row["vendor"].ToString(),
+                                    ImagePath = row["Picture"].ToString()
+                                });
+                            }
+                            catch (Exception ex) { }
+                        }  
+                    }
+                }
+            }
+            catch (Exception ex)
+            { }
+            return Response;
+        }
+        
         public virtual string GetProductCodeByCategory(string CategoryID)
         {
             string Response = string.Empty;

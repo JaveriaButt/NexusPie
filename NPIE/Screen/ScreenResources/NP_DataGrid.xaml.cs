@@ -241,6 +241,12 @@ namespace NPIE.Screen.ScreenResources
                                 {
                                     try { dataGridColumn.Width = new DataGridLength(1, DataGridLengthUnitType.Star); } catch (Exception ex) { }
                                 }
+                                else if (col.Width.Contains('*'))
+                                {
+                                    double number = double.Parse(col.Width.Split('*').FirstOrDefault());
+                                    try { } catch (Exception ex) { }
+                                    try { dataGridColumn.Width = new DataGridLength(number, DataGridLengthUnitType.Star); } catch (Exception ex) { }
+                                }
                                 else
                                 {
                                     try { dataGridColumn.Width = new DataGridLength(double.Parse(col.Width)); } catch (Exception ex) { }

@@ -13,7 +13,7 @@
         <Border.Effect>
             <DropShadowEffect BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1"/>
         </Border.Effect>
-        <Grid Margin="0,0,0,0" Background="White">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
@@ -45,8 +45,7 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
-            </Grid>
-
+            </Grid> 
             <Grid Background="#E2F3F6" Grid.Row="1">
 
                 <Grid.ColumnDefinitions>
@@ -56,7 +55,7 @@
                 <!--Menu bar of the App-->
                 <Grid Grid.Column="0" Margin="0,0,-0.4,-0.2" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuBarBackground}">
                     <StackPanel Orientation="Vertical">
-                        <Control:NPImage MouseLeftButtonDown="NPImage_MouseLeftButtonDown" HorizontalAlignment="Right" Margin="20,05" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuBarNavigationImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="Linear" Height="30"></Control:NPImage>
+                        <Control:NPImage MouseLeftButtonDown="NPImage_MouseLeftButtonDown" HorizontalAlignment="Right" Margin="10,05" Source="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuBarNavigationImage,UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="Linear" Height="30" Width="20"></Control:NPImage>
                     <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1">
                         <StackPanel x:Name="Menu" Margin="05"/>
                     </ScrollViewer>
@@ -65,7 +64,7 @@
                 <!--Screens Area to show screens-->
                 <Grid Grid.Column="1" Margin="0,0,-0.4,-0.2">
                     <!--<screen:SaleScreen    HorizontalAlignment="Right"/>-->
-                    <ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    <ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen.ScreenControl,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 </Grid>
             </Grid>
         </Grid>

@@ -20,17 +20,17 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <StackPanel Orientation="Horizontal" Background="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.MenuItemBackground, UpdateSourceTrigger=PropertyChanged}">
                             <Grid x:Name="img" >
-                                <materialDesign:PackIcon  Kind="{Binding Path=Icon}" Width="25" Height="25" Margin="10 10" Foreground="White"/>
+                                <materialDesign:PackIcon  Kind="{Binding Path=Icon}" Width="25" Height="25" Margin="05 10" Foreground="White"/>
                             </Grid>
                             <Grid Visibility="{Binding Source={StaticResource AppViewModel},Path=HomeScreen.IsMenuShown, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ConvertBoolToVisibility} }">
                                 <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header }" Visibility="{Binding Path=SubItems,Converter={StaticResource NullToVisibilityReverseConverter}}" Padding="32 14" FontSize="15" Foreground="White" />
-                                <Expander x:Name="ExpanderMenu"   HorizontalContentAlignment="Left"  Header="{Binding Path=Header}"  Visibility="{Binding Path=SubItems,Converter={StaticResource ConvertNullToVisbility}}" IsExpanded="False" Width="180" FontSize="08" HorizontalAlignment="Left" Background="Transparent" Foreground="White">
+                                <Expander x:Name="ExpanderMenu"   HorizontalContentAlignment="Left"  Header="{Binding Path=Header}"  Visibility="{Binding Path=SubItems,Converter={StaticResource ConvertNullToVisbility}}" IsExpanded="False" Width="180" FontSize="07" HorizontalAlignment="Left" Background="Transparent" Foreground="White">
                                     <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <Button Background="Transparent" BorderBrush="Transparent" Height="25"  Click="Button_Click">
                                                     <Button.Content>
-                                                        <TextBlock Text="{Binding Path=Name}" x:Name="tb" Padding="10 0"/>
+                                                        <TextBlock Text="{Binding Path=Name}" x:Name="tb"  FontSize="14" Padding="10 0"/>
                                                     </Button.Content>
                                                 </Button>
                                                

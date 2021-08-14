@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Data;
 using BusinessLogic;
 using System.Reflection;
+using System.Collections.ObjectModel;
 
 namespace NPIE.Controller
 {
@@ -40,9 +41,9 @@ namespace NPIE.Controller
         #region Property
 
 
-        private UserControl m_CurrentScreen = null;
+        private BaNPIEScreen m_CurrentScreen = new BaNPIEScreen();
 
-        public UserControl CurrentScreen
+        public BaNPIEScreen CurrentScreen
         {
             set
             {
@@ -59,7 +60,21 @@ namespace NPIE.Controller
         }
 
         private RefernceValues m_RefernceValues =   new RefernceValues();
-        
+
+        public void SetScreen(UserControl userControl)
+        {
+
+            try
+            {
+
+                CurrentScreen = null;
+                CurrentScreen = new BaNPIEScreen(userControl);
+            }
+            catch (Exception ex)
+            { } 
+        }
+       
+
         public RefernceValues ReferncValueS 
         {
             set
@@ -75,7 +90,7 @@ namespace NPIE.Controller
         }
 
 
-        private BaNPIEScreen m_HomeScreen = new BaNPIEScreen(ScreenType.None);
+        private BaNPIEScreen m_HomeScreen = new BaNPIEScreen();
 
         public BaNPIEScreen  HomeScreen
         {
@@ -152,23 +167,7 @@ namespace NPIE.Controller
             }
         }
 
-        private object m_DataList = null;
-
-        public object DataList
-        {
-            set
-            {
-                if (m_DataList != value)
-                {
-                    m_DataList = value;
-                    this.OnPropertyChanged("DataList");
-                }
-            }
-            get
-            {
-                return m_DataList;
-            }
-        }
+     
 
         private OrgInfo m_Orginformation = null;
 
@@ -188,9 +187,9 @@ namespace NPIE.Controller
             }
         } 
 
-        private List<Product> m_ListOfItems = new List<Product>();
+        private ObservableCollection<Product> m_ListOfItems = new ObservableCollection<Product>();
 
-        public List<Product> ListOfItems
+        public ObservableCollection<Product> ListOfItems
         {
             set
             {
@@ -204,6 +203,26 @@ namespace NPIE.Controller
                 return m_ListOfItems;
             }
         }
+
+        private ObservableCollection<Product> m_SaleAbleItems = new ObservableCollection<Product>();
+
+        public ObservableCollection<Product> SaleAbleItems
+        {
+            set
+            {
+                if (value != m_SaleAbleItems)
+                {
+                    m_SaleAbleItems = value;
+                    this.OnPropertyChanged("SaleAbleItems");
+                }
+            }
+            get
+            {
+                return m_SaleAbleItems;
+            }
+        }
+
+
 
 
         private List<Product> m_ListOfCategory = new List<Product>();
@@ -373,9 +392,14 @@ namespace NPIE.Controller
                 if (ReferncValueS.ProductCategories == null)
                 {
                     var Categories = BusinessLogic.GetProductsCategories();
-                    if (Categories.Success)
+                    if (Categories.Success && Categories.Result != null)
                     {
-                        ReferncValueS.ProductCategories = Categories.Result;
+                        ReferncValueS.ProductCategories = new ObservableCollection<Category>();
+                        foreach (DataRow row in Categories.Result.Rows)
+                        {
+                            if(row["ID"].ToString() != "1")
+                            ReferncValueS.ProductCategories.Add(new Category() { ID = row["ID"].ToString(), Name = row["Name"].ToString() });
+                        }
                     }
                 }
                 if (ReferncValueS.ProductUnits == null)

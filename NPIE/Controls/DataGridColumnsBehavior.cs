@@ -60,6 +60,12 @@ namespace NPIE.Controls
                                 {
                                     try { dataGridColumn.Width = new DataGridLength(1, DataGridLengthUnitType.Star); } catch (Exception ex) { }
                                 }
+                                else if (col.Width.Contains('*'))
+                                {
+                                    double number = double.Parse(col.Width.Split('*').FirstOrDefault());
+                                    try { } catch (Exception ex) { }
+                                    try { dataGridColumn.Width = new DataGridLength(number, DataGridLengthUnitType.Star); } catch (Exception ex) { }
+                                }
                                 else
                                 {
                                     try { dataGridColumn.Width = new DataGridLength(double.Parse(col.Width)); } catch (Exception ex) { }
@@ -215,9 +221,13 @@ namespace NPIE.Controls
                 FrameworkElementFactory Img = new FrameworkElementFactory(typeof(NPImage));
 
                 if (col.Property.ToUpper() == "UPDATE")
-                    Img.SetBinding(NPImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                    Img.SetBinding(NPImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButtonIcon), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
                 else if (col.Property.ToUpper() == "DELETE")
-                    Img.SetBinding(NPImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonImage), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                    Img.SetBinding(NPImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonIcon), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                   if (col.Property.ToUpper() == "ADD")
+                    Img.SetBinding(NPImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.AddButtonIcon), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+                else if (col.Property.ToUpper() == "REMOVE")
+                    Img.SetBinding(NPImage.ImageContentProperty, new Binding() { Source = ((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.RemoveButtonIcon), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
 
                 btn.AppendChild(Img);
                 ButtonColumnTemplate.VisualTree = btn;

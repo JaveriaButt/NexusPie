@@ -30,9 +30,9 @@ namespace NPIE.Screen.Items
         private void AddProduct_Loaded(object sender, RoutedEventArgs e)
         {
             try {
-             
 
-               
+
+                Cmb_Categroy.SelectionChanged += Cmb_Categroy_SelectionChanged;
             }
             catch(Exception ex)
             { }
@@ -73,8 +73,8 @@ namespace NPIE.Screen.Items
             {
                 if (tb_ItemCode != null)
                     tb_ItemCode.Clear();
-                var SelectedItemID = (Cmb_Categroy.SelectedItem as System.Data.DataRowView)[0].ToString(); 
-                if (SelectedItemID != "1")
+                var SelectedItemID = (Cmb_Categroy.SelectedItem as Category).ID.ToString(); 
+                if (SelectedItemID != "1" && int.Parse(SelectedItemID) != 1)
                 {
                     string ItemCode = (Application.Current.Resources["AppViewModel"] as HomeController).BusinessLogic.GetProductCodeByCategory(SelectedItemID);
                     tb_ItemCode.Text = ItemCode;
@@ -119,7 +119,7 @@ namespace NPIE.Screen.Items
                 NProduct.Description = tb_PDescription.Text.Trim();
                 NProduct.ImagePath = Xpath;
                 try { NProduct.Quantity = int.Parse(tb_Qunatity.Text.Trim()); } catch (Exception ex) { }
-                try { NProduct.Category = (Cmb_Categroy.SelectedItem as System.Data.DataRowView)[0].ToString(); } catch (Exception ex) { }
+                try { NProduct.Category = (Cmb_Categroy.SelectedItem as Category).ID.ToString(); } catch (Exception ex) { }
                 try { NProduct.UnitOfMeasure = (cmb_UnitOfMeasure.SelectedItem as System.Data.DataRowView)[0].ToString(); } catch (Exception ex) { }
                 var resposne = (Application.Current.Resources["AppViewModel"] as HomeController).BusinessLogic.AddNewProduct(NProduct);
                 MessageBox.Show(resposne.Result);
@@ -154,6 +154,17 @@ namespace NPIE.Screen.Items
             return Resposne;
         }
 
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Cmb_Categroy.SelectionChanged -= Cmb_Categroy_SelectionChanged;
+                this.Loaded -= AddProduct_Loaded;
+                this.Unloaded -= Window_Unloaded;
+            }
+            catch (Exception ex)
 
+            { }
+        }
     }
 }

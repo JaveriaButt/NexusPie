@@ -27,6 +27,14 @@ namespace NPIE.Screen
 
         private void NP_Button_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var abc = sender;
+
+            }catch(Exception ex)
+            {
+
+            }
 
         }
     }

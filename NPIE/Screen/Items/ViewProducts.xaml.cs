@@ -3,6 +3,7 @@ using NPIE.Controller;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,28 +35,19 @@ namespace NPIE.Screen.Items
             try
             {
 
-                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Product Name", Width="150",Property= "ProductName" }); 
-                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Cast Price", Width="150", Property= "CastPrice" }); 
-                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Sale Price", Width="200" ,Property= "SalePrice" }); 
-                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Category", Width="200" ,Property= "Category" }); 
-                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Button, Heading = "Action",Width="200",Property= "Delete" }); 
+                (Application.Current.Resources["AppViewModel"] as HomeController).ListOfItems =  (Application.Current.Resources["AppViewModel"] as HomeController).BusinessLogic.GetAllProducts();
+
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Code", Width="80",Property= "ProductCode" });  
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Name", Width="120",Property= "ProductName" }); 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Cast Price", Width="80", Property= "CastPrice" });
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Sale Price", Width="100", Property= "SalePrice" }); 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Qunatity", Width="70" ,Property= "Quantity" }); 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Category", Width="120" ,Property= "Category" }); 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Unit", Width="50" ,Property= "UnitOfMeasure" }); 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "Vendors", Width="100" ,Property= "Vendor" }); 
+                gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Button, Heading = "Action",Width="120",Property= "Delete" }); 
                 gridColumns.Add(new GridColumn { ColumnType = ColumnTypes.Text, Heading = "ABC5" });
-                (Application.Current.Resources["AppViewModel"] as HomeController).DataGridColumns = gridColumns;
-
-                ObservableCollection<object> Viewableitems = new ObservableCollection<object>();
-
-                Viewableitems.Add(new Product() { ProductName="Knife" , CastPrice="150",SalePrice="200", Category="ABC" });
-                Viewableitems.Add(new Product() { ProductName="Mouse" , CastPrice="150",SalePrice="200", Category="ABC" });
-                Viewableitems.Add(new Product() { ProductName="Table" , CastPrice="150",SalePrice="200", Category="ABC" });
-                Viewableitems.Add(new Product() { ProductName="Perfume" , CastPrice="150",SalePrice="200", Category="ABC" });
-                Viewableitems.Add(new Product() { ProductName="Key" , CastPrice="150",SalePrice="200", Category="ABC" });
-
-                (Application.Current.Resources["AppViewModel"] as HomeController).DataList = Viewableitems;
-
-
-
-
-
+                (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.ColumnsList = gridColumns; 
             }
             catch (Exception ex)
             { }
@@ -78,6 +70,11 @@ namespace NPIE.Screen.Items
         {
             AddProduct p = new AddProduct();
             p.Show();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen = null;
         }
     }
 }

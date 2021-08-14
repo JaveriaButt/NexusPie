@@ -7,8 +7,7 @@
 	<SearchButtonImg>\Resources\0\Images\Search.png</SearchButtonImg>
 	<AddProductButtonImg>\Resources\0\Images\Add.png</AddProductButtonImg>
   <HeaderText>NEXUS PIE</HeaderText>
-	<ProductButtonHeight>250</ProductButtonHeight>
-	<ProductButtonWidth>350</ProductButtonWidth>
+	
   <FooterImage></FooterImage>
   <FooterText></FooterText>
   <OrgLogo></OrgLogo>
@@ -18,14 +17,17 @@
   <DeleteButton></DeleteButton>
 	<DataGridHeaderBackground>\Resources\0\Images\Header.jpg</DataGridHeaderBackground>
 	<DataGridBackground>\Resources\0\Images\DataGridBack.png</DataGridBackground>
-  <DeleteButtonImage>\Resources\0\Images\DeleteButton.png</DeleteButtonImage>
+  <DeleteButtonIcon>\Resources\0\Images\DeleteButton.png</DeleteButtonIcon>
+  <AddButtonIcon>\Resources\0\Images\Add-WF.png</AddButtonIcon>
+  <RemoveButtonIcon>\Resources\0\Images\Remove.png</RemoveButtonIcon>
   <DeleteButtonPressed></DeleteButtonPressed>
   <UpdateButton></UpdateButton>
-  <UpdateButtonImage>\Resources\0\Images\UpdateButton.png</UpdateButtonImage>
+  <UpdateButtonIcon>\Resources\0\Images\UpdateButton.png</UpdateButtonIcon>
   <UpdateButtonPressed></UpdateButtonPressed>
   <PrintButton></PrintButton>
   <PrintButtonPressed></PrintButtonPressed>
   <InformationIcon>\Resources\0\Images\information_icon.png</InformationIcon>
+ <RefreshBtnImage>\Resources\0\Images\btnRefresh.png</RefreshBtnImage>
   <ErrorIcon>\Resources\0\Images\error.png</ErrorIcon>
   <WarningIcon>\Resources\0\Images\Warning.png</WarningIcon> 
 	<MenuBarBackground>#546f7a</MenuBarBackground>
@@ -33,7 +35,7 @@
 	<SaleScreenbackground>#1F4E79</SaleScreenbackground>
 	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>
 	<OvalButtonOnPress>SkyBlue</OvalButtonOnPress>
-	<OvalButtonHeight>35</OvalButtonHeight>
+	<OvalButtonHeight>45</OvalButtonHeight>
 	<OvalButtonWidth>100</OvalButtonWidth>
 	<OvalButtonForeground>DarkBlue</OvalButtonForeground>
 	<OvalButtonFontSize>15</OvalButtonFontSize>
@@ -41,5 +43,15 @@
 	<NextButtonImage>\Resources\0\Images\next.png</NextButtonImage>
 	<SearchImage>\Resources\0\Images\search.png</SearchImage>
 	<MenuBarNavigationImage>/Resources/0/Images/NavigationMenu.png</MenuBarNavigationImage>
+  
+	<!--product Button-->
+	
+	<ProductButtonHeight>120</ProductButtonHeight>
+	<ProductButtonWidth>160</ProductButtonWidth>
+	<!--<Productbackground>#90c0f0</Productbackground>-->
+	<ProductBorderThickness>2</ProductBorderThickness>
+	<ProductBorderColor>#7100eb</ProductBorderColor>
+	
+	
 
 </AppDesign>

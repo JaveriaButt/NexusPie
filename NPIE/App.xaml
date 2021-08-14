@@ -6,9 +6,6 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources >
         <ResourceDictionary>
-            <Controller:HomeController x:Key="AppViewModel"/> 
-            <Converters:ScreenConvertor x:Key="ConvertToScreen"/>
-            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary  Source="DesignResource.xaml" />
             </ResourceDictionary.MergedDictionaries> 
