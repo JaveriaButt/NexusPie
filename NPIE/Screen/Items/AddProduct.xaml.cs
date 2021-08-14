@@ -79,6 +79,7 @@ namespace NPIE.Screen.Items
                     string ItemCode = (Application.Current.Resources["AppViewModel"] as HomeController).BusinessLogic.GetProductCodeByCategory(SelectedItemID);
                     tb_ItemCode.Text = ItemCode;
                     tb_ItemCode.IsReadOnly = true;
+                    //working 
                 }
             }
             catch (Exception ex)
