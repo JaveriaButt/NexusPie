@@ -1,0 +1,57 @@
+﻿<AppDesign>
+  <HeaderImage>\Resources\0\Images\TitleBar.png</HeaderImage>
+	<AppIcon>\Resources\0\Images\TitleBar.png</AppIcon>  
+	<BtnCloseAppImg>\Resources\0\Images\Close.png</BtnCloseAppImg>
+	<BtnMinimizeAppImg>\Resources\0\Images\minimize.png</BtnMinimizeAppImg>
+	<BtnMaximizeAppImg>\Resources\0\Images\MiximizeButton.png</BtnMaximizeAppImg>
+	<SearchButtonImg>\Resources\0\Images\Search.png</SearchButtonImg>
+	<AddProductButtonImg>\Resources\0\Images\Add.png</AddProductButtonImg>
+  <HeaderText>NEXUS PIE</HeaderText>
+	
+  <FooterImage></FooterImage>
+  <FooterText></FooterText>
+  <OrgLogo></OrgLogo>
+  <AppWidth>1150</AppWidth>
+  <AppHeight>750</AppHeight>
+  <ProductImage>\Resources\0\Images\UpdateButton.png</ProductImage>
+  <DeleteButton></DeleteButton>
+	<DataGridHeaderBackground>\Resources\0\Images\Header.jpg</DataGridHeaderBackground>
+	<DataGridBackground>\Resources\0\Images\DataGridBack.png</DataGridBackground>
+  <DeleteButtonIcon>\Resources\0\Images\Btn_delete.png</DeleteButtonIcon>
+  <AddButtonIcon>\Resources\0\Images\Add-WF.png</AddButtonIcon>
+  <RemoveButtonIcon>\Resources\0\Images\Remove.png</RemoveButtonIcon>
+  <DeleteButtonPressed></DeleteButtonPressed>
+  <UpdateButton></UpdateButton>
+  <UpdateButtonIcon>\Resources\0\Images\Btn_Edit.png</UpdateButtonIcon>
+  <UpdateButtonPressed></UpdateButtonPressed>
+  <PrintButton></PrintButton>
+  <PrintButtonPressed></PrintButtonPressed>
+  <InformationIcon>\Resources\0\Images\information_icon.png</InformationIcon>
+ <RefreshBtnImage>\Resources\0\Images\btnRefresh.png</RefreshBtnImage>
+  <ErrorIcon>\Resources\0\Images\error.png</ErrorIcon>
+  <WarningIcon>\Resources\0\Images\Warning.png</WarningIcon> 
+	<MenuBarBackground>#546f7a</MenuBarBackground>
+	<!--SaleScreen Settings-->
+	<SaleScreenbackground>#1F4E79</SaleScreenbackground>
+	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>
+	<OvalButtonOnPress>SkyBlue</OvalButtonOnPress>
+	<OvalButtonHeight>45</OvalButtonHeight>
+	<OvalButtonWidth>100</OvalButtonWidth>
+	<OvalButtonForeground>DarkBlue</OvalButtonForeground>
+	<OvalButtonFontSize>15</OvalButtonFontSize>
+	<BackButtonImage>\Resources\0\Images\back.png</BackButtonImage>
+	<NextButtonImage>\Resources\0\Images\next.png</NextButtonImage>
+	<SearchImage>\Resources\0\Images\search.png</SearchImage>
+	<MenuBarNavigationImage>/Resources/0/Images/NavigationMenu.png</MenuBarNavigationImage>
+  
+	<!--product Button-->
+	
+	<ProductButtonHeight>120</ProductButtonHeight>
+	<ProductButtonWidth>160</ProductButtonWidth>
+	<!--<Productbackground>#90c0f0</Productbackground>-->
+	<ProductBorderThickness>2</ProductBorderThickness>
+	<ProductBorderColor>#7100eb</ProductBorderColor>
+	
+	
+
+</AppDesign>

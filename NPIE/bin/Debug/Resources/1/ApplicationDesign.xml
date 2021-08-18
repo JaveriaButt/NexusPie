@@ -1,0 +1,35 @@
+﻿<AppDesign>
+  <HeaderImage>Resources\App\Images\TitleBar.png</HeaderImage>
+	<AppIcon>Resources\App\Images\TitleBar.png</AppIcon>
+	<btnCloseAppImg>Resources\App\Images\Close.png</btnCloseAppImg>
+  <HeaderText>NEXUS PIE</HeaderText>
+  <FooterImage></FooterImage>
+  <FooterText></FooterText>
+  <OrgLogo></OrgLogo>
+  <AppWidth>1150</AppWidth>
+  <AppHeight>750</AppHeight>
+  <!-- Home Screen Settings--> 
+ 
+  <DeleteButton ></DeleteButton>
+  <DeleteButtonImage>\Resources\1\Images\DeleteButton.png</DeleteButtonImage>
+  <DeleteButtonPressed ></DeleteButtonPressed>
+  <UpdateButton ></UpdateButton>
+  <UpdateButtonImage>\Resources\1\Images\UpdateButton.png</UpdateButtonImage>
+  <UpdateButtonPressed ></UpdateButtonPressed>
+  <PrintButton></PrintButton>
+  <PrintButtonPressed></PrintButtonPressed>
+  <InformationIcon>\Resources\1\Images\information_icon.png</InformationIcon>
+  <ErrorIcon>\Resources\1\Images\error.png</ErrorIcon>
+	<WarningIcon>\Resources\1\Images\Warning.png</WarningIcon>
+	<DataGridHeaderBackground>\Resources\1\Images\Header.jpg</DataGridHeaderBackground>
+	<SearchButtonImg>\Resources\1\Images\Header.jpg</SearchButtonImg>
+	
+
+	<!--SaleScreen Settings-->
+	<OvalButtonBackground>#F6CCCE</OvalButtonBackground>
+	<OvalButtonOnPress>SkyBlue</OvalButtonOnPress>
+	<OvalButtonHeight>25</OvalButtonHeight>
+	<OvalButtonWidth>150</OvalButtonWidth>
+	<OvalButtonForeground>Black</OvalButtonForeground>
+	<OvalButtonFontSize>08</OvalButtonFontSize>
+</AppDesign>

@@ -1,0 +1,6 @@
+E:\Personal\SES\SES\SESDesign\obj\Release\SESDesign.csprojAssemblyReference.cache
+E:\Personal\SES\SES\SESDesign\obj\Release\MainWindow.g.cs
+E:\Personal\SES\SES\SESDesign\obj\Release\App.g.cs
+E:\Personal\SES\SES\SESDesign\obj\Release\SESDesign_Content.g.cs
+E:\Personal\SES\SES\SESDesign\obj\Release\SESDesign_MarkupCompile.cache
+E:\Personal\SES\SES\SESDesign\obj\Release\SESDesign_MarkupCompile.lref

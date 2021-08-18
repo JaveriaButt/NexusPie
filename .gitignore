@@ -3,3 +3,9 @@
 ################################################################################
 
 /Models
+/DAL
+/Controller
+/BusinessLogic
+/.vs
+/Resources
+/packages
