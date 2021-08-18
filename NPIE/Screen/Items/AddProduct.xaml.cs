@@ -16,11 +16,8 @@ namespace NPIE.Screen.Items
     /// Interaction logic for AddProduct.xaml
     /// </summary>
     public partial class AddProduct : Window
-    {
-
-
-
-        Product NProduct = new Product() { };
+    { 
+        public Product NProduct =   new Product() { };
         public AddProduct()
         {
             InitializeComponent();
@@ -29,10 +26,23 @@ namespace NPIE.Screen.Items
 
         private void AddProduct_Loaded(object sender, RoutedEventArgs e)
         {
-            try {
+            try
+            {
 
-
+                this.DataContext = NProduct;
                 Cmb_Categroy.SelectionChanged += Cmb_Categroy_SelectionChanged;
+                if(!string.IsNullOrWhiteSpace(NProduct.Category))
+                {
+                    Cmb_Categroy.SelectedItem = Cmb_Categroy.Items.IndexOf(NProduct.Category);
+                }
+                if(!string.IsNullOrWhiteSpace(NProduct.UnitOfMeasure))
+                {
+                    cmb_UnitOfMeasure.SelectedValue = NProduct.UnitOfMeasure;
+                }
+
+
+
+
             }
             catch(Exception ex)
             { }

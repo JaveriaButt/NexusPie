@@ -1,5 +1,5 @@
 ﻿<AppConfiguration>
-	<ServiceURL>http://localhost/NPService/api/NP/postreq</ServiceURL>
+	<ServiceURL>https://nexuspie.writica.net/api/NP/postreq</ServiceURL>
 	<SRequestTimeout>300</SRequestTimeout>
 	<CloseExistingInstance>1</CloseExistingInstance>
 	<UpdateApplicationOnStart>0</UpdateApplicationOnStart>

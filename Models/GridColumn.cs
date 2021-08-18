@@ -165,7 +165,7 @@ namespace Models
             }
         }
 
-        private double m_IconWidth = 20;
+        private double m_IconWidth = 80;
         public double IconWidth
         {
             set
@@ -182,7 +182,7 @@ namespace Models
             }
         }
 
-        private double m_IconHeight = 20;
+        private double m_IconHeight = 31;
         public double IconHeight
         {
             set

@@ -17,12 +17,12 @@
   <DeleteButton></DeleteButton>
 	<DataGridHeaderBackground>\Resources\0\Images\Header.jpg</DataGridHeaderBackground>
 	<DataGridBackground>\Resources\0\Images\DataGridBack.png</DataGridBackground>
-  <DeleteButtonIcon>\Resources\0\Images\DeleteButton.png</DeleteButtonIcon>
+  <DeleteButtonIcon>\Resources\0\Images\Btn_delete.png</DeleteButtonIcon>
   <AddButtonIcon>\Resources\0\Images\Add-WF.png</AddButtonIcon>
   <RemoveButtonIcon>\Resources\0\Images\Remove.png</RemoveButtonIcon>
   <DeleteButtonPressed></DeleteButtonPressed>
   <UpdateButton></UpdateButton>
-  <UpdateButtonIcon>\Resources\0\Images\UpdateButton.png</UpdateButtonIcon>
+  <UpdateButtonIcon>\Resources\0\Images\Btn_Edit.png</UpdateButtonIcon>
   <UpdateButtonPressed></UpdateButtonPressed>
   <PrintButton></PrintButton>
   <PrintButtonPressed></PrintButtonPressed>

@@ -32,7 +32,10 @@ namespace NPIE.Screen
        
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadButtons();
+            new System.Threading.Thread(delegate () {
+                LoadButtons();
+            }).Start();
+           
         }
         public ObservableCollection<GridColumn> gridColumns = new ObservableCollection<GridColumn>();
         void LoadButtons()

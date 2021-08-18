@@ -34,7 +34,7 @@ namespace NPIE
                 WindowStartupLocation = WindowStartupLocation.CenterOwner; 
                 LoadMainMenu();
                 (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClickEvent += HomeScreen_SendClickEvent;
-                (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.ScreenControl = new Screen.SaleScreen();
+                (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.ScreenControl = ScreenType.SALE_SCREEN;
             }
             catch (Exception ex)
             { }
@@ -46,59 +46,12 @@ namespace NPIE
             try
             {
                 var abc = sender as SubItem;
-                switch (abc.Name.ToUpper())
-                {
-                    case "PRODUCTS":
-                        {
-                            (Application.Current.Resources["AppViewModel"] as HomeController).SetScreen(new Screen.Items.ViewProducts());
-                            break;
-                        }
-                    case "DASHBOARD":
-                             {
-                            (Application.Current.Resources["AppViewModel"] as HomeController).SetScreen(new Screen.SaleScreen());
-                            break;
-                        }
-                }
-
-
-            }
+                (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.ScreenControl = (sender as SubItem).SCREEN;            }
             catch (Exception ex)
             { }
         }
 
-        void LoadButtons()
-        {
-            try {
-
-                (Application.Current.Resources["AppViewModel"] as HomeController).ListOfItems = new ObservableCollection<Product>() {
-                
-               
-                      new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr" }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }, 
-                     new Product{ ProductCode="0123", ProductName ="BOOK BY Author",SalePrice="250P pkr"  }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                };
-            }
-            catch(Exception ex) {  }
-        }
+        
 
          
         public void ShowScreen(BaNPIEScreen _Screen)
@@ -133,43 +86,43 @@ namespace NPIE
                 var acb = (Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign;
 
                 var menuRegister = new List<SubItem>();
-                menuRegister.Add(new SubItem("Customer"));
-                menuRegister.Add(new SubItem("Providers"));
-                menuRegister.Add(new SubItem("Employees"));
-                menuRegister.Add(new SubItem("Products"));
+                //menuRegister.Add(new SubItem("Customer"));
+                //menuRegister.Add(new SubItem("Providers"));
+                //menuRegister.Add(new SubItem("Employees"));
+                menuRegister.Add(new SubItem("Products", ScreenType.ADD_PRODUCTS));
                 var item6 = new ItemMenu("Register", menuRegister, PackIconKind.Register);
 
                 var menuSchedule = new List<SubItem>();
-                menuSchedule.Add(new SubItem("Products"));
-                menuSchedule.Add(new SubItem("Payment"));
-                var item1 = new ItemMenu("Purchases", menuSchedule, PackIconKind.Schedule);
+                menuSchedule.Add(new SubItem("View Products", ScreenType.VIEWPRODUCTS));
+                menuSchedule.Add(new SubItem("Add Products",  ScreenType.ADD_PRODUCTS));
+                var item1 = new ItemMenu("Products", menuSchedule, PackIconKind.Schedule, ScreenType.VIEWPRODUCTS);
 
-                var menuReports = new List<SubItem>();
-                menuReports.Add(new SubItem("Customers"));
-                menuReports.Add(new SubItem("Providers"));
-                menuReports.Add(new SubItem("Products"));
-                menuReports.Add(new SubItem("Stock"));
-                menuReports.Add(new SubItem("Sales"));
-                var item2 = new ItemMenu("Reports", menuReports, PackIconKind.FileReport);
+                //var menuReports = new List<SubItem>();
+                //menuReports.Add(new SubItem("Customers"));
+                //menuReports.Add(new SubItem("Providers"));
+                //menuReports.Add(new SubItem("Products"));
+                //menuReports.Add(new SubItem("Stock"));
+                //menuReports.Add(new SubItem("Sales"));
+                //var item2 = new ItemMenu("Reports", menuReports, PackIconKind.FileReport);
 
-                var menuExpenses = new List<SubItem>();
-                menuExpenses.Add(new SubItem("Fixed"));
-                menuExpenses.Add(new SubItem("Variable"));
-                var item3 = new ItemMenu("Expenses", menuExpenses, PackIconKind.ShoppingBasket);
+                //var menuExpenses = new List<SubItem>();
+                //menuExpenses.Add(new SubItem("Fixed"));
+                //menuExpenses.Add(new SubItem("Variable"));
+                //var item3 = new ItemMenu("Expenses", menuExpenses, PackIconKind.ShoppingBasket);
+
+                //var menuFinancial = new List<SubItem>();
+                //menuFinancial.Add(new SubItem("Cash flow"));
+                //var item4 = new ItemMenu("Financial", menuFinancial, PackIconKind.ScaleBalance);
 
                 var menuFinancial = new List<SubItem>();
-                menuFinancial.Add(new SubItem("Cash flow"));
-                var item4 = new ItemMenu("Financial", menuFinancial, PackIconKind.ScaleBalance);
-
-                var item0 = new ItemMenu("Dashboard", new UserControl(), PackIconKind.ViewDashboard);
+                menuFinancial.Add(new SubItem("Quick Sale"));
+                var item0 = new ItemMenu("Sales", menuFinancial, PackIconKind.Shop,  ScreenType.SALE_SCREEN);
 
 
                 Menu.Children.Add(new NavigationMenu(item0));
                 Menu.Children.Add(new NavigationMenu(item6));
                 Menu.Children.Add(new NavigationMenu(item1));
-                Menu.Children.Add(new NavigationMenu(item2));
-                Menu.Children.Add(new NavigationMenu(item3));
-                Menu.Children.Add(new NavigationMenu(item4));
+                
 
             }
             catch (Exception ex)
