@@ -11,8 +11,16 @@ namespace Models
     {
         [XmlEnum("0")]
         None = 0,
-         [XmlEnum("1")]
-        VIEWPRODUCTS = 1
+
+        [XmlEnum("1")]
+        VIEWPRODUCTS = 1,
+
+       [XmlEnum("2")]
+       ADD_PRODUCTS = 2,
+
+       [XmlEnum("3")]
+       SALE_SCREEN = 3,
+
 
 
 

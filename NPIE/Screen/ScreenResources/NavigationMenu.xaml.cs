@@ -24,7 +24,7 @@ namespace NPIE.Screen.ScreenResources
     {
         public NavigationMenu(ItemMenu itemMenu)
         {
-            InitializeComponent();  
+            InitializeComponent();
             this.DataContext = itemMenu;
         }
 
@@ -39,26 +39,15 @@ namespace NPIE.Screen.ScreenResources
                 }
                 else if (btn.GetType() == typeof(ItemMenu))
                 {
-                    var Object = ((sender as Button).DataContext as ItemMenu);
-                    
-                    if (Object.SubItems == null || Object.SubItems.Count == 0)
+                    ItemMenu Object = (sender as Button).DataContext as ItemMenu;
+                    if (Object.SubItems == null || Object.SubItems.Count == 0 || Object.SCREEN != Models.ScreenType.None)
                     {
-                        SubItem item = new SubItem(Name = Object.Header.ToString());
+                        SubItem item = new SubItem("", Object.SCREEN);
                         (Application.Current.Resources["AppViewModel"] as HomeController).HomeScreen.SendClick(item);
-                    }
-                   
+                    } 
                 }
-
-
-
-                
-                
-
             }
             catch (Exception ex) { }
-
         }
-
-        
     }
 }

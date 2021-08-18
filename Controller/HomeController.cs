@@ -59,21 +59,23 @@ namespace NPIE.Controller
             }
         }
 
+       
+
+       
+
+   
         private RefernceValues m_RefernceValues =   new RefernceValues();
 
-        public void SetScreen(UserControl userControl)
+        public void SetScreen(BaNPIEScreen userControl)
         {
-
             try
             {
-
                 CurrentScreen = null;
-                CurrentScreen = new BaNPIEScreen(userControl);
+                CurrentScreen = userControl;
             }
             catch (Exception ex)
-            { } 
+            { }
         }
-       
 
         public RefernceValues ReferncValueS 
         {
@@ -531,11 +533,25 @@ namespace NPIE.Controller
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
-
-        public void DataGridButtonPressed(string name, DataRow row, string v)
+         
+        public RoutedEventHandler DataGridButtonPressedEvent = null;
+        public void DataGridButtonPressed(object Value)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (DataGridButtonPressedEvent != null)
+                {
+                    this.DataGridButtonPressedEvent(Value, new RoutedEventArgs());
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
+
+
+
         #endregion
     }
     public class DelegateCommand : ICommand

@@ -1,21 +1,15 @@
 ﻿using Models;
 using NPIE.Controller;
-using System;
-using System.Collections.Generic;
+using System; 
 using System.Collections.ObjectModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq; 
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+using System.Windows.Data; 
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Media.Imaging; 
 using System.Windows.Threading;
 
 namespace NPIE.Screen.ScreenResources
@@ -159,26 +153,24 @@ namespace NPIE.Screen.ScreenResources
                                     btn.SetValue(Button.BackgroundProperty, Brushes.Transparent);
                                     btn.SetValue(Button.BorderBrushProperty, Brushes.Transparent);
                                     btn.SetValue(Button.BorderThicknessProperty, new Thickness(0));
-                                    btn.SetValue(Button.NameProperty, "Key" + col.ID.ToString());
+                                    btn.SetValue(Button.NameProperty, col.Heading); 
                                     btn.SetValue(Button.StyleProperty, Application.Current.Resources["ImageButton"]);
                                     if (!string.IsNullOrWhiteSpace(col.ToolTip))
                                     {
                                         btn.SetValue(Button.ToolTipProperty, col.ToolTip);
                                     }
-                                    btn.AddHandler(Button.MouseDoubleClickEvent, new MouseButtonEventHandler((sender1, exx1) =>
+                                    btn.AddHandler(Button.ClickEvent, new RoutedEventHandler((sender1, exx1) =>
                                     {
                                         try
                                         {
                                             myClickWaitTimer.Stop();
                                             if (sender1 != null && sender1 is Button)
                                             {
-                                                if ((sender1 as Button).DataContext != null && (sender1 as Button).DataContext is DataRowView)
-                                                {
-                                                    DataRowView row = ((sender1 as Button).DataContext as DataRowView);
-                                                    if (row != null)
-                                                    {
-                                                        string Name = (sender1 as Button).Name.Replace("Key", "");
-                                                        (Application.Current.Resources["AppViewModel"] as HomeController).DataGridButtonPressed(Name, row.Row, "DOUBLECLICK");
+                                                if ((sender1 as Button).DataContext != null)
+                                                { 
+                                                    if (((sender1 as Button).DataContext) != null)
+                                                    { 
+                                                        (Application.Current.Resources["AppViewModel"] as HomeController).DataGridButtonPressed((sender1 as Button));
                                                     }
                                                 }
                                             }
@@ -206,12 +198,12 @@ namespace NPIE.Screen.ScreenResources
                                     {
                                         case "UPDATE":
                                             {
-                                                Img.SetValue(Image.SourceProperty, new BitmapImage(new Uri(DebugFolder + @"\Resources\0\Images\UpdateButton.png")));
+                                                Img.SetValue(Image.SourceProperty, new BitmapImage(new Uri((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.UpdateButtonIcon)));
                                                 break;
                                             }
                                         case "DELETE":
                                             {
-                                                Img.SetValue(Image.SourceProperty, new BitmapImage(new Uri(DebugFolder + @"\Resources\0\Images\DeleteButton.png")));
+                                                Img.SetValue(Image.SourceProperty, new BitmapImage(new Uri((Application.Current.Resources["AppViewModel"] as HomeController).ApplicationDesign.DeleteButtonIcon)));
                                                 break;
                                             }  
                                     } 
@@ -279,13 +271,13 @@ namespace NPIE.Screen.ScreenResources
             {
                 if (btnPressed != null && btnPressed is Button)
                 {
-                    if ((btnPressed as Button).DataContext != null && (btnPressed as Button).DataContext is DataRowView)
+                    if ((btnPressed as Button).DataContext != null )
                     {
-                        DataRowView row = ((btnPressed as Button).DataContext as DataRowView);
-                        if (row != null)
+                       
+                        if ((btnPressed as Button).DataContext != null)
                         {
-                            string Name = (btnPressed as Button).Name.Replace("Key", "");
-                            (Application.Current.Resources["AppViewModel"] as HomeController).DataGridButtonPressed(Name, row.Row, "CLICK");
+                           
+                            (Application.Current.Resources["AppViewModel"] as HomeController).DataGridButtonPressed((btnPressed as Button));
                         }
                     }
                 }

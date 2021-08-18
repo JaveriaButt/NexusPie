@@ -20,6 +20,7 @@
     <Converters:StringToVisibilityConverter x:Key="ConvertStringToVisbility"/>
     <Converters:NullToVisibilityConverter x:Key="ConvertNullToVisbility"/>
     <Converters:NullToVisibilityReverseConverter x:Key="NullToVisibilityReverseConverter"/>
+    <Converters:ScreenConvertor x:Key="ConvertScreenTypeToControl"/>
 
     <Style TargetType="{x:Type Control:NPButtons}" x:Key="ProductButton">
         <Setter Property="FontFamily" Value="{Binding Source={StaticResource  AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}"/>

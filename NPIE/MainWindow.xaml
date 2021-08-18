@@ -64,7 +64,7 @@
                 <!--Screens Area to show screens-->
                 <Grid Grid.Column="1" Margin="0,0,-0.4,-0.2">
                     <!--<screen:SaleScreen    HorizontalAlignment="Right"/>-->
-                    <ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen.ScreenControl,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    <ContentControl Content="{Binding Source={StaticResource AppViewModel},Path=CurrentScreen.ScreenControl,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource ConvertScreenTypeToControl}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 </Grid>
             </Grid>
         </Grid>

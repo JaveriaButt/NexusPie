@@ -17,19 +17,28 @@ namespace NPIE.Convertors
             UserControl Response = null;
             try
             {
-                if(Object != null)
+                if (Object != null)
                 {
-                    ScreenType Screen = ((dynamic)Object).ChildControl;
+                    ScreenType Screen = (ScreenType)Enum.Parse(typeof(ScreenType), Object.ToString(), true);
                     switch (Screen)
                     {
-                        case  ScreenType.VIEWPRODUCTS:
-                            { 
-                                return new Screen.Items.ViewProducts(); 
+                        case ScreenType.None:
+                            {
+                                return null;
                             }
-
+                        case ScreenType.VIEWPRODUCTS:
+                            {
+                                return new Screen.Items.ViewProducts();
+                            }
+                        case ScreenType.ADD_PRODUCTS:
+                            {
+                                return new Screen.Items.AddProduct();
+                            }
+                        case ScreenType.SALE_SCREEN:
+                            {
+                                return new Screen.SaleScreen();
+                            }
                     }
-
-
                 }
 
             }catch(Exception ex)

@@ -9,7 +9,7 @@ namespace Models
 {
     public class BaNPIEScreen :  INotifyPropertyChanged
     {
-        public BaNPIEScreen(UserControl screen)
+        public BaNPIEScreen(ScreenType screen)
         {
             ScreenControl = screen;
         }
@@ -34,9 +34,9 @@ namespace Models
             }
         }
 
-        private UserControl m_ScreenControl = null;
+        private ScreenType m_ScreenControl = ScreenType.None;
 
-        public  UserControl ScreenControl
+        public ScreenType ScreenControl
         {
             set
             {

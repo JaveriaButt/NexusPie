@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,34 +11,36 @@ namespace NPIE.Controls
 {
     public class ItemMenu
     {
-        public ItemMenu(string header, List<SubItem> subItems, PackIconKind icon)
+        public ItemMenu(string header, List<SubItem> subItems, PackIconKind icon, ScreenType screen = ScreenType.None)
         {
             Header = header;
             SubItems = subItems;
             Icon = icon;
+            SCREEN = screen;
         }
 
-        public ItemMenu(string header, UserControl screen, PackIconKind icon)
+        public ItemMenu(string header,  PackIconKind icon, ScreenType screen = ScreenType.None)
         {
             Header = header;
-            Screen = screen;
+            SCREEN = screen;
             Icon = icon;
         }
 
         public string Header { get; private set; }
         public PackIconKind Icon { get; private set; }
         public List<SubItem> SubItems { get; private set; }
-        public UserControl Screen { get; private set; }
+        public ScreenType SCREEN { get; private set; }
+       
     }
 
     public class SubItem
     {
-        public SubItem(string name, UserControl screen = null)
+        public SubItem(string name , ScreenType screen = ScreenType.None)
         {
-            Name = name;
-            Screen = screen;
+            NAME = name;
+            SCREEN = screen;
         }
-        public string Name { get; private set; }
-        public UserControl Screen { get; private set; }
+        public string NAME { get; private set; }
+        public ScreenType SCREEN { get; private set; }
     }
 }
