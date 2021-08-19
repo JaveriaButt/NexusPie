@@ -291,7 +291,7 @@ namespace DAL
                     LOG.Save(" SERVICE RESPONSE " + Response);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
             return Response;

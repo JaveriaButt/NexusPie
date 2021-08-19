@@ -46,7 +46,8 @@ namespace NPIE
             try
             {
                 var abc = sender as SubItem;
-                (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.ScreenControl = (sender as SubItem).SCREEN;            }
+                (Application.Current.Resources["AppViewModel"] as HomeController).CurrentScreen.ScreenControl = (sender as SubItem).SCREEN;           
+            }
             catch (Exception ex)
             { }
         }
