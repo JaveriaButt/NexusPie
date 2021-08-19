@@ -29,7 +29,21 @@ namespace Models
             get { return this.m_ProductId; }
         }
 
+        private string m_Productbarcode = string.Empty;
 
+        public string ProductBarcode
+        {
+            set
+            {
+                if (m_Productbarcode != value)
+                {
+                    m_Productbarcode = value;
+                    this.OnPropertyChanged("ProductBarcode");
+
+                }
+            }
+            get { return this.m_Productbarcode; }
+        }
 
         private string m_ProductCode = string.Empty;
 
