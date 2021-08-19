@@ -59,10 +59,16 @@ namespace NPIE.Screen.Items
 
                     if(SelectedButton.Name.ToUpper() == "UPDATE")
                     {
-                        AddProduct p = new AddProduct();
-                        p.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                        p.NProduct = (SelectedButton.DataContext as Product); 
-                        p.ShowDialog();
+
+
+                        (Application.Current.Resources["AppViewModel"] as HomeController).ShoWpopUp(new AddProduct());
+                        //Window window = new Window
+                        //{ 
+                        //    Content = new AddProduct(),
+                        //    SizeToContent = SizeToContent.WidthAndHeight,
+                        //    ResizeMode = ResizeMode.NoResize
+                        //};
+                        //window.ShowDialog();
 
                     }
                     else if (SelectedButton.Name.ToUpper() == "DELETE")
@@ -89,8 +95,16 @@ namespace NPIE.Screen.Items
         
         private void addProduct_Click(object sender, RoutedEventArgs e)
         {
-            AddProduct p = new AddProduct();
-            p.Show();
+
+
+            try
+            {
+                (Application.Current.Resources["AppViewModel"] as HomeController).ShoWpopUp(new AddProduct());
+
+            }
+            catch (Exception ex)
+            { }
+           
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

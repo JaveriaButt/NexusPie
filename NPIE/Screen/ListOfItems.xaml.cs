@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPIE.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,7 @@ namespace NPIE.Screen
         {
             try
             {
-                var abc = sender;
+                (Application.Current.Resources["AppViewModel"] as HomeController).SubmitToScreen(sender);
 
             }catch(Exception ex)
             {

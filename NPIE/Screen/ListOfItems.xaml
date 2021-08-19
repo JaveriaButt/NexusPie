@@ -10,7 +10,7 @@
         <ListView HorizontalAlignment="Stretch" Focusable="False" IsTabStop="False" BorderBrush="Transparent" TabIndex="-1" x:Name="ItemsList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Source={StaticResource AppViewModel},Path=SaleAbleItems, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Control:AlignableWrapPanel  HorizontalContentAlignment="Center"   VerticalAlignment="Top"/>
+                    <Control:AlignableWrapPanel  HorizontalContentAlignment="Center"   VerticalAlignment="Top" />
                 </ItemsPanelTemplate> 
             </ListView.ItemsPanel>
           

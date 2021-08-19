@@ -7,7 +7,7 @@
               xmlns:Control="clr-namespace:NPIE.Controls" 
              xmlns:screenresourcen="clr-namespace:NPIE.Screen.ScreenResources"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"  Loaded="UserControl_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800"  Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.8*"/>
@@ -42,7 +42,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid> 
-                                <Control:NPButtons Style="{StaticResource OvalButton}"  ContentS="{Binding Name}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}" />
+                                <Control:NPButtons Style="{StaticResource OvalButton}"  Click="NPButtons_Click" ContentS="{Binding Name}" FontFamily="{Binding Source={StaticResource AppViewModel},Path=ApplicationDesign.FontFamily, UpdateSourceTrigger=PropertyChanged}"  />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -112,7 +112,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Control:NPLabel   Grid.Column="0" VerticalContentAlignment="Center" Background="Azure" Content="Current Order" Height="70"></Control:NPLabel>
-                <Control:NPButtons Grid.Column="1"  Width="80"  Height="35" x:Name="btn_Clear"   HorizontalAlignment="Center" Style="{StaticResource RoundedButton}"  Content="Clear All" />
+                <Control:NPButtons Grid.Column="1"  Width="80"  Height="35" x:Name="btn_Clear"   HorizontalAlignment="Center" Style="{StaticResource RoundedButton}"  Content="Clear All" Click="btn_Clear_Click" />
  
             </Grid> 
             <screenresourcen:NP_SaleGrid  x:Name="dg_SaleItems" Background="Red"    Margin="0,0,0,-0.4" />

@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800"> 
     
     <Grid >
-        <DataGrid x:Name="dgGrid" AlternatingRowBackground="Green" AlternationCount="2" MouseLeftButtonDown="dgGrid_MouseLeftButtonDown" MouseDoubleClick="dgGrid_MouseDoubleClick" local:DataGridColumnsBehavior.BindableColumns="{Binding Source={StaticResource  AppViewModel},Path=CurrentScreen.ColumnsList,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Source={StaticResource AppViewModel},Path=ListOfItems,UpdateSourceTrigger=PropertyChanged}" >
+        <DataGrid x:Name="dgGrid" AlternatingRowBackground="Green" AlternationCount="2"   MouseDoubleClick="dgGrid_MouseDoubleClick" local:DataGridColumnsBehavior.BindableColumns="{Binding Source={StaticResource  AppViewModel},Path=CurrentScreen.ColumnsList,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Source={StaticResource AppViewModel},Path=ListOfItems,UpdateSourceTrigger=PropertyChanged}" >
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGrid}">
                     <Setter Property="Background" Value="Transparent"/>

@@ -9,13 +9,14 @@ using System.Windows.Media.Imaging;
 using Resources;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Controls;
 
 namespace NPIE.Screen.Items
 {
     /// <summary>
     /// Interaction logic for AddProduct.xaml
     /// </summary>
-    public partial class AddProduct : Window
+    public partial class AddProduct : UserControl
     { 
         public Product NProduct =   new Product() { };
         public AddProduct()
@@ -38,11 +39,7 @@ namespace NPIE.Screen.Items
                 if(!string.IsNullOrWhiteSpace(NProduct.UnitOfMeasure))
                 {
                     cmb_UnitOfMeasure.SelectedValue = NProduct.UnitOfMeasure;
-                }
-
-
-
-
+                } 
             }
             catch(Exception ex)
             { }
@@ -69,12 +66,13 @@ namespace NPIE.Screen.Items
 
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            (this.Parent as Window).DragMove();
+             
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            
-            this.Close();
+            (this.Parent as Window).Close();
+
         }
 
         private void Cmb_Categroy_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

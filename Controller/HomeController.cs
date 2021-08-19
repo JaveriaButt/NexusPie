@@ -550,6 +550,42 @@ namespace NPIE.Controller
             }
         }
 
+        public void ShoWpopUp(UserControl userControl)
+        {
+            try
+            {
+                Window window = new Window()
+                {
+
+                    Content = userControl,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    SizeToContent =  SizeToContent.WidthAndHeight,
+                    WindowStyle = WindowStyle.None,
+                    ResizeMode = ResizeMode.NoResize
+
+                };
+                window.ShowDialog();
+            }
+            catch (Exception e)
+            { }
+        }
+
+        public RoutedEventHandler SubmitToScreenEvent = null;
+        public void SubmitToScreen(object Value)
+        {
+            try
+            {
+                if (SubmitToScreenEvent != null)
+                {
+                    this.SubmitToScreenEvent(Value, new RoutedEventArgs());
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
 
         #endregion

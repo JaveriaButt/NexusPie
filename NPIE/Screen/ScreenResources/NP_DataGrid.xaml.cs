@@ -124,12 +124,12 @@ namespace NPIE.Screen.ScreenResources
                                 case ColumnTypes.Text:
                                     dataGridColumn = new DataGridTextColumn();
                                     dataGridColumn.IsReadOnly = true;
-                                    (dataGridColumn as DataGridTextColumn).Binding = new Binding(col.Property) { Mode = BindingMode.OneWay };
+                                    (dataGridColumn as DataGridTextColumn).Binding = new Binding(col.Property) { Mode = BindingMode.TwoWay };
                                     break;
                                 case ColumnTypes.URLColumn:
                                     dataGridColumn = new DataGridHyperlinkColumn();
                                     dataGridColumn.IsReadOnly = true;
-                                    (dataGridColumn as DataGridHyperlinkColumn).Binding = new Binding(col.Property) { Mode = BindingMode.OneWay };
+                                    (dataGridColumn as DataGridHyperlinkColumn).Binding = new Binding(col.Property) { Mode = BindingMode.TwoWay };
                                     break;
                                 case ColumnTypes.Button:
                                     #region Button Column
