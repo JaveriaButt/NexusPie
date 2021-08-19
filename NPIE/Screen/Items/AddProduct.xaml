@@ -68,6 +68,10 @@
                         <control:NPTextBox  x:Name="tb_Qunatity" Width="250" Height="30"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
                     </StackPanel>
                
+                    <StackPanel Orientation="Horizontal" Margin="05,10">
+                        <control:NPLabel  Content="Barcode"   VerticalAlignment="Center"  MinWidth="140"></control:NPLabel>
+                        <control:NPTextBox  x:Name="tb_barcode" Width="250" Height="30"  VerticalAlignment="Center"  MinWidth="140"></control:NPTextBox>
+                    </StackPanel>
                 </StackPanel>
        
               <StackPanel Grid.Column="1" Orientation="Vertical">

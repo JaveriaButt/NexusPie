@@ -118,6 +118,7 @@ namespace NPIE.Screen.Items
                 NProduct.SalePrice = tb_SalePrice.Text.Trim();
                 NProduct.Description = tb_PDescription.Text.Trim();
                 NProduct.ImagePath = Xpath;
+                NProduct.ProductBarcode = tb_barcode.Text.Trim();
                 try { NProduct.Quantity = int.Parse(tb_Qunatity.Text.Trim()); } catch (Exception ex) { }
                 try { NProduct.Category = (Cmb_Categroy.SelectedItem as Category).ID.ToString(); } catch (Exception ex) { }
                 try { NProduct.UnitOfMeasure = (cmb_UnitOfMeasure.SelectedItem as System.Data.DataRowView)[0].ToString(); } catch (Exception ex) { }
