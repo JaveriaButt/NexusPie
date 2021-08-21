@@ -81,6 +81,9 @@
     <Compile Include="Controls\NPButtons.cs" />
     <Compile Include="Convertors\ScreenConvertor.cs" />
     <Compile Include="Convertors\VisibilityConvertor.cs" />
+    <Compile Include="Screen\Catagories\Catagoriess.xaml.cs">
+      <DependentUpon>Catagoriess.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screen\Items\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="DesignResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screen\Catagories\Catagoriess.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
