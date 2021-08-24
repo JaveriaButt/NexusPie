@@ -89,7 +89,7 @@ namespace Models
                 if (this.m_Description != value)
                 {
                     this.m_Description = value;
-                    this.OnPropertyChanged("Description");
+                    this.OnPropertyChanged("StudentMobile");
                 }
             }
 

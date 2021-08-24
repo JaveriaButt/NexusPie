@@ -96,11 +96,8 @@ namespace NPIE
                 var menuSchedule = new List<SubItem>();
                 menuSchedule.Add(new SubItem("View Products", ScreenType.VIEWPRODUCTS));
                 menuSchedule.Add(new SubItem("Add Products",  ScreenType.ADD_PRODUCTS));
-                menuSchedule.Add(new SubItem("Catagories", ScreenType.CATAGORY_SCREEN));
-
                 var item1 = new ItemMenu("Products", menuSchedule, PackIconKind.Schedule, ScreenType.VIEWPRODUCTS);
 
-              
                 //var menuReports = new List<SubItem>();
                 //menuReports.Add(new SubItem("Customers"));
                 //menuReports.Add(new SubItem("Providers"));
