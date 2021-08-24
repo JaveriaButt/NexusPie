@@ -68,7 +68,6 @@
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="AppDesign.cs" />
     <Compile Include="BaNPIEScreen.cs" />
-    <Compile Include="Catagory.cs" />
     <Compile Include="ClickResponse.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ControlsSetting.cs" />

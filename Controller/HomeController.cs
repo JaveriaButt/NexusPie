@@ -205,23 +205,7 @@ namespace NPIE.Controller
                 return m_ListOfItems;
             }
         }
-        private ObservableCollection<Catagory> m_ListOfCat = new ObservableCollection<Catagory>();
 
-        public ObservableCollection<Catagory> ListOfCatagory
-        {
-            set
-            {
-                if (value != m_ListOfCat)
-                {
-                    m_ListOfCat = value;
-                    this.OnPropertyChanged("ListOfCatagory");
-                }
-            }
-            get
-            {
-                return m_ListOfCat;
-            }
-        }
         private ObservableCollection<Product> m_SaleAbleItems = new ObservableCollection<Product>();
 
         public ObservableCollection<Product> SaleAbleItems
