@@ -112,13 +112,25 @@ namespace DAL
             { }
             return Response;
         }
-
+        public virtual string GetAllCatagories()
+        {
+            string Response = string.Empty;
+            try
+            {
+                string XmlRequest = "<Root><HEADER><APPTYPE>100001</APPTYPE><VERSION>1</VERSION><REQTYPE>INFO</REQTYPE><REQID>1</REQID><USER>Admin</USER></HEADER><DATA></DATA></Root>";
+                Response = GetServerResponse(XmlRequest);
+            }
+            catch (Exception ex)
+            { }
+            return Response;
+           
+        }
         public virtual string GetAllProducts()
         {
             string Response = string.Empty;
             try
             {
-                string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>ITEMS</REQTYPE><REQID>1</REQID><USER>Admin</USER></HEADER><DATA>GETALL</DATA></Root>";
+                string XmlRequest = "<Root><HEADER><APPTYPE>" + GetAppConfiguration().APPType + "</APPTYPE><VERSION>1</VERSION><REQTYPE>CATAGORY</REQTYPE><REQID>1</REQID><USER>Admin</USER></HEADER><DATA>GETALL</DATA></Root>";
                 Response = GetServerResponse(XmlRequest);
             }
             catch (Exception ex)

@@ -20,7 +20,8 @@ namespace Models
 
        [XmlEnum("3")]
        SALE_SCREEN = 3,
-
+        [XmlEnum("4")]
+        CATAGORY_SCREEN = 4,
 
 
 

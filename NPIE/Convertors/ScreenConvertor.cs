@@ -38,6 +38,10 @@ namespace NPIE.Convertors
                             {
                                 return new Screen.SaleScreen();
                             }
+                        case ScreenType.CATAGORY_SCREEN:
+                            {
+                                return new Screen.Catagories.Catagoriess();
+                            }
                     }
                 }
 

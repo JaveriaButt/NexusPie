@@ -174,6 +174,39 @@ namespace BusinessLogic
         }
 
 
+        public virtual ObservableCollection<Catagory> GetAllCatagories()
+        {
+            ObservableCollection<Catagory> Response = new ObservableCollection<Catagory>();
+            try
+            {
+                var DalResponse = DAL.GetAllCatagories();
+                if (!string.IsNullOrWhiteSpace(DalResponse))
+                {
+                    var ds = General.XMLToDataSet(DalResponse);
+                    if (ds != null && ds.Tables[0] != null)
+                    {
+                        foreach (DataRow row in ds.Tables[0].Rows)
+                        {
+                            try
+                            {
+                                Response.Add(new Catagory()
+                                {
+                                    CatagoryId = row["Name"].ToString(),
+                                    CatagoryName = row["itemcode"].ToString(),
+                                    Description = row["PurchasePrice"].ToString(),
+                                    IsPresent = Convert.ToBoolean(row["SalePrice"].ToString())
+                                    
+                                });
+                            }
+                            catch (Exception ex) { }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            { }
+            return Response;
+        }
 
 
 

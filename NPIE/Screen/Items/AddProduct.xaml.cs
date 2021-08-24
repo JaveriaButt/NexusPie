@@ -10,7 +10,7 @@ using Resources;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Controls;
-
+using Microsoft.VisualBasic;
 namespace NPIE.Screen.Items
 {
     /// <summary>
@@ -174,6 +174,11 @@ namespace NPIE.Screen.Items
             catch (Exception ex)
 
             { }
+        }
+
+        private void btn_addCatagory_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
